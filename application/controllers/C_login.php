@@ -1,6 +1,6 @@
  <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
  
-class Auth extends CI_Controller {
+class C_login extends CI_Controller {
     function __construct(){
         parent::__construct();
         $this->load->model('M_login');
@@ -9,7 +9,7 @@ class Auth extends CI_Controller {
     public function index($error = NULL) {
         $data = array(
             'title' => 'Login Page',
-            'action'=> site_url('Auth/login'),
+            'action'=> site_url('C_login/login'),
             'error' => $error,
             'judul' => 'Login'
         );

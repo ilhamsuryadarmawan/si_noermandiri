@@ -13,14 +13,27 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="all-form-element-inner">
-                                                    <form method="post" action="http://localhost/noermandiri/index.php/C_mapel/simpan"enctype="multipart/form-data">
+                                                    <form method="post" action="C_absensi/simpan"enctype="multipart/form-data">
                                                         <div class="form-group-inner">
                                                             <div class="row">
                                                                 <div class="col-lg-3">
-                                                                    <label class="login2 pull-right pull-right-pro">Nama Mapel</label>
+                                                                    <label class="login2 pull-right pull-right-pro">Materi</label>
                                                                 </div>
                                                                 <div class="col-lg-9">
                                                                     <input type="text" class="form-control" id="NAMA_MAPEL" name="NAMA_MAPEL">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <?php 
+
+                                                        ?>
+                                                        <div class="form-group-inner">
+                                                            <div class="row">
+                                                                <div class="col-lg-3">
+                                                                    <label class="login2 pull-right pull-right-pro">Tanggal Hari Ini</label>
+                                                                </div>
+                                                                <div class="col-lg-9">
+                                                                    <input type="text" class="form-control" id="NAMA_MAPEL" name="NAMA_MAPEL" value="<?php echo date('Y-m-d')?>" readonly>
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -100,7 +100,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" role="button" aria-expanded="false" class="nav-link data-toggle">
+                            <a href="<?php echo base_url('C_absensi')?>" role="button" aria-expanded="false" class="nav-link data-toggle">
                                 <i class="fa big-icon fa-pencil"></i>
                                 <span class="mini-dn">Absensi Siswa</span>
                                 <span class="indicator-right-menu mini-dn"></span>
@@ -186,7 +186,7 @@
                                                 <span class="fa fa-angle-down"></span>
                                             </a>
                                             <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated flipInX">
-                                                <li><a href="<?php echo base_url('Auth/logout')?>"><span class="fa fa-sign-out"></span>Log Out</a>
+                                                <li><a href="<?php echo base_url('C_login/logout')?>"><span class="fa fa-sign-out"></span>Log Out</a>
                                                 </li>
                                             </ul>
                                         </li>

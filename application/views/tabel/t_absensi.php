@@ -12,7 +12,7 @@
                                 <div class="sparkline13-graph">
                                     <div class="datatable-dashv1-list custom-datatable-overright">
                                         <div id="toolbar">
-                                            <?php if($this->session->userdata('akses')=='tentor'):?>
+                                            <?php if($this->session->userdata('akses')=='admin'):?>
                                             <a href="<?php echo base_url('C_absensi/tambah')?>"><button type="button" class="btn btn-info btn-fill pull-right" name="Tambah">Tambah data</button></a>
                                             <?php endif;?>
                                         </div>

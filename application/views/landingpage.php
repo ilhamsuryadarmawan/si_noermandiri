@@ -103,7 +103,7 @@
                   <a class="nav-link" href="contact.html">Contact</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="<?php echo base_url('Auth')?>">Login</a>
+                  <a class="nav-link" href="<?php echo base_url('C_login')?>">Login</a>
                 </li>
               </ul>
             </div>
