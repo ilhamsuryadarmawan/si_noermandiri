@@ -1,11 +1,11 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-    class Siswa extends CI_Controller {
+    class C_siswa extends CI_Controller {
 
         function __construct(){
         parent::__construct();
             if($this->session->userdata('masuk') != TRUE){
-                redirect(site_url('Auth'));
+                redirect(site_url('C_login'));
             }
         $this->load->library('form_validation');
         }

@@ -1,11 +1,11 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-    class Jenjang_Kelas extends CI_Controller {
+    class C_jenjangKelas extends CI_Controller {
 
         function __construct(){
         parent::__construct();
             if($this->session->userdata('masuk') != TRUE){
-                redirect(site_url('Auth'));
+                redirect(site_url('C_login'));
             }
         $this->load->library('form_validation');
         }
@@ -35,7 +35,7 @@
                 'jenjang' => $rows,
                 'judul'     => 'Form Tambah Data Jenjang Kelas',
                 'title'     => 'Tambah Data Jenjang Kelas',
-                'content'   => 'form/f_tambah_jenjang_kelas',
+                'content'   => 'form/f_jenjang_kelas',
             );
             $this->load->view('layout', $data);
             }else{//jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang

@@ -82,18 +82,21 @@
                                 </span>
                             </a>
                             <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
-                                <a href="<?php echo base_url('Pegawai')?>" class="dropdown-item">Data Pegawai</a>
-                                <a href="<?php echo base_url('Siswa')?>" class="dropdown-item">Data Siswa</a>
-                                <a href="<?php echo base_url('Jabatan')?>" class="dropdown-item">Data Jabatan</a>                         
-                                <a href="<?php echo base_url('C_mapel')?>" class="dropdown-item">Data Mata Pelajaran</a>
-                                <a href="<?php echo base_url('Ruangan')?>" class="dropdown-item">Data Ruangan</a>
+                                <a href="<?php echo base_url('C_pegawai')?>" class="dropdown-item">Data Pegawai</a>
+                                <a href="<?php echo base_url('C_jabatan')?>" class="dropdown-item">Data Jabatan</a>  
+                                <a href="<?php echo base_url('C_siswa')?>" class="dropdown-item">Data Siswa</a>
                                 <a href="<?php echo base_url('C_kelas')?>" class="dropdown-item">Data Kelas</a>
-                                <a href="<?php echo base_url('Jenjang_Kelas')?>" class="dropdown-item">Data Jenjang Kelas</a>
+                                <a href="<?php echo base_url('C_jenjangKelas')?>" class="dropdown-item">Data Jenjang Kelas</a>
+                                <a href="<?php echo base_url('C_mapel')?>" class="dropdown-item">Data Mata Pelajaran</a>
+                                <a href="<?php echo base_url('C_ruangan')?>" class="dropdown-item">Data Ruangan</a>
+                                <a href="<?php echo base_url('C_waktu')?>" class="dropdown-item">Data Waktu</a>
+                                <a href="<?php echo base_url('C_jenisUjian')?>" class="dropdown-item">Data Jenis Ujian</a>
+
 
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a href="#" role="button" aria-expanded="false" class="nav-link data-toggle">
+                            <a href="<?php echo base_url('C_penilaian')?>" role="button" aria-expanded="false" class="nav-link data-toggle">
                                 <i class="fa big-icon fa-book"></i>
                                 <span class="mini-dn">Penilaian Siswa</span>
                                 <span class="indicator-right-menu mini-dn"></span>
@@ -106,13 +109,13 @@
                                 <span class="indicator-right-menu mini-dn"></span>
                             </a>
                         </li>
-                        <li class="nav-item">
+<!--                         <li class="nav-item">
                             <a href="<?php echo base_url('Jadwal')?>" role="button" aria-expanded="false" class="nav-link data-toggle">
                                 <i class="fa big-icon fa-calendar calendar-alt"></i>
                                 <span class="mini-dn">Jadwal Les</span>
                                 <span class="indicator-right-menu mini-dn"></span>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                                 <i class="fa big-icon fa-files-o"></i>
@@ -122,8 +125,8 @@
                                 </span>
                             </a>
                             <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
-                                <a href="inbox.html" class="dropdown-item">Laporan Pendaftaran</a>
-                                <a href="view-mail.html" class="dropdown-item">Laporan Pembayaran</a>
+                                <a href="inbox.html" class="dropdown-item">Laporan Nilai Siswa</a>
+                                <a href="view-mail.html" class="dropdown-item">Laporan Absensi Siswa</a>
                             </div>
                         </li>
                         <?php elseif($this->session->userdata('akses')=='pemilik'):?>

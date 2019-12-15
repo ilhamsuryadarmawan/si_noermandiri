@@ -13,7 +13,7 @@ class C_login extends CI_Controller {
             'error' => $error,
             'judul' => 'Login'
         );
-        $this->load->view('login2', $data);
+        $this->load->view('v_login', $data);
     }
 
     public function login(){
@@ -30,17 +30,17 @@ class C_login extends CI_Controller {
                 $this->session->set_userdata('akses','admin');
                 $this->session->set_userdata('ses_id',$data['ID_PEGAWAI']);
                 $this->session->set_userdata('ses_nama',$data['NAMA_PEGAWAI']);
-                redirect(site_url('Home'));
+                redirect(site_url('C_home'));
             }elseif($data['LEVEL']=='2'){ //akses pemilik
                 $this->session->set_userdata('akses','pemilik');
                 $this->session->set_userdata('ses_id',$data['ID_PEGAWAI']);
                 $this->session->set_userdata('ses_nama',$data['NAMA_PEGAWAI']);
-                redirect(site_url('Home'));
+                redirect(site_url('C_home'));
             }elseif($data['LEVEL']=='3'){ //akses tentor
                 $this->session->set_userdata('akses','tentor');
                 $this->session->set_userdata('ses_id',$data['ID_PEGAWAI']);
                 $this->session->set_userdata('ses_nama',$data['NAMA_PEGAWAI']);
-                redirect(site_url('Home'));
+                redirect(site_url('C_home'));
             }else{
                 $error = 'Username atau Password salah';
                 $this->index($error);
@@ -55,7 +55,7 @@ class C_login extends CI_Controller {
                 $this->session->set_userdata('ses_id',$data['NOINDUK']);
                 $this->session->set_userdata('ses_nama',$data['NAMA_SISWA']);
                 $this->session->set_userdata('ses_kelas',$data['ID_KELAS']);
-                redirect(site_url('Home'));
+                redirect(site_url('C_home'));
             }else {
                 $error = 'Username atau Password salah';
             $this->index($error);
@@ -66,7 +66,7 @@ class C_login extends CI_Controller {
 
     function logout(){
         $this->session->sess_destroy();
-        redirect(site_url('Home'));
+        redirect(site_url('C_home'));
     }
 }
 

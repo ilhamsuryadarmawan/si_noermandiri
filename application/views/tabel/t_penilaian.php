@@ -17,8 +17,8 @@
                                         <form>
                                             <div class="form-group-inner">
                                                 <div class="row">
-                                                    <div class="col-lg-2">
-                                                        <label class="login2 pull-left pull-left-pro">Kelas</label>
+                                                    <div class="col-lg-1">
+                                                        <label class="login2 pull-right pull-right-pro">KELAS</label>
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <input type="text" class="form-control" id="kelas" name="kelas" value="<?php echo $kelas?>" readonly>
@@ -27,39 +27,22 @@
                                             </div>
                                             <div class="form-group-inner">
                                                 <div class="row">
-                                                    <div class="col-lg-2">
-                                                        <label class="login2 pull-left pull-left-pro">Pengajar</label>
+                                                    <div class="col-lg-1">
+                                                        <label class="login2 pull-right pull-right-pro">MAPEL</label>
                                                     </div>
                                                     <div class="col-lg-3">
-                                                        <input type="text" class="form-control" id="pengajar" name="pengajar" value="<?php echo $pegawai?>" readonly>
+                                                        <input type="text" class="form-control" id="mapel" name="mapel" value="<?php echo $mapel?>" readonly>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group-inner">
-                                                <div class="row">
-                                                    <div class="col-lg-2">
-                                                        <label class="login2 pull-left pull-left-pro">Tanggal Absensi</label>
-                                                    </div>
-                                                    <div class="col-lg-3">
-                                                        <input type="date" class="form-control" id="TANGGAL_ABSEN" name="TANGGAL_ABSEN" value="<?php echo date('Y-m-d')?>">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group-inner">
-                                                <div class="row">
-                                                    <div class="col-lg-3">
-                                                        <input type="hidden" class="form-control" id="TGL_ABSEN_DIBUAT" name="TGL_ABSEN_DIBUAT" value="<?php echo date('Y-m-d')?>" readonly>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            </div>  
                                         
                                         <table class="table sparkle-table" id="table" data-toggle="table" data-pagination="false" data-search="false" data-cookie-id-table="saveId" data-click-to-select="false" data-toolbar="#toolbar">
                                             <thead>
                                                 <tr>
                                                     <th data-field="no">No</th>
-                                                    <th data-field="noinduk">NIS</th>
+                                                    <th data-field="NOINDUK">NIS</th>
                                                     <th data-field="kelas">Nama Siswa</th>
-                                                    <th data-field="tglAbsen">Status Absen</th>
+                                                    <th data-field="nilai">Nilai</th>
 
                                                     
                                                 </tr>
@@ -73,12 +56,7 @@
                                                     <td><?php echo $nourut++;?></td>
                                                     <td><?php echo $sis->NOINDUK; ?></td>
                                                     <td><?php echo $sis->NAMA_SISWA; ?></td>
-                                                    <td>
-                                                    <label>
-                                                    <input type="radio" name="status_absen" value="H" > H
-                                                    <input type="radio" name="status_absen" value="A"> A 
-                                                    </label>
-                                                    </td>
+                                                    <td><input type="" name=""></td>
 
                                                 <?php
                                                 }

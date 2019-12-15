@@ -11,4 +11,11 @@ class M_siswa extends CI_Model {
         $q = $this->db->get($this->table);
         return $q;
     }
+
+    public function tampilSiswaPerKelas($kelas){
+    	$query=$this->db->query("SELECT *
+                                FROM siswa
+                                WHERE ID_KELAS='$kelas'");
+        return $query;
+    }
 }

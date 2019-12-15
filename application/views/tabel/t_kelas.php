@@ -13,7 +13,7 @@
                                     <div class="datatable-dashv1-list custom-datatable-overright">
                                         <div id="toolbar">
                                             <?php if($this->session->userdata('akses')=='admin'):?>
-                                            <a href="<?php echo base_url('C_jenjangKelas/tambah')?>"><button type="button" class="btn btn-info btn-fill pull-right" name="Tambah">Tambah data</button></a>
+                                            <a href="<?php echo base_url('C_kelas/tambah')?>"><button type="button" class="btn btn-info btn-fill pull-right" name="Tambah">Tambah data</button></a>
                                             <?php endif;?>
                                         </div>
                                         
@@ -21,20 +21,17 @@
                                             <thead>
                                                 <tr>
                                                     <th data-field="no">No</th>
-                                                    <th data-field="id">ID Jenjang Kelas</th>
-                                                    <th data-field="id">Jenjang Kelas</th>
+                                                    <th data-field="id">Nama Kelas</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
                                                 $nourut = 1;
-                                                foreach ($jenjang as $jk) {
+                                                foreach ($kelas as $kelombel) {
                                                 ?>
                                                 <tr>
                                                     <td><?php echo $nourut++?></td>
-                                                    <td><?php echo $jk->ID_JENJANG; ?></td>
-                                                    <td><?php echo $jk->NAMA_JENJANG; ?></td>
-
+                                                    <td><?php echo $kelombel->NAMA_KELAS; ?></td>
                                                 </tr>
                                                 <?php
                                                 }

@@ -7,8 +7,22 @@ class M_jabatan extends CI_Model {
 
 	//tampilkan semua data
     public function tampilkanSemua() {
-        $q = $this->db->order_by($this->pk);
-        $q = $this->db->get($this->table);
-        return $q;
+        $query = $this->db->order_by($this->pk);
+        $query = $this->db->get($this->table);
+        return $query;
+    }
+
+    function rules(){
+        return[
+            ['field' => 'ID_JABATAN','label' => 'ID_JABATAN','rules' => 'required'],
+            ['field' => 'JABATAN','label' => 'JABATAN','rules' => 'required']
+        ];
+    }
+
+    function simpan(){ 
+        $post = $this->input->post();
+        $this->ID_JABATAN=$post['ID_JABATAN'];
+        $this->JABATAN=$post['JABATAN'];
+        $this->db->insert($this->table, $this); 
     }
 }

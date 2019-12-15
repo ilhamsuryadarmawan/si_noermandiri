@@ -13,35 +13,29 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="all-form-element-inner">
-                                                    <form action="<?php echo base_url('Home')?>">
+                                                    <form action="<?php echo base_url('C_jabatan/simpan')?>" method="post">
                                                         <div class="form-group-inner">
                                                             <div class="row">
                                                                 <div class="col-lg-3">
                                                                     <label class="login2 pull-right pull-right-pro">ID Jabatan</label>
                                                                 </div>
                                                                 <div class="col-lg-9">
-                                                                    <input type="text" class="form-control"/>
+                                                                    <input type="text" class="form-control" id="ID_JABATAN" name="ID_JABATAN" />
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group-inner">
                                                             <div class="row">
                                                                 <div class="col-lg-3">
-                                                                    <label class="login2 pull-right pull-right-pro">Jabatan</label>
+                                                                    <label class="login2 pull-right pull-right-pro">Nama Jabatan</label>
                                                                 </div>
                                                                 <div class="col-lg-9">
-                                                                    <div class="form-select-list">
-                                                                        <select class="form-control custom-select-value" name="account">
-                                                                            <option>-Pilih Jabatan-</option>
-                                                                            <option>OWNER</option>
-                                                                            <option>Tentor</option>
-                                                                            <option>Admin</option>
-                                                                        </select>
-                                                                    </div>
+                                                                    <input type="text" class="form-control" id="JABATAN" name="JABATAN" />
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group-inner">
+
+<!--                                                         <div class="form-group-inner">
                                                             <div class="row">
                                                                 <div class="col-lg-3">
                                                                     <label class="login2 pull-right pull-right-pro">Mata Pelajaran</label>
@@ -60,7 +54,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                         <div class="form-group-inner">
                                                             <div class="login-btn-inner">
                                                                 <div class="row">

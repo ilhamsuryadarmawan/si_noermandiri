@@ -11,4 +11,16 @@ class M_kelas extends CI_Model {
         $q = $this->db->get($this->table);
         return $q;
     }
+
+    function rules(){
+        return[
+            ['field' => 'NAMA_KELAS','label' => 'NAMA_KELAS','rules' => 'required']
+        ];
+    }
+
+    function simpan(){ 
+        $post = $this->input->post();
+        $this->NAMA_KELAS=$post['NAMA_KELAS'];
+        $this->db->insert($this->table, $this); 
+    }
 }

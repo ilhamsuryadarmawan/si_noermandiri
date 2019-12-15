@@ -13,7 +13,7 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="all-form-element-inner">
-                                                    <form method="post" action="http://localhost/noermandiri/index.php/C_mapel/simpan"enctype="multipart/form-data">
+                                                    <form method="post" action="<?php echo base_url('C_mapel/simpan')?>" enctype="multipart/form-data">
                                                         <div class="form-group-inner">
                                                             <div class="row">
                                                                 <div class="col-lg-3">
@@ -49,25 +49,3 @@
                 </div>
             </div>
 <? } ?>
-            <!-- <script type="text/javascript" src=""></script>
-            <script type="text/javascript">
-                $(document).ready(function(){
-                    $('#kode').on('input',function(){
-
-                        var kode = $(this).val()
-                        $.ajax({
-                            type     : "POST",
-                            url      : ",
-                            dataType : "JSON",
-                            data     : {kode: kode_mapel},
-                            cache    : false,
-
-                            success  : function(data){
-                                $.each(data,function(data){
-                                    $('[name="id"]')
-                                });
-                            }
-                        });
-                    });
-                });
-            </script> -->

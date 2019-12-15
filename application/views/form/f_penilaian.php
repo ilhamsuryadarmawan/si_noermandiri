@@ -13,7 +13,7 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="all-form-element-inner">
-                                                    <form method="post" action="<?php echo base_url('C_absensi/tampilSiswa')?>" enctype="multipart/form-data">
+                                                    <form method="post" action="<?php echo base_url('C_penilaian/tampilSiswa')?>" enctype="multipart/form-data">
                                                         <div class="form-group-inner">
                                                             <div class="row">
                                                                 <div class="col-lg-3">
@@ -34,38 +34,48 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
-<!--                                                         
                                                         <div class="form-group-inner">
                                                             <div class="row">
                                                                 <div class="col-lg-3">
-                                                                    <label class="login2 pull-right pull-right-pro">Materi</label>
+                                                                    <label class="login2 pull-right pull-right-pro">Mata Pelajaran</label>
                                                                 </div>
                                                                 <div class="col-lg-9">
-                                                                    <input type="text" class="form-control" id="MATERI" name="MATERI">
+                                                                    <div class="form-select-list">
+                                                                        <select class="form-control custom-select-value" name="mapel" id="mapel" required>
+                                                                            <option value="">- Pilih Mata Pelajaran -</option>
+                                                                            <?php
+                                                                            foreach ($matapel as $mapel) { ?>
+                                                                                <option value="<?php echo $mapel->ID_MAPEL;?>"><?php echo $mapel->NAMA_MAPEL;?></option>
+                                                                            <?php
+                                                                            }
+                                                                            ?>
+                                                                        </select>
+                                                                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group-inner">
                                                             <div class="row">
                                                                 <div class="col-lg-3">
-                                                                    <label class="login2 pull-right pull-right-pro">Tanggal Hari Ini</label>
+                                                                    <label class="login2 pull-right pull-right-pro">Jenis Ujian>
                                                                 </div>
                                                                 <div class="col-lg-9">
-                                                                    <input type="text" class="form-control" id="TGL_ABSEN_DIBUAT" name="TGL_ABSEN_DIBUAT" value="<?php echo date('Y-m-d')?>" readonly>
+                                                                    <div class="form-select-list">
+                                                                        <select class="form-control custom-select-value" name="mapel" id="mapel" required>
+                                                                            <option value="">- Pilih Jenis Ujian -</option>
+                                                                            <?php
+                                                                            foreach ($jenis as $ju) { ?>
+                                                                                <option value="<?php echo $ju->NAMA_JENIS_UJIAN;?>"><?php echo $ju->NAMA_JENIS_UJIAN;?></option>
+                                                                            <?php
+                                                                            }
+                                                                            ?>
+                                                                        </select>
+                                                                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group-inner">
-                                                            <div class="row">
-                                                                <div class="col-lg-3">
-                                                                    <label class="login2 pull-right pull-right-pro">Keterangan Absen</label>
-                                                                </div>
-                                                                <div class="col-lg-9">
-                                                                    <input type="text" class="form-control" id="KETERANGAN_ABSEN" name="KETERANGAN_ABSEN">
-                                                                </div>
-                                                            </div>
-                                                        </div> -->
                                                         <div class="form-group-inner">
                                                             <div class="login-btn-inner">
                                                                 <div class="row">
@@ -112,4 +122,4 @@
                         });
                     });
                 });
-            </script> -->
+            </script> -->   

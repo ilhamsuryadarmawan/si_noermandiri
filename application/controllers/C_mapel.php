@@ -5,7 +5,7 @@
         function __construct(){
         parent::__construct();
             if($this->session->userdata('masuk') != TRUE){
-                redirect(site_url('Auth'));
+                redirect(site_url('C_login'));
             }
         $this->load->library('form_validation');
         }
@@ -25,11 +25,13 @@
                 echo"<script>history.go(-1);</script>";
             }
         }
+        
         public function get_mapel(){
             $kode = $this->input->post('kode_mapel');
             $data =$this->M_mapel->getMapelById($kode);
             echo json_encode($data);
         }
+
         public function tambah() {
             //jika sebagai admin
             if($this->session->userdata('akses') == 'admin'){

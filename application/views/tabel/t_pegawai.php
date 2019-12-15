@@ -22,6 +22,7 @@
                                                 <tr>
                                                     <th data-field="no">No</th>
                                                     <th data-field="nama">Nama</th>
+                                                    <th data-field="nama">Jabatan</th>
                                                     <th data-field="alamat">Alamat</th>
                                                     <th data-field="tglLahir">Tanggal Lahir</th>
                                                     <th data-field="telepon">Telepon</th>
@@ -36,6 +37,7 @@
                                                 <tr>
                                                     <td><?php echo $nourut++;?></td>
                                                     <td><?php echo $pegawai->NAMA_PEGAWAI; ?></td>
+                                                    <td><?php echo $pegawai->ID_JABATAN; ?></td>
                                                     <td><?php echo $pegawai->ALAMAT_PEGAWAI; ?></td>
                                                     <td><?php echo $pegawai->TGL_LAHIR_PEG; ?></td>
                                                     <td><?php echo $pegawai->ALAMAT_PEGAWAI; ?></td>

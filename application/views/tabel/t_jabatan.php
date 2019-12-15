@@ -1,3 +1,38 @@
+<!-- <?php 
+if ($_GET['code'] == 1){
+?>
+    <div class='message success'>
+        <h5>Success!</h5>
+        <p>Data absensi Mahasiswa berhasil disimpan.</p>
+    </div>
+<?php
+}
+if ($_GET['code'] == 2){
+?>
+    <div class='message success'>
+        <h5>Success!</h5>
+        <p>Data absensi Mahasiswa berhasil diubah.</p>
+    </div>
+<?php
+}
+if ($_GET['code'] == 3){
+?>
+    <div class='message success'>
+        <h5>Success!</h5>
+        <p>Data absensi Mahasiswa berhasil dihapus.</p>
+    </div>
+<?php
+}
+if ($_GET['code'] == 4){
+?>
+    <div class='message error'>
+        <h5>Failed!</h5>
+        <p>Absensi mahasiswa gagal disimpan, absensi sudah pernah disimpan pada tanggal ini sebelumnya</p>
+    </div>
+<?php
+}
+?> -->
+
 <div class="data-table-area mg-b-15">
                 <div class="container-fluid">
                     <div class="row">
@@ -13,7 +48,7 @@
                                     <div class="datatable-dashv1-list custom-datatable-overright">
                                         <div id="toolbar">
                                             <?php if($this->session->userdata('akses')=='admin'):?>
-                                            <a href="<?php echo base_url('Jabatan/tambah')?>"><button type="button" class="btn btn-info btn-fill pull-left" name="Tambah">Tambah data</button></a>
+                                            <a href="<?php echo base_url('C_jabatan/tambah')?>"><button type="button" class="btn btn-info btn-fill pull-left" name="Tambah">Tambah data</button></a>
                                             <?php endif;?>
                                         </div>
                                         

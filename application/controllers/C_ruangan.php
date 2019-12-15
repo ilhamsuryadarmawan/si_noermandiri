@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-    class C_kelas extends CI_Controller {
+    class C_ruangan extends CI_Controller {
 
         function __construct(){
         parent::__construct();
@@ -12,13 +12,13 @@
         function index(){
             //jika sebagai admin
             if($this->session->userdata('akses') == 'admin'){
-                $this->load->model('M_kelas');
-                $rows = $this->M_kelas->tampilkanSemua()->result();
+                $this->load->model('M_ruangan');
+                $rows = $this->M_ruangan->tampilkanSemua()->result();
                 $data = array(
-                        'kelas'     => $rows,
-        	            'title'     => 'Data Kelas',
-        	            'content'   => 'tabel/t_kelas',
-        	            'judul'     => 'Data Kelas',
+                        'ruangan'    => $rows,
+        	            'title'        => 'Data Ruangan',
+        	            'content'      => 'tabel/t_ruangan',
+        	            'judul'        => 'Data Ruangan',
         	        );
         	        $this->load->view('layout', $data);
             }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
@@ -28,13 +28,13 @@
         public function tambah() {
             //jika sebagai admin
             if($this->session->userdata('akses') == 'admin'){
-            $this->load->model('M_kelas');
-            $rows = $this->M_kelas->TampilkanSemua()->result();
+            $this->load->model('M_ruangan');
+            $mata_ajar = $this->M_ruangan->TampilkanSemua()->result();
             $data = array(
-                'kelas' => $rows,
-                'judul'     => 'Form Tambah Data Kelas',
-                'title'     => 'Tambah Data Kelas',
-                'content'   => 'form/f_kelas',
+                'mata_ajar' => $mata_ajar,
+                'judul'     => 'Form Tambah Data Ruangan',
+                'title'     => 'Tambah Data Ruangan',
+                'content'   => 'form/f_tambah_ruangan',
             );
             $this->load->view('layout', $data);
             }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang

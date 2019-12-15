@@ -13,7 +13,7 @@
                                     <div class="datatable-dashv1-list custom-datatable-overright">
                                         <div id="toolbar">
                                             <?php if($this->session->userdata('akses')=='admin'):?>
-                                            <a href="<?php echo base_url('Kelombel/tambah')?>"><button type="button" class="btn btn-info btn-fill pull-right" name="Tambah">Tambah data</button></a>
+                                            <a href="<?php echo base_url('C_absensi/tambah')?>"><button type="button" class="btn btn-info btn-fill pull-right" name="Tambah">Tambah data</button></a>
                                             <?php endif;?>
                                         </div>
                                         
@@ -21,22 +21,32 @@
                                             <thead>
                                                 <tr>
                                                     <th data-field="no">No</th>
-                                                    <th data-field="id">Nama Kelompok Belajar</th>
+                                                    <th data-field="kelas">Kelas</th>
+                                                    <th data-field="tglAbsen">Mata Pelajaran</th>
+                                                    <th data-field="tglAbsen">Materi</th>
+                                                    <th data-field="tglAbsen">Tanggal</th>
+                                                    <th data-field="tglAbsen">Keterangan</th>
+                                                    <th data-field="email">Jumlah Kehadiran</th>
+                                                    
                                                 </tr>
                                             </thead>
-                                            <tbody>
+<!--                                             <tbody>
                                                 <?php
                                                 $nourut = 1;
-                                                foreach ($kelas as $kelombel) {
+                                                foreach ($peg as $pegawai) {
                                                 ?>
                                                 <tr>
-                                                    <td><?php echo $nourut++?></td>
-                                                    <td><?php echo $kelombel->NAMA_KELAS; ?></td>
+                                                    <td><?php echo $nourut++;?></td>
+                                                    <td><?php echo $pegawai->NAMA_PEGAWAI; ?></td>
+                                                    <td><?php echo $pegawai->ALAMAT_PEGAWAI; ?></td>
+                                                    <td><?php echo $pegawai->TGL_LAHIR_PEG; ?></td>
+                                                    <td><?php echo $pegawai->ALAMAT_PEGAWAI; ?></td>
+                                                    <td><?php echo $pegawai->EMAIL; ?></td>
                                                 </tr>
                                                 <?php
                                                 }
                                                 ?>
-                                            </tbody>
+                                            </tbody> -->
                                         </table>
                                     </div>
                                 </div>
