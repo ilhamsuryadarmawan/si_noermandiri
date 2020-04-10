@@ -17,9 +17,9 @@
             $kelombel = $this->M_kelas->TampilkanSemua()->result();
             $matapel = $this->M_mapel->TampilkanSemua()->result();
                 $data = array(
-        	            'title'    => 'Data Jenjang Kelas',
+        	            'title'    => 'Data Penilaian Siswa',
         	            'content'  => 'form/f_penilaian',
-        	            'judul' => 'Data Jenjang Kelas',
+        	            'judul' => 'Data Penilaian Siswa',
                         'kelombel'  => $kelombel,
                         'matapel' => $matapel
         	        );
@@ -36,9 +36,9 @@
                 $this->load->model('M_siswa');
                 $siswa = $this->M_siswa->tampilSiswaPerKelas($kelas)->result();
                 $data = array( 
-                        'title'    => 'Data Jenjang Kelas',
+                        'title'    => 'Data Penilaian Siswa',
                         'content'  => 'tabel/t_penilaian',
-                        'judul' => 'Data Jenjang Kelas',
+                        'judul' => 'Data Penilaian Siswa',
                         'siswa' => $siswa,
                         'kelas' => $kelas,
                         'mapel' => $mapel,                        

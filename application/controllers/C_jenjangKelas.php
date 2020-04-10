@@ -42,4 +42,17 @@
                 echo "<script>history.go(-1);</script>";
             }
         }
+
+        public function simpan(){             
+            $this->load->model('M_jenjang_kelas');
+            $simpan = $this->M_jenjang_kelas;
+            $validasi=$this->form_validation;
+            $validasi->set_rules($simpan->rules());             
+            if($validasi->run()){
+                $simpan->simpan();                 
+                redirect('C_jenjangKelas/index','refresh');
+            }else{
+                echo "<script>history.go(-1);</script>";
+            }
+        } 
     }

@@ -1,266 +1,318 @@
-<!doctype html>
-<html class="no-js" lang="en">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title><?php echo $title;?></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- favicon
-        ============================================ -->
-    <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url('assets/img/logo/logo1.ico')?>">
-    <!-- Google Fonts
-        ============================================ -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i,800" rel="stylesheet">
-    <!-- Bootstrap CSS
-        ============================================ -->
-    <link rel="stylesheet" href="<?php echo base_url('assets/adm/css/bootstrap.min.css')?>">
-    <!-- Bootstrap CSS
-        ============================================ -->
-    <link rel="stylesheet" href="<?php echo base_url('assets/adm/css/font-awesome.min.css')?>">
-    <!-- adminpro icon CSS
-        ============================================ -->
-    <link rel="stylesheet" href="<?php echo base_url('assets/adm/css/adminpro-custon-icon.css')?>">
-    <!-- meanmenu icon CSS
-        ============================================ -->
-    <link rel="stylesheet" href="<?php echo base_url('assets/adm/css/meanmenu.min.css')?>">
-    <!-- mCustomScrollbar CSS
-        ============================================ -->
-    <link rel="stylesheet" href="<?php echo base_url('assets/adm/css/jquery.mCustomScrollbar.min.css')?>">
-    <!-- animate CSS
-        ============================================ -->
-    <link rel="stylesheet" href="<?php echo base_url('assets/adm/css/animate.css')?>">
-    <!-- data-table CSS
-        ============================================ -->
-    <link rel="stylesheet" href="<?php echo base_url('assets/adm/css/data-table/bootstrap-table.css')?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/adm/css/data-table/bootstrap-editable.css')?>">
-    <!-- normalize CSS
-        ============================================ -->
-    <link rel="stylesheet" href="<?php echo base_url('assets/adm/css/normalize.css')?>">
-    <!-- charts C3 CSS
-        ============================================ -->
-    <link rel="stylesheet" href="<?php echo base_url('assets/adm/css/c3.min.css')?>">
-    <!-- forms CSS
-        ============================================ -->
-    <link rel="stylesheet" href="<?php echo base_url('assets/adm/css/form/all-type-forms.css')?>">
-    <!-- style CSS
-        ============================================ -->
-    <link rel="stylesheet" href="<?php echo base_url('assets/adm/css/style.css')?>">
-    <!-- responsive CSS
-        ============================================ -->
-    <link rel="stylesheet" href="<?php echo base_url('assets/adm/css/responsive.css')?>">
-    <!-- modernizr JS
-        ============================================ -->
-    <script src="<?php echo base_url('assets/adm/js/vendor/modernizr-2.8.3.min.js')?>"></script>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title><?php echo $title?></title>
+	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+	<link rel="icon" href="<?php echo base_url('assets/img/logo/logo1.ico')?>" type="image/x-icon"/>
+
+	<!-- Fonts and icons -->
+	<script src="<?php echo base_url('assets/adm/js/plugin/webfont/webfont.min.js')?>"></script>
+	<script>
+		WebFont.load({
+			google: {"families":["Lato:300,400,700,900"]},
+			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ["<?php echo base_url('assets/adm/css/fonts.min.css')?>"]},
+			active: function() {
+				sessionStorage.fonts = true;
+			}
+		});
+	</script>
+
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="<?php echo base_url('assets/adm/css/bootstrap.min.css')?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/adm/css/atlantis.min.css')?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/adm/dataTables/datatables.min.css')?>">
+
+	<!-- CSS Just for demo purpose, don't include it in your project -->
+	<link rel="stylesheet" href="<?php echo base_url('assets/adm/css/demo.css')?>">
 </head>
+<body>
+	<div class="wrapper">
+		<div class="main-header">
+			<!-- Logo Header -->
+			<div class="logo-header" data-background-color="blue">
+				
+				<a href="index.html" class="logo">
+                    <img src="<?php echo base_url('assets/img/logo/logo1.ico')?>" width="30" weight="30" alt="navbar brand" class="navbar-brand">
+                    <font color="#FFFFF" size="2">&nbsp LBB Noermandiri</font>
+				</a>
+				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon">
+						<i class="icon-menu"></i>
+					</span>
+				</button>
+				<button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
+				<div class="nav-toggle">
+					<button class="btn btn-toggle toggle-sidebar">
+						<i class="icon-menu"></i>
+					</button>
+				</div>
+			</div>
+			<!-- End Logo Header -->
 
-<body class="materialdesign">
-    <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+			<!-- Navbar Header -->
+			<nav class="navbar navbar-header navbar-expand-lg" data-background-color="blue2">
+				
+				<div class="container-fluid">
+					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+						<li class="nav-item dropdown hidden-caret">
+							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
+								<div class="avatar-sm">
+									<img src="<?php echo base_url('assets/adm/img/profile.jpg')?>" alt="..." class="avatar-img rounded-circle">
+								</div>
+							</a>
+							<ul class="dropdown-menu dropdown-user animated fadeIn">
+								<div class="dropdown-user-scroll scrollbar-outer">
+									<li>
+										<div class="user-box">
+											<div class="avatar-lg"><img src="<?php echo base_url('assets/adm/img/profile.jpg')?>" alt="image profile" class="avatar-img rounded"></div>
+											<div class="u-text">
+												<h4><?php echo $this->session->userdata('ses_nama'); ?></h4>
+												<p class="text-muted"><?php echo $this->session->userdata('akses'); ?></p>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="<?php echo base_url('Auth/logout')?>">Logout</a>
+									</li>
+								</div>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<!-- End Navbar -->
+		</div>
 
-    <!-- Header top area start-->
-    <div class="wrapper-pro">
-        <div class="left-sidebar-pro">
-            <nav id="sidebar">
-                <div class="sidebar-header">
-                    <a href="<?php echo base_url('Home')?>"><img src="<?php echo base_url('assets/adm/img/message/1.jpg')?>" alt=""/>
-                    </a>
-                    <h3><?php echo $this->session->userdata('ses_nama'); ?></h3>
-                    <h5><?php echo $this->session->userdata('akses'); ?></h5>
-                </div>
-                <div class="left-custom-menu-adp-wrap">
-                    <ul class="nav navbar-nav left-sidebar-menu-pro">
+		<!-- Sidebar -->
+		<div class="sidebar sidebar-style-2">			
+			<div class="sidebar-wrapper scrollbar scrollbar-inner">
+				<div class="sidebar-content">
+					<div class="user">
+						<div class="avatar-sm float-left mr-2">
+							<img src="<?php echo base_url('assets/adm/img/profile.jpg')?>" alt="..." class="avatar-img rounded-circle">
+						</div>
+						<div class="info">
+							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+								<span>
+                                    <?php echo $this->session->userdata('ses_nama'); ?>
+									<span class="user-level"><?php echo $this->session->userdata('akses'); ?></span>
+								</span>
+							</a>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+					<ul class="nav nav-primary">
                         <?php if($this->session->userdata('akses')=='admin'):?>
-                        <li class="nav-item">
-                            <a data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                                <i class="fa big-icon fa-database"></i>
-                                <span class="mini-dn">Data Master</span>
-                                <span class="indicator-right-menu mini-dn">
-                                    <i class="fa indicator-mn fa-angle-left"></i>
-                                </span>
-                            </a>
-                            <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
-                                <a href="<?php echo base_url('C_pegawai')?>" class="dropdown-item">Data Pegawai</a>
-                                <a href="<?php echo base_url('C_jabatan')?>" class="dropdown-item">Data Jabatan</a>  
-                                <a href="<?php echo base_url('C_siswa')?>" class="dropdown-item">Data Siswa</a>
-                                <a href="<?php echo base_url('C_kelas')?>" class="dropdown-item">Data Kelas</a>
-                                <a href="<?php echo base_url('C_jenjangKelas')?>" class="dropdown-item">Data Jenjang Kelas</a>
-                                <a href="<?php echo base_url('C_mapel')?>" class="dropdown-item">Data Mata Pelajaran</a>
-                                <a href="<?php echo base_url('C_ruangan')?>" class="dropdown-item">Data Ruangan</a>
-                                <a href="<?php echo base_url('C_waktu')?>" class="dropdown-item">Data Waktu</a>
-                                <a href="<?php echo base_url('C_jenisUjian')?>" class="dropdown-item">Data Jenis Ujian</a>
-
-
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?php echo base_url('C_penilaian')?>" role="button" aria-expanded="false" class="nav-link data-toggle">
-                                <i class="fa big-icon fa-book"></i>
-                                <span class="mini-dn">Penilaian Siswa</span>
-                                <span class="indicator-right-menu mini-dn"></span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?php echo base_url('C_absensi')?>" role="button" aria-expanded="false" class="nav-link data-toggle">
-                                <i class="fa big-icon fa-pencil"></i>
-                                <span class="mini-dn">Absensi Siswa</span>
-                                <span class="indicator-right-menu mini-dn"></span>
-                            </a>
-                        </li>
-<!--                         <li class="nav-item">
-                            <a href="<?php echo base_url('Jadwal')?>" role="button" aria-expanded="false" class="nav-link data-toggle">
-                                <i class="fa big-icon fa-calendar calendar-alt"></i>
-                                <span class="mini-dn">Jadwal Les</span>
-                                <span class="indicator-right-menu mini-dn"></span>
-                            </a>
-                        </li> -->
-                        <li class="nav-item">
-                            <a data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                                <i class="fa big-icon fa-files-o"></i>
-                                <span class="mini-dn">Laporan</span>
-                                <span class="indicator-right-menu mini-dn">
-                                    <i class="fa indicator-mn fa-angle-left"></i>
-                                </span>
-                            </a>
-                            <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
-                                <a href="inbox.html" class="dropdown-item">Laporan Nilai Siswa</a>
-                                <a href="view-mail.html" class="dropdown-item">Laporan Absensi Siswa</a>
-                            </div>
+						<li class="nav-item active">
+							<a href="<?php echo base_url('Home')?>" class="collapsed" aria-expanded="false">
+								<i class="fas fa-home"></i>
+								<p>Dashboard</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a data-toggle="collapse" href="#base">
+								<i class="fas fa-database"></i>
+								<p>Data Master</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="base">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="<?php echo base_url('Pegawai')?>">
+											<span class="sub-item">Data Pegawai</span>
+										</a>
+									</li>
+									<li>
+										<a href="<?php echo base_url('Tentor')?>">
+											<span class="sub-item">Data Tentor</span>
+										</a>
+									</li>
+									<li>
+										<a href="<?php echo base_url('Siswa')?>">
+											<span class="sub-item">Data Siswa</span>
+										</a>
+									</li>
+									<li>
+										<a href="<?php echo base_url('Mata_Pelajaran')?>">
+											<span class="sub-item">Data Mata Pelajaran</span>
+										</a>
+                                    </li>
+                                    <li>
+										<a href="<?php echo base_url('Ruangan')?>">
+											<span class="sub-item">Data Ruangan</span>
+										</a>
+                                    </li>
+									<li>
+										<a href="<?php echo base_url('Kelas')?>">
+											<span class="sub-item">Data Kelas Kelompok Belajar</span>
+										</a>
+									</li>
+									<li>
+										<a href="<?php echo base_url('Jenjang_Kelas')?>">
+											<span class="sub-item">Data Jenjang Kelas</span>
+										</a>
+									</li>
+									<li>
+										<a href="<?php echo base_url('Jabatan')?>">
+											<span class="sub-item">Data Jabatan</span>
+										</a>
+									</li>
+									<li>
+										<a href="<?php echo base_url('Sesi')?>">
+											<span class="sub-item">Data Sesi</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a data-toggle="collapse" href="#sidebarLayouts">
+								<i class="fas fa-th-list"></i>
+								<p>Data Pendaftaran</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="sidebarLayouts">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="<?php echo base_url('Pendaftaran/siswa_baru')?>">
+											<span class="sub-item">Pendaftaran Siswa Baru
+                                            </span>
+										</a>
+									</li>
+									<li>
+										<a href="overlay-sidebar.html">
+											<span class="sub-item">Daftar Ulang</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a data-toggle="collapse" href="#sidebarLayouts">
+								<i class="fas fa-th-list"></i>
+								<p>Data Penilaian Siswa</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="sidebarLayouts">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="<?php echo base_url('Pendaftaran/siswa_baru')?>">
+											<span class="sub-item">Pendaftaran Siswa Baru
+                                            </span>
+										</a>
+									</li>
+									<li>
+										<a href="overlay-sidebar.html">
+											<span class="sub-item">Daftar Ulang</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a data-toggle="collapse" href="#sidebarLayouts">
+								<i class="fas fa-th-list"></i>
+								<p>Data Absensi Siswa</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="sidebarLayouts">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="<?php echo base_url('Pendaftaran/siswa_baru')?>">
+											<span class="sub-item">Pendaftaran Siswa Baru
+                                            </span>
+										</a>
+									</li>
+									<li>
+										<a href="overlay-sidebar.html">
+											<span class="sub-item">Daftar Ulang</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo base_url('Pembayaran')?>">
+								<i class="fas fa-money-bill-alt"></i>
+								<p>Data Pembayaran</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="<?php echo base_url('Jadwal')?>">
+								<i class="fas fa-calendar-alt"></i>
+								<p>Jadwal Les</p>
+							</a>
                         </li>
                         <?php elseif($this->session->userdata('akses')=='pemilik'):?>
-                        <li class="nav-item">
-                            <a data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                                <i class="fa big-icon fa-files-o"></i>
-                                <span class="mini-dn">Laporan</span>
-                                <span class="indicator-right-menu mini-dn">
-                                    <i class="fa indicator-mn fa-angle-left"></i>
-                                </span>
-                            </a>
-                            <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
-                                <a href="inbox.html" class="dropdown-item">Laporan Pendaftaran</a>
-                                <a href="view-mail.html" class="dropdown-item">Laporan Pembayaran</a>
-                            </div>
-                        </li>
+                        <li class="nav-item active">
+							<a href="<?php echo base_url('Home')?>" class="collapsed" aria-expanded="false">
+								<i class="fas fa-home"></i>
+								<p>Dashboard</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a data-toggle="collapse" href="#base">
+								<i class="fas fa-database"></i>
+								<p>Laporan</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="base">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="components/avatars.html">
+											<span class="sub-item">Laporan Pendaftaran</span>
+										</a>
+									</li>
+									<li>
+										<a href="components/buttons.html">
+											<span class="sub-item">Laporan Pembayaran</span>
+										</a>
+                                    </li>
+                                    <li>
+										<a href="components/buttons.html">
+											<span class="sub-item">Laporan Jadwal Les</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
                         <?php elseif($this->session->userdata('akses')=='tentor'):?>
-                            <li class="nav-item">
-                            <a href="<?php echo base_url('Jadwal')?>" role="button" aria-expanded="false" class="nav-link data-toggle">
-                                <i class="fa big-icon fa-calendar calendar-alt"></i>
-                                <span class="mini-dn">Jadwal Les</span>
-                                <span class="indicator-right-menu mini-dn"></span>
-                            </a>
+                        <li class="nav-item active">
+							<a href="<?php echo base_url('Home')?>" class="collapsed" aria-expanded="false">
+								<i class="fas fa-home"></i>
+								<p>Dashboard</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a data-toggle="collapse" href="#base">
+								<i class="fas fa-calendar-alt"></i>
+								<p>Jadwal Mengajar</p>
+							</a>
                         </li>
                         <?php else:?>
-                            <li class="nav-item">
-                            <a href="<?php echo base_url('Jadwal')?>" role="button" aria-expanded="false" class="nav-link data-toggle">
-                                <i class="fa big-icon fa-calendar calendar-alt"></i>
-                                <span class="mini-dn">Jadwal Les</span>
-                                <span class="indicator-right-menu mini-dn"></span>
-                            </a>
+                        <li class="nav-item active">
+							<a data-toggle="collapse" href="<?php echo base_url('Home')?>" class="collapsed" aria-expanded="false">
+								<i class="fas fa-home"></i>
+								<p>Dashboard</p>
+							</a>
+						</li>
+						<li class="nav-item">
+						<a href="<?php echo base_url('Jadwal')?>">
+								<i class="fas fa-calendar-alt"></i>
+								<p>Jadwal Les</p>
+							</a>
                         </li>
-                        <?php endif;?>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-        <div class="content-inner-all">
-            <div class="header-top-area">
-                <div class="fixed-header-top">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-1 col-md-6 col-sm-6 col-xs-12">
-                                <button type="button" id="sidebarCollapse" class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
-                                    <i class="fa fa-bars"></i>
-                                </button>
-                                <div class="admin-logo logo-wrap-pro">
-                                    <a href="<?php echo base_url('Home')?>">
-                                        <img src="<?php echo base_url('assets/img/logo1.png')?>" width="50px" height="50px" alt=""/>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-11 col-md-5 col-sm-6 col-xs-12">
-                                <div class="header-right-info">
-                                    <ul class="nav navbar-nav mai-top-nav header-right-menu">
-                                        <li class="nav-item">
-                                            <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                                                <span class="fa fa-user"></span>
-                                                <span class="admin-name"><?php echo $this->session->userdata('ses_nama'); ?></span>
-                                                <span class="fa fa-angle-down"></span>
-                                            </a>
-                                            <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated flipInX">
-                                                <li><a href="<?php echo base_url('C_login/logout')?>"><span class="fa fa-sign-out"></span>Log Out</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Header top area end-->
-            <!-- Breadcome start-->
-            <div class="breadcome-area mg-b-30 small-dn">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Breadcome End-->
-            <!-- Mobile Menu start -->
-            <div class="mobile-menu-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="mobile-menu">
-                                <nav id="dropdown">
-                                    <ul class="mobile-menu-nav">
-                                        <?php if($this->session->userdata('akses')=='admin'):?>
-                                        <li><a data-toggle="collapse" data-target="#demo">Data Master</a>
-                                            <ul id="demo" class="collapse dropdown-header-top">
-                                                <li><a href="<?php echo base_url('Pegawai')?>">Data Pegawai</a></li>
-                                                <li><a href="<?php echo base_url('Siswa')?>">Data Siswa</a></li>
-                                                <li><a href="<?php echo base_url('Mata_Pelajaran')?>">Data Mata Pelajaran</a></li>
-                                                <li><a href="<?php echo base_url('Ruangan')?>">Data Ruangan</a></li>
-                                                <li><a href="<?php echo base_url('C_kelas')?>">Data Kelas Kelompok Belajar</a></li>
-                                                <li><a href="<?php echo base_url('Jenjang_Kelas')?>">Data Jenjang Kelas</a></li>
-                                                <li><a href="<?php echo base_url('Jabatan')?>">Data Jabatan</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a data-toggle="collapse" data-target="#others" href="">Pendaftaran Les</a>
-                                        </li>
-                                        <li>
-                                            <a data-toggle="collapse" data-target="<?php echo base_url('Pegawai')?>" href="<?php echo base_url('Pegawai')?>">Pembayaran Registrasi</a>
-                                        </li>
-                                        <li>
-                                            <a data-toggle="collapse" data-target="<?php echo base_url('Jadwal')?>" href="<?php echo base_url('Jadwal')?>">Jadwal Les</a>
-                                        </li>
-                                        <?php elseif($this->session->userdata('akses')=='pemilik'):?>
-                                        <li><a data-toggle="collapse" data-target="#demo" href="#">Laporan</a>
-                                            <ul id="demo" class="collapse dropdown-header-top">
-                                                <li><a href="">Laporan Pendaftaran</a></li>
-                                                <li><a href="">Laporan Pembayaran</a></li>
-                                            </ul>
-                                        </li>
-                                        <?php elseif($this->session->userdata('akses')=='tentor'):?>
-                                        <li>
-                                            <a data-toggle="collapse" data-target="#Chartsmob" href="#">Jadwal Les</a>
-                                        </li>
-                                        <?php else:?>
-                                        <li>
-                                            <a data-toggle="collapse" data-target="#Chartsmob" href="#">Jadwal Les</a>
-                                        </li>
-                                        <?php endif;?>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Mobile Menu end -->
+                        <li class="nav-item">
+							<a data-toggle="collapse" href="#base">
+								<i class="fas fa-pencil-alt"></i>
+								<p>Daftar Ulang</p>
+							</a>
+                        </li>
+                        <?php endif;?>    
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- End Sidebar -->

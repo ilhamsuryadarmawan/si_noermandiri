@@ -53,6 +53,10 @@ $route['default_controller'] = 'C_landingPage';
 
 //admin
 $route['login'] = 'C_login';
+$route['logout'] = 'C_login/logout';
+
+
+$route['simpanabsen'] = 'C_absensi/simpan';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

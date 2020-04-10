@@ -5,7 +5,7 @@ class C_home extends CI_Controller {
     function __construct(){
     parent::__construct();
         if($this->session->userdata('masuk') != TRUE){
-            redirect(site_url('C_login'));
+            redirect(site_url('login'));
         }
     $this->load->library('form_validation');
     }

@@ -11,4 +11,18 @@ class M_Jenjang_Kelas extends CI_Model {
         $q = $this->db->get($this->table);
         return $q;
     }
+
+    function rules(){
+        return[
+            ['field' => 'NAMA_JENJANG','label' => 'NAMA_JENJANG','rules' => 'required'],
+            ['field' => 'BIAYA','label' => 'BIAYA','rules' => 'required']
+        ];
+    }
+
+    function simpan(){ 
+        $post = $this->input->post();
+        $this->ID_JENJANG=$post['NAMA_JENJANG'];
+        $this->NAMA_KELAS=$post['BIAYA'];
+        $this->db->insert($this->table, $this); 
+    }
 }

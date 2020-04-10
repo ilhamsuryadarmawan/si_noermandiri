@@ -22,7 +22,7 @@
                                                 <tr>
                                                     <th data-field="no">No</th>
                                                     <th data-field="id">ID Jenjang Kelas</th>
-                                                    <th data-field="id">Jenjang Kelas</th>
+                                                    <th data-field="nama">Jenjang Kelas</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

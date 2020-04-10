@@ -14,14 +14,12 @@ class M_jabatan extends CI_Model {
 
     function rules(){
         return[
-            ['field' => 'ID_JABATAN','label' => 'ID_JABATAN','rules' => 'required'],
             ['field' => 'JABATAN','label' => 'JABATAN','rules' => 'required']
         ];
     }
 
     function simpan(){ 
         $post = $this->input->post();
-        $this->ID_JABATAN=$post['ID_JABATAN'];
         $this->JABATAN=$post['JABATAN'];
         $this->db->insert($this->table, $this); 
     }

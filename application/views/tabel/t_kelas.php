@@ -11,11 +11,11 @@
                                 </div>
                                 <div class="sparkline13-graph">
                                     <div class="datatable-dashv1-list custom-datatable-overright">
-                                        <div id="toolbar">
+<!--                                         <div id="toolbar">
                                             <?php if($this->session->userdata('akses')=='admin'):?>
                                             <a href="<?php echo base_url('C_kelas/tambah')?>"><button type="button" class="btn btn-info btn-fill pull-right" name="Tambah">Tambah data</button></a>
                                             <?php endif;?>
-                                        </div>
+                                        </div> -->
                                         
                                         <table class="table sparkle-table" id="table" data-toggle="table" data-pagination="false" data-search="false" data-cookie-id-table="saveId" data-click-to-select="false" data-toolbar="#toolbar">
                                             <thead>

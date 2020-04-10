@@ -14,7 +14,7 @@
                                             <div class="col-lg-12">
                                                 <div class="all-form-element-inner">
                                                     <form action="<?php echo base_url('C_jabatan/simpan')?>" method="post">
-                                                        <div class="form-group-inner">
+<!--                                                         <div class="form-group-inner">
                                                             <div class="row">
                                                                 <div class="col-lg-3">
                                                                     <label class="login2 pull-right pull-right-pro">ID Jenjang Kelas</label>
@@ -23,11 +23,11 @@
                                                                     <input type="text" class="form-control" id="ID_JENJANG" name="ID_JENJANG" />
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                         <div class="form-group-inner">
                                                             <div class="row">
                                                                 <div class="col-lg-3">
-                                                                    <label class="login2 pull-right pull-right-pro">Nama Jabatan</label>
+                                                                    <label class="login2 pull-right pull-right-pro">Nama Jenjang</label>
                                                                 </div>
                                                                 <div class="col-lg-9">
                                                                     <input type="text" class="form-control" id="NAMA_JENJANG" name="NAMA_JENJANG" />

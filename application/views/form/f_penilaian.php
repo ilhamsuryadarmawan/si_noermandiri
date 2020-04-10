@@ -13,7 +13,7 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="all-form-element-inner">
-                                                    <form method="post" action="<?php echo base_url('C_penilaian/tampilSiswa')?>" enctype="multipart/form-data">
+                                                    <form method="post" enctype="multipart/form-data">
                                                         <div class="form-group-inner">
                                                             <div class="row">
                                                                 <div class="col-lg-3">
@@ -58,7 +58,7 @@
                                                         <div class="form-group-inner">
                                                             <div class="row">
                                                                 <div class="col-lg-3">
-                                                                    <label class="login2 pull-right pull-right-pro">Jenis Ujian>
+                                                                    <label class="login2 pull-right pull-right-pro">Jenis Ujian</label>
                                                                 </div>
                                                                 <div class="col-lg-9">
                                                                     <div class="form-select-list">

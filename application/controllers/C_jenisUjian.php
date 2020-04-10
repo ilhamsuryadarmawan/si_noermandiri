@@ -29,6 +29,7 @@
             //jika sebagai admin
             if($this->session->userdata('akses') == 'admin'){
             $this->load->model('M_kelas');
+            $this->load->library('form_validation');
             $rows = $this->M_kelas->TampilkanSemua()->result();
             $data = array(
                 'kelas' => $rows,

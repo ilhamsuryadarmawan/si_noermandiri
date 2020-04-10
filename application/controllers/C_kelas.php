@@ -29,6 +29,8 @@
             //jika sebagai admin
             if($this->session->userdata('akses') == 'admin'){
             $this->load->model('M_kelas');
+            $this->load->model('M_jenjang_kelas');
+            $jenjang = $this->M_jenjang_kelas->TampilkanSemua()->result();
             $rows = $this->M_kelas->TampilkanSemua()->result();
             $data = array(
                 'kelas' => $rows,
@@ -41,5 +43,18 @@
                 echo "<script>history.go(-1);</script>";
             }
         }
+
+        public function simpan(){             
+            $this->load->model('M_kelas');
+            $simpan = $this->M_kelas;
+            $validasi=$this->form_validation;
+            $validasi->set_rules($simpan->rules());             
+            if($validasi->run()){
+                $simpan->simpan();                 
+                redirect('C_kelas/index','refresh');
+            }else{
+                echo "<script>history.go(-1);</script>";
+            }
+        } 
     }
 ?>

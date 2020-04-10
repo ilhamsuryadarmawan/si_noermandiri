@@ -14,7 +14,7 @@
                                             <div class="col-lg-12">
                                                 <div class="all-form-element-inner">
                                                     <form action="<?php echo base_url('C_jabatan/simpan')?>" method="post">
-                                                        <div class="form-group-inner">
+<!--                                                         <div class="form-group-inner">
                                                             <div class="row">
                                                                 <div class="col-lg-3">
                                                                     <label class="login2 pull-right pull-right-pro">ID Jabatan</label>
@@ -23,7 +23,7 @@
                                                                     <input type="text" class="form-control" id="ID_JABATAN" name="ID_JABATAN" />
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                         <div class="form-group-inner">
                                                             <div class="row">
                                                                 <div class="col-lg-3">
