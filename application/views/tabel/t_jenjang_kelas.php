@@ -1,50 +1,51 @@
-<div class="data-table-area mg-b-15">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="sparkline13-list shadow-reset">
-                            </div>
-                                <div class="sparkline13-hd">
-                                    <div class="main-sparkline13-hd">
-                                        <h1><?php echo $judul;?></h1>
-                                    </div>
-                                </div>
-                                <div class="sparkline13-graph">
-                                    <div class="datatable-dashv1-list custom-datatable-overright">
-                                        <div id="toolbar">
-                                            <?php if($this->session->userdata('akses')=='admin'):?>
-                                            <a href="<?php echo base_url('C_jenjangKelas/tambah')?>"><button type="button" class="btn btn-info btn-fill pull-right" name="Tambah">Tambah data</button></a>
-                                            <?php endif;?>
-                                        </div>
-                                        
-                                        <table class="table sparkle-table" id="table" data-toggle="table" data-pagination="false" data-search="false" data-cookie-id-table="saveId" data-click-to-select="false" data-toolbar="#toolbar">
-                                            <thead>
-                                                <tr>
-                                                    <th data-field="no">No</th>
-                                                    <th data-field="id">ID Jenjang Kelas</th>
-                                                    <th data-field="nama">Jenjang Kelas</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                $nourut = 1;
-                                                foreach ($jenjang as $jk) {
-                                                ?>
-                                                <tr>
-                                                    <td><?php echo $nourut++?></td>
-                                                    <td><?php echo $jk->ID_JENJANG; ?></td>
-                                                    <td><?php echo $jk->NAMA_JENJANG; ?></td>
+<div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash')?>">
+<div class="main-panel">
+    <div class="content">
+        <div class="panel-header bg-primary-gradient">
+            <div class="page-inner py-5">
+                <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                    <div>
+                        <h2 class="text-white pb-2 fw-bold"><?php echo $judul?></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-inner mt--5">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <a href="<?php echo base_url('Jenjang_Kelas/tambah')?>"><button type="button" class="btn btn-primary btn-round" >Tambah data</button></a>
+                        </div>
+                        <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="multi-filter-select" class="display table table-striped table-hover" >
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>ID Jenjang Kelas</th>
+                                        <th>Jenjang Kelas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $nourut = 1;
+                                    foreach ($jenjang as $jk) {
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $nourut++?></td>
+                                        <td><?php echo $jk->ID_JENJANG; ?></td>
+                                        <td><?php echo $jk->NAMA_JENJANG; ?></td>
 
-                                                </tr>
-                                                <?php
-                                                }
-                                                ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
+                                    </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>

@@ -74,7 +74,7 @@
 									</li>
 									<li>
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="<?php echo base_url('Auth/logout')?>">Logout</a>
+										<a class="dropdown-item" href="<?php echo base_url('logout')?>">Logout</a>
 									</li>
 								</div>
 							</ul>
@@ -120,22 +120,22 @@
 							<div class="collapse" id="base">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="<?php echo base_url('Pegawai')?>">
+										<a href="<?php echo base_url('daftarpegawai')?>">
 											<span class="sub-item">Data Pegawai</span>
 										</a>
 									</li>
-									<li>
+<!-- 									<li>
 										<a href="<?php echo base_url('Tentor')?>">
 											<span class="sub-item">Data Tentor</span>
 										</a>
-									</li>
+									</li> -->
 									<li>
-										<a href="<?php echo base_url('Siswa')?>">
+										<a href="<?php echo base_url('daftarsiswa')?>">
 											<span class="sub-item">Data Siswa</span>
 										</a>
 									</li>
 									<li>
-										<a href="<?php echo base_url('Mata_Pelajaran')?>">
+										<a href="<?php echo base_url('listmapel')?>">
 											<span class="sub-item">Data Mata Pelajaran</span>
 										</a>
                                     </li>

@@ -36,7 +36,7 @@
   <header class="header-global">
     <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
       <div class="container">
-        <a class="navbar-brand mr-lg-5" href="<?php echo base_url('C_landingPage')?>">
+        <a class="navbar-brand mr-lg-5" href="<?php echo base_url('landingpage')?>">
           <img src="<?php echo base_url('assets/img/logo1.png')?>" alt="brand">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">

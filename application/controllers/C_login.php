@@ -8,10 +8,10 @@ class C_login extends CI_Controller {
 
     public function index($error = NULL) {
         $data = array(
-            'title' => 'Login Page',
+            'title' => 'Halaman Login',
             'action'=> site_url('C_login/login'),
             'error' => $error,
-            'judul' => 'Login'
+            // 'judul' => 'Login'
         );
         $this->load->view('v_login', $data);
     }
@@ -21,22 +21,22 @@ class C_login extends CI_Controller {
         $username=$this->input->post('username');
         $password=$this->input->post('password');
         
-        $cek_pegawai=$this->M_login->auth_pegawai($username,$password);
+        $cek_pegawai=$this->M_login->akses_pegawai($username,$password);
         //jika login sebagai pegawai
         if($cek_pegawai->num_rows() > 0){ 
             $data=$cek_pegawai->row_array();
             $this->session->set_userdata('masuk',TRUE);
-            if($data['LEVEL']=='1'){ //akses untuk admin
+            if($data['ID_JABATAN']=='JAB001'){ //akses login utk admin sesuai id_jab
                 $this->session->set_userdata('akses','admin');
                 $this->session->set_userdata('ses_id',$data['ID_PEGAWAI']);
                 $this->session->set_userdata('ses_nama',$data['NAMA_PEGAWAI']);
                 redirect(site_url('C_home'));
-            }elseif($data['LEVEL']=='2'){ //akses pemilik
+            }elseif($data['ID_JABATAN']=='JAB002'){ //akses login utk pemilik
                 $this->session->set_userdata('akses','pemilik');
                 $this->session->set_userdata('ses_id',$data['ID_PEGAWAI']);
                 $this->session->set_userdata('ses_nama',$data['NAMA_PEGAWAI']);
                 redirect(site_url('C_home'));
-            }elseif($data['LEVEL']=='3'){ //akses tentor
+            }elseif($data['ID_JABATAN']=='JAB003'){ //akses login utk tentor
                 $this->session->set_userdata('akses','tentor');
                 $this->session->set_userdata('ses_id',$data['ID_PEGAWAI']);
                 $this->session->set_userdata('ses_nama',$data['NAMA_PEGAWAI']);
@@ -45,9 +45,9 @@ class C_login extends CI_Controller {
                 $error = 'Username atau Password salah';
                 $this->index($error);
             }
-        //jika login sebagai siswa
+        
         }else { 
-            $cek_siswa=$this->M_login->auth_siswa($username,$password);
+            $cek_siswa=$this->M_login->akses_siswa($username,$password); //jika login sebagai siswa
             if ($cek_siswa->num_rows() > 0) {
                 $data=$cek_siswa->row_array();
                 $this->session->set_userdata('masuk',TRUE);

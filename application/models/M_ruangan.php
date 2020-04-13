@@ -11,4 +11,9 @@ class M_ruangan extends CI_Model {
         $q = $this->db->get($this->table);
         return $q;
     }
+
+    	public function tambah($data){
+        $this->db->insert($this->table, $data);
+    }
+
 }

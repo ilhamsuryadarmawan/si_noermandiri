@@ -8,7 +8,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <link rel="icon" href="<?php echo base_url('assets/img/logo1.png')?>" type="image/png" />
-    <title>LBB Noermandiri</title>
+    <title><?php echo $title?></title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.css')?>" />
     <link rel="stylesheet" href="<?php echo base_url('assets/css/flaticon.css')?>" />

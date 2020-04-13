@@ -49,11 +49,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'C_landingPage';
+$route['default_controller'] = 'C_landingpage';
 
+$route['landingpage'] = 'C_landingpage';
 //admin
+
 $route['login'] = 'C_login';
 $route['logout'] = 'C_login/logout';
+
+//datapegawai
+$route['daftarpegawai'] = 'C_pegawai/index';
+$route['forminput'] = 'C_pegawai/tambah';
+$route['inputpegawai'] = 'C_pegawai/tambahPegawai';
+
+//datasiswa
+$route['daftarsiswa'] = 'C_siswa/index';
+$route['forminputsiswa'] = 'C_siswa/tambah';
+$route['updatesiswa'] = 'C_siswa/update';
+
+//datamapel
+$route['listmapel'] = 'C_mapel/index';
+$route['forminputmapel'] = 'C_mapel/tambah';
+$route['tambahmapel'] = 'C_mapel/aksitambah';
 
 
 $route['simpanabsen'] = 'C_absensi/simpan';
