@@ -1,18 +1,3 @@
-<!--
-
-=========================================================
-* Argon Design System - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-design-system
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,10 +11,10 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <!-- Icons -->
-  <link href="<?php echo base_url('assets/vendor/nucleo/css/nucleo.css')?>" rel="stylesheet">
-  <link href="<?php echo base_url('assets/vendor/font-awesome/css/font-awesome.min.css')?>" rel="stylesheet">
+  <link href="<?php echo base_url('asset/login/vendor/nucleo/css/nucleo.css')?>" rel="stylesheet">
+  <link href="<?php echo base_url('asset/login/vendor/font-awesome/css/font-awesome.min.css')?>" rel="stylesheet">
   <!-- Argon CSS -->
-  <link type="text/css" href="<?php echo base_url('assets/css/argon.css?v=1.1.0')?>" rel="stylesheet">
+  <link type="text/css" href="<?php echo base_url('asset/login/css/argon.css?v=1.1.0')?>" rel="stylesheet">
 </head>
 
 <body>
@@ -47,7 +32,7 @@
             <div class="row">
               <div class="col-6 collapse-brand">
                 <a href="../index.html">
-                  <img src="<?php echo base_url('assets/img/brand/blue.png')?>" alt="brand">
+                  <img src="#" alt="brand">
                 </a>
               </div>
               <div class="col-6 collapse-close">
@@ -149,7 +134,7 @@
   </header>
   <main>
     <section class="section section-shaped section-lg">
-      <div class="shape shape-style-1 bg-gradient-default">
+      <div class="shape shape-style-3 bg-gradient-blue">
         <span></span>
         <span></span>
         <span></span>
@@ -163,9 +148,9 @@
         <div class="row justify-content-center">
           <div class="col-lg-5">
             <div class="card bg-secondary shadow border-0">
- <!--              <div class="card-header bg-white pb-5">
-                <div class="text-muted text-center mb-3"><small>Sign in with</small></div>
-                <div class="btn-wrapper text-center">
+              <div class="card-header bg-white pb-6">
+                <div class="text-muted text-center mb-3"><br><center><b>LOGIN</b><br>Lembaga Bimbingan Belajar Noermandiri</center></div>
+<!--                 <div class="btn-wrapper text-center">
                   <a href="#" class="btn btn-neutral btn-icon">
                     <span class="btn-inner--icon">
                       <img alt="image" src="<?php echo base_url('assets/img/icons/common/github.svg')?>">
@@ -178,8 +163,8 @@
                     </span>
                     <span class="btn-inner--text">Google</span>
                   </a>
-                </div>
-              </div> -->
+                </div> -->
+              </div>
               <div class="card-body px-lg-5 py-lg-5">
                 <form class="login100-form validate-form" action="<?php echo $action; ?>" method="POST">
    <!--                <div class="form-group mb-3">
@@ -296,12 +281,12 @@
     </div>
   </footer>
   <!-- Core -->
-  <script src="<?php echo base_url('assets/vendor/jquery/jquery.min.js')?>"></script>
-  <script src="<?php echo base_url('assets/vendor/popper/popper.min.js')?>"></script>
-  <script src="<?php echo base_url('assets/vendor/bootstrap/bootstrap.min.js')?>"></script>
-  <script src="<?php echo base_url('assets/vendor/headroom/headroom.min.js')?>"></script>
+  <script src="<?php echo base_url('asset/login/vendor/jquery/jquery.min.js')?>"></script>
+  <script src="<?php echo base_url('asset/login/vendor/popper/popper.min.js')?>"></script>
+  <script src="<?php echo base_url('asset/login/vendor/bootstrap/bootstrap.min.js')?>"></script>
+  <script src="<?php echo base_url('asset/login/vendor/headroom/headroom.min.js')?>"></script>
   <!-- Argon JS -->
-  <script src="<?php echo base_url('assets/js/argon.js?v=1.1.0')?>"></script>
+  <script src="<?php echo base_url('asset/login/js/argon.js?v=1.1.0')?>"></script>
 </body>
 
 </html>
