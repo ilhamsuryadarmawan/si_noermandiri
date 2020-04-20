@@ -180,7 +180,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                       </div>
-                    <input class="form-control input100" type="text" name="username" placeholder="Username">
+                    <input class="form-control input100" type="text" name="username" placeholder="Username" required>
                     <span class="focus-input100" data-placeholder="&#xf207;"></span>
                   </div>
                 </div>
@@ -197,7 +197,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                       </div>
-                    <input class="form-control input100" type="password" name="password" placeholder="Password">
+                    <input class="form-control input100" type="password" name="password" placeholder="Password" required>
                     <span class="focus-input100" data-placeholder="&#xf191;"></span>
                   </div>
                 </div>
