@@ -12,8 +12,14 @@ class M_ruangan extends CI_Model {
         return $q;
     }
 
-    	public function tambah($data){
+    public function tambah($data){
         $this->db->insert($this->table, $data);
     }
+
+    function update($data , $id){
+        $this->db->where('ID_RUANGAN', $id);
+        $this->db->update($this->table, $data);
+    }
+
 
 }

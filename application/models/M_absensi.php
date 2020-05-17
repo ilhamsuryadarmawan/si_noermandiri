@@ -12,18 +12,6 @@ class M_absensi extends CI_Model {
         return $q;
     }
 
-    // function rules(){
-    //     return[
-    //         // ['field' => 'ID_ABSENSI','label' => 'ID_ABSENSI','rules' => 'required'],
-    //         // ['field' => 'NOINDUK','label' => 'NOINDUK','rules' => 'required'],
-    //         // ['field' => 'ID_JADWAL','label' => 'ID_JADWAL','rules' => 'required'],
-    //         // ['field' => 'TANGGAL_ABSEN','label' => 'TANGGAL_ABSEN','rules' => 'required']
-    //         // // ['field' => 'MATERI','label' => 'MATERI','rules' => 'required'],
-    //         // // // ['field' => 'STATUS_ABSEN','label' => 'STATUS_ABSEN','rules' => 'required'],
-    //         // // ['field' => 'KETERANGAN_ABSEN','label' => 'KETERANGAN_ABSEN','rules' => 'required'],
-    //         // ['field' => 'TGL_ABSEN_DIBUAT','label' => 'TGL_ABSEN_DIBUAT','rules' => 'required']
-    //     ];
-    // }
 
     function simpan($nis, $status, $materi, $ket){ 
         $post = $this->input->post();
@@ -40,12 +28,16 @@ class M_absensi extends CI_Model {
     }
 
     function tampilKehadiran(){
-        $query=$this->db->query("SELECT COUNT(ID_ABSENSI) as jmlKehadiran, a.NOINDUK, s.NAMA_SISWA FROM absensi_siswa a
-        JOIN siswa s on a.NOINDUK = s.NOINDUK  WHERE STATUS_ABSEN = 'H' GROUP BY NOINDUK");
+        $query=$this->db->query("SELECT COUNT(ID_ABSENSI) as jmlKehadiran, a.NOINDUK, s.NAMA_SISWA
+                                FROM absensi_siswa a
+                                JOIN siswa s ON s.NOINDUK = a.NOINDUK
+                                WHERE STATUS_ABSEN = 'H' GROUP BY NOINDUK");
         return $query;
-    }
+    } 
 
     function tampilPertemuan(){
-        $query=$this->db->query('SELECT COUNT(ID_ABSENSI) as pertemuan FROM absensi_siswa');
+        $query=$this->db->query('SELECT COUNT(ID_ABSENSI) as jmlPertemuan FROM absensi_siswa');
+
+        return $query;
     }
 }

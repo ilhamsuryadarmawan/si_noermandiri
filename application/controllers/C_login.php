@@ -42,7 +42,7 @@ class C_login extends CI_Controller {
                 $this->session->set_userdata('ses_nama',$data['NAMA_PEGAWAI']);
                 redirect(site_url('C_home'));
             }else{
-                $error = 'Username atau Password salah';
+                $error = '<div class="alert alert-danger" role="alert"> Username atau Password salah </div>';
                 $this->index($error);
             }
         
@@ -57,7 +57,7 @@ class C_login extends CI_Controller {
                 $this->session->set_userdata('ses_kelas',$data['ID_KELAS']);
                 redirect(site_url('C_home'));
             }else {
-                $error = 'Username atau Password salah';
+                $error = '<div class="alert alert-danger" role="alert"> Username atau Password yang Anda masukkan salah. Silahkan coba lagi. </div>';
             $this->index($error);
             }
 

@@ -3,7 +3,7 @@
 class M_siswa extends CI_Model {
 	//nama tabel dan primary key
     private $table = 'siswa';
-    private $pk = 'NO_INDUK';
+    private $pk = 'NOINDUK';
 
 	//tampilkan semua data
     public function tampilkanSemua($limit,$start,$keyword) {
@@ -18,17 +18,17 @@ class M_siswa extends CI_Model {
         return $query;
     }
 
-    // public function tampilSiswaPerKelas($kelas){
-    // 	$query=$this->db->query("SELECT *
-    //                             FROM siswa
-    //                             WHERE ID_KELAS='$kelas'");
-    //     return $query;
-    // }
+    public function tampilSiswaPerKelas($kelas){
+    	$query=$this->db->query("SELECT *
+                                FROM siswa
+                                WHERE ID_KELAS='$kelas'");
+        return $query;
+    }
 
     public function getByNoinduk($noinduk) {
         $query=$this->db->query("SELECT *
                                  FROM siswa
-                                 WHERE NO_INDUK = '$noinduk'");
+                                 WHERE NOINDUK = '$noinduk'");
         return $query;
     }
 
@@ -37,7 +37,7 @@ class M_siswa extends CI_Model {
     }
 
     function update($data , $id){
-        $this->db->where('NO_INDUK', $id);
+        $this->db->where('NOINDUK', $id);
         $this->db->update($this->table, $data);
     }
 

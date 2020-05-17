@@ -119,7 +119,7 @@
                 <span class="nav-link-inner--text d-lg-none">Github</span>
               </a>
             </li>
-            <li class="nav-item d-none d-lg-block ml-lg-4">
+<!--             <li class="nav-item d-none d-lg-block ml-lg-4">
               <a href="https://www.creative-tim.com/product/argon-design-system" target="_blank" class="btn btn-neutral btn-icon">
                 <span class="btn-inner--icon">
                   <i class="fa fa-cloud-download mr-2"></i>
@@ -127,7 +127,7 @@
                 <span class="nav-link-inner--text">Download</span>
               </a>
             </li>
-          </ul>
+ -->          </ul>
         </div>
       </div>
     </nav>
@@ -149,7 +149,7 @@
           <div class="col-lg-5">
             <div class="card bg-secondary shadow border-0">
               <div class="card-header bg-white pb-6">
-                <div class="text-muted text-center mb-3"><br><center><b>LOGIN</b><br>Lembaga Bimbingan Belajar Noermandiri</center></div>
+                <div class="text-muted text-center mb-3"><br>Lembaga Bimbingan Belajar Noermandiri</div>
 <!--                 <div class="btn-wrapper text-center">
                   <a href="#" class="btn btn-neutral btn-icon">
                     <span class="btn-inner--icon">
@@ -206,10 +206,10 @@
                     <label class="custom-control-label" for="customCheckLogin">
                       <span>Remember me</span>
                     </label>
-                  </div>
-                  <div>
-                    <center><?php echo $error ; ?></center><br>
-                  </div>
+                  </div><br>
+                  
+                    <?php echo $error ; ?>
+                  
 <!--                   <div class="text-center">
                     <button type="button" class="btn btn-primary my-4">Sign in</button>
                   </div> -->

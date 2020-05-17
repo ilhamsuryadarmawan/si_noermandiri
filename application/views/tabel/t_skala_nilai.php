@@ -20,7 +20,7 @@
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="#">Sesi</a>
+                            <a href="#">Skala Nilai</a>
                         </li>
                     </ul>
                 </div>
@@ -28,7 +28,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Tambah Sesi</h4>
+                                <h4 class="card-title">Tambah Skala Nilai</h4>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
@@ -39,21 +39,21 @@
                                                 <?php echo validation_errors(); ?>
                                             </div>
                                         <?php endif; ?>
-                                        <form action="<?php echo base_url('C_sesi/aksiTambah')?>" method="POST">
+                                        <form action="<?php echo base_url('sesi/aksiTambah')?>" method="POST">
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-lg-3">
-                                                    <label>Jam Mulai</label>
+                                                    <label>Batas Atas</label>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <input type="time" class="form-control" id="jam_mulai" name="jam_mulai"/>
+                                                    <input type="text" class="form-control" id="jam_mulai" name="jam_mulai"/>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-lg-3">
-                                                    <label>Jam Selesai</label>
+                                                    <label>Batas Bawah</label>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <input type="time" class="form-control" id="jam_selesai" name="jam_selesai"/>
@@ -86,22 +86,23 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>ID Sesi</th>
-                                                <th>Jam</th>
+                                                <th>ID Skala</th>
+                                                <th>Nilai</th>
+                                                <th>Grade</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
                                             $nourut = 1;
-                                            foreach ($sesi as $ses) {
-                                                $id = $ses->ID_SESI;
+                                            foreach ($skala as $sk) {
+                                                $id = $sk->ID_SKALA;
                                             ?>
                                             <tr>
                                                 <td><?php echo $nourut++;?></td>
-                                                <td><?php echo $ses->ID_SESI; ?></td>
-                                                <td><?php echo date("H:i",strtotime($ses->JAM_MULAI))?> - <?php echo date("H:i",strtotime($ses->JAM_SELESAI))?></td>
-                                                <td><button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-pencil-alt"></i></button><a href="<?php echo base_url('Sesi/hapus/'.$id)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a></td>
+                                                <td><?php echo $sk->ID_SKALA; ?></td>
+                                                <td><?php echo $sk->BATAS_BAWAH - $sk->BATAS_ATAS; ?></td>
+                                                <td><button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-pencil-alt"></i></button><a href="<?php echo base_url('c_skala/hapus/'.$id)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a></td>
                                             </tr>
                                             <?php
                                             }
@@ -118,7 +119,7 @@
 
 <!-- MODAL EDIT -->
 
-<?php
+<!-- <?php
     foreach($sesi as $s):
         $id = $s->ID_SESI;
         $jam_mulai = $s->JAM_MULAI;
@@ -179,4 +180,4 @@
     </div>
     </div>
 </div>
-<?php endforeach;?>
+<?php endforeach;?> -->

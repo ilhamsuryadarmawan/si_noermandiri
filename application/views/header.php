@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title><?php echo $title?></title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 	<link rel="icon" href="<?php echo base_url('assets/img/logo/logo1.ico')?>" type="image/x-icon"/>
-
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
 	<!-- Fonts and icons -->
 	<script src="<?php echo base_url('assets/adm/js/plugin/webfont/webfont.min.js')?>"></script>
 	<script>
 		WebFont.load({
 			google: {"families":["Lato:300,400,700,900"]},
-			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ["<?php echo base_url('assets/adm/css/fonts.min.css')?>"]},
+			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['<?php echo base_url('assets/adm/css/fonts.min.css')?>']},
 			active: function() {
 				sessionStorage.fonts = true;
 			}
@@ -21,18 +22,16 @@
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="<?php echo base_url('assets/adm/css/bootstrap.min.css')?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/adm/css/atlantis.min.css')?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/adm/dataTables/datatables.min.css')?>">
+   	<link href="<?php echo base_url('assets/adm/styles.css')?>" rel="stylesheet" />
+	<link href="<?php echo base_url('assets/adm/prism.css')?>" rel="stylesheet" />
 
-	<!-- CSS Just for demo purpose, don't include it in your project -->
-	<link rel="stylesheet" href="<?php echo base_url('assets/adm/css/demo.css')?>">
 </head>
 <body>
 	<div class="wrapper">
 		<div class="main-header">
 			<!-- Logo Header -->
 			<div class="logo-header" data-background-color="blue">
-				
-				<a href="index.html" class="logo">
+				<a href="#index.html" class="logo">
                     <img src="<?php echo base_url('assets/img/logo/logo1.ico')?>" width="30" weight="30" alt="navbar brand" class="navbar-brand">
                     <font color="#FFFFF" size="2">&nbsp LBB Noermandiri</font>
 				</a>
@@ -51,10 +50,26 @@
 			<!-- End Logo Header -->
 
 			<!-- Navbar Header -->
-			<nav class="navbar navbar-header navbar-expand-lg" data-background-color="blue2">
-				
+			<nav class="navbar navbar-header navbar-expand-lg" data-background-color="blue2">	
 				<div class="container-fluid">
+					<div class="collapse" id="search-nav">
+						<form class="navbar-left navbar-form nav-search mr-md-3">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<button type="submit" class="btn btn-search pr-1">
+										<i class="fa fa-search search-icon"></i>
+									</button>
+								</div>
+								<input type="text" placeholder="Search ..." class="form-control">
+							</div>
+						</form>
+					</div>
 					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+						<li class="nav-item toggle-nav-search hidden-caret">
+							<a class="nav-link" data-toggle="collapse" href="#search-nav" role="button" aria-expanded="false" aria-controls="search-nav">
+								<i class="fa fa-search"></i>
+							</a>
+						</li>
 						<li class="nav-item dropdown hidden-caret">
 							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
 								<div class="avatar-sm">
@@ -84,9 +99,8 @@
 			</nav>
 			<!-- End Navbar -->
 		</div>
-
 		<!-- Sidebar -->
-		<div class="sidebar sidebar-style-2">			
+		<div class="sidebar sidebar-style-2">
 			<div class="sidebar-wrapper scrollbar scrollbar-inner">
 				<div class="sidebar-content">
 					<div class="user">
@@ -106,7 +120,7 @@
 					<ul class="nav nav-primary">
                         <?php if($this->session->userdata('akses')=='admin'):?>
 						<li class="nav-item active">
-							<a href="<?php echo base_url('Home')?>" class="collapsed" aria-expanded="false">
+							<a href="<?php echo base_url('C_Home')?>" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
 								<p>Dashboard</p>
 							</a>
@@ -120,54 +134,90 @@
 							<div class="collapse" id="base">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="<?php echo base_url('daftarpegawai')?>">
-											<span class="sub-item">Data Pegawai</span>
-										</a>
-									</li>
-<!-- 									<li>
-										<a href="<?php echo base_url('Tentor')?>">
-											<span class="sub-item">Data Tentor</span>
-										</a>
-									</li> -->
-									<li>
-										<a href="<?php echo base_url('daftarsiswa')?>">
-											<span class="sub-item">Data Siswa</span>
-										</a>
-									</li>
-									<li>
-										<a href="<?php echo base_url('listmapel')?>">
-											<span class="sub-item">Data Mata Pelajaran</span>
+										<a href="<?php echo base_url('C_mapel')?>">
+											<span class="sub-item">Mata Pelajaran</span>
 										</a>
                                     </li>
                                     <li>
-										<a href="<?php echo base_url('Ruangan')?>">
-											<span class="sub-item">Data Ruangan</span>
+										<a href="<?php echo base_url('C_ruangan')?>">
+											<span class="sub-item">Ruang Kelas</span>
 										</a>
                                     </li>
 									<li>
-										<a href="<?php echo base_url('Kelas')?>">
-											<span class="sub-item">Data Kelas Kelompok Belajar</span>
+										<a href="<?php echo base_url('C_kelas')?>">
+											<span class="sub-item">Kelas</span>
 										</a>
 									</li>
 									<li>
-										<a href="<?php echo base_url('Jenjang_Kelas')?>">
-											<span class="sub-item">Data Jenjang Kelas</span>
+										<a href="<?php echo base_url('C_jenjang_kelas')?>">
+											<span class="sub-item">Jenjang Kelas</span>
 										</a>
 									</li>
 									<li>
-										<a href="<?php echo base_url('Jabatan')?>">
-											<span class="sub-item">Data Jabatan</span>
+										<a href="<?php echo base_url('C_jabatan')?>">
+											<span class="sub-item">Jabatan</span>
 										</a>
 									</li>
 									<li>
-										<a href="<?php echo base_url('Sesi')?>">
-											<span class="sub-item">Data Sesi</span>
+										<a href="<?php echo base_url('C_sesi')?>">
+											<span class="sub-item">Sesi Les</span>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<span class="sub-item">Skala Nilai</span>
 										</a>
 									</li>
 								</ul>
 							</div>
 						</li>
 						<li class="nav-item">
+							<a data-toggle="collapse" href="#siswa">
+								<i class="fas fa-th-list"></i>
+								<p>Data Siswa</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="siswa">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="<?php echo base_url('daftarsiswa')?>">
+											<span class="sub-item">Siswa
+                                            </span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a data-toggle="collapse" href="#pegawai">
+								<i class="fas fa-th-list"></i>
+								<p>Data Pegawai</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="pegawai">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="<?php echo base_url('daftarpegawai')?>">
+											<span class="sub-item">Semua
+                                            </span>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<span class="sub-item">Admin
+                                            </span>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<span class="sub-item">Pengajar
+                                            </span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+<!-- 						<li class="nav-item">
 							<a data-toggle="collapse" href="#sidebarLayouts">
 								<i class="fas fa-th-list"></i>
 								<p>Data Pendaftaran</p>
@@ -188,57 +238,70 @@
 									</li>
 								</ul>
 							</div>
-						</li>
+						</li> -->
 						<li class="nav-item">
-							<a data-toggle="collapse" href="#sidebarLayouts">
+							<a data-toggle="collapse" href="#nilai">
 								<i class="fas fa-th-list"></i>
 								<p>Data Penilaian Siswa</p>
 								<span class="caret"></span>
 							</a>
-							<div class="collapse" id="sidebarLayouts">
+							<div class="collapse" id="nilai">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="<?php echo base_url('Pendaftaran/siswa_baru')?>">
-											<span class="sub-item">Pendaftaran Siswa Baru
-                                            </span>
+										<a href="<?php echo base_url('C_penilaian/inputNilai')?>">
+											<span class="sub-item">Tambah Data Nilai</span>
 										</a>
 									</li>
 									<li>
-										<a href="overlay-sidebar.html">
-											<span class="sub-item">Daftar Ulang</span>
+										<a href="#">
+											<span class="sub-item">Ubah Data Nilai</span>
+										</a>
+									</li>
+									<li>
+										<a href="<?php echo base_url('C_penilaian/tampilNilai')?>">
+											<span class="sub-item">Laporan Kumulatif Nilai</span>
 										</a>
 									</li>
 								</ul>
 							</div>
 						</li>
 						<li class="nav-item">
-							<a data-toggle="collapse" href="#sidebarLayouts">
+							<a data-toggle="collapse" href="#absensi">
 								<i class="fas fa-th-list"></i>
 								<p>Data Absensi Siswa</p>
 								<span class="caret"></span>
 							</a>
-							<div class="collapse" id="sidebarLayouts">
+							<div class="collapse" id="absensi">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="<?php echo base_url('Pendaftaran/siswa_baru')?>">
-											<span class="sub-item">Pendaftaran Siswa Baru
-                                            </span>
+										<a href="<?php echo base_url('C_Absensi/index')?>">
+											<span class="sub-item">Tambah Data Absensi</span>
 										</a>
 									</li>
 									<li>
-										<a href="overlay-sidebar.html">
-											<span class="sub-item">Daftar Ulang</span>
+										<a href="#">
+											<span class="sub-item">Ubah Data Absensi</span>
 										</a>
 									</li>
+									<li>
+										<a href="<?php echo base_url('C_Absensi/tampilAbsensi')?>">
+											<span class="sub-item">Laporan Kumulatif Absensi</span> 
+										</a>
+									</li>
+<!-- 									<li>
+										<a href="#">
+											<span class="sub-item">Laporan Tanggal Absensi</span> 
+										</a>
+									</li> -->
 								</ul>
 							</div>
 						</li>
-						<li class="nav-item">
+<!-- 						<li class="nav-item">
 							<a href="<?php echo base_url('Pembayaran')?>">
 								<i class="fas fa-money-bill-alt"></i>
 								<p>Data Pembayaran</p>
 							</a>
-						</li>
+						</li> -->
 						<li class="nav-item">
 							<a href="<?php echo base_url('Jadwal')?>">
 								<i class="fas fa-calendar-alt"></i>

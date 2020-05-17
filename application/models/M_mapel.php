@@ -6,30 +6,24 @@ class M_mapel extends CI_Model {
     private $pk = 'ID_MAPEL';
 
 	//tampilkan semua data
-    public function tampilkanSemua($limit,$start) {
+    public function tampilkanSemua() {
         $this->db->SELECT('*');
         $this->db->FROM ('mata_pelajaran');
-        $this->db->limit($limit,$start);
+        // $this->db->limit($limit,$start);
         $query = $this->db->get();
         return $query;
+    }
+
+    public function tampilkanMapel() {
+        $q = $this->db->order_by($this->pk);
+        $q = $this->db->get($this->table);
+        return $q;
     }
 
     public function tampilMapel() {
         $query=$this->db->query("SELECT *FROM mata_pelajaran WHERE ID_MAPEL!='EMP'");
     	return $query;
     }
-
-    // function rules(){
-    //     return[
-    //         ['field' => 'NAMA_MAPEL','label' => 'NAMA_MAPEL','rules' => 'required']
-    //     ];
-    // }
-
-    // function simpan(){ 
-    //     $post = $this->input->post();
-    //     $this->NAMA_MAPEL=$post['NAMA_MAPEL'];
-    //     $this->db->insert($this->table, $this); 
-    // }
 
     public function tambah($data){
         $this->db->insert($this->table, $data);
@@ -48,6 +42,12 @@ class M_mapel extends CI_Model {
         $this->db->select('*');
         $this->db->from('mata_pelajaran');
         return $this->db->get()->num_rows();
+    }
+
+
+    function update($data , $id){
+        $this->db->where('ID_MAPEL', $id);
+        $this->db->update($this->table, $data);
     }
 
 }

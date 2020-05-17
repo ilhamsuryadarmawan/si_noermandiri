@@ -12,15 +12,12 @@ class M_jabatan extends CI_Model {
         return $query;
     }
 
-    function rules(){
-        return[
-            ['field' => 'JABATAN','label' => 'JABATAN','rules' => 'required']
-        ];
+    public function tambah($data){
+        $this->db->insert($this->table, $data);
     }
 
-    function simpan(){ 
-        $post = $this->input->post();
-        $this->JABATAN=$post['JABATAN'];
-        $this->db->insert($this->table, $this); 
+    function update($data , $id){
+        $this->db->where('ID_JABATAN', $id);
+        $this->db->update($this->table, $data);
     }
 }

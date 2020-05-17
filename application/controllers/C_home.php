@@ -16,7 +16,7 @@ class C_home extends CI_Controller {
 	            'content' => 'home',
 	            'judul' => 'Home',
 	        );
-	        $this->load->view('layout', $data);
+	    $this->load->view('layout', $data);
     }
 
 }

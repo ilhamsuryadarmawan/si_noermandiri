@@ -5,7 +5,7 @@ class C_absensi extends CI_Controller {
     function __construct(){
     parent::__construct();
         if($this->session->userdata('masuk') != TRUE){
-            redirect(site_url('C_login'));
+            redirect(site_url('login'));
         }
     $this->load->library('form_validation');
     }
@@ -13,14 +13,15 @@ class C_absensi extends CI_Controller {
     function index(){
         if($this->session->userdata('akses') == 'admin'){
         $this->load->model('M_kelas');
+        $this->load->model('M_mapel');
         $kelombel = $this->M_kelas->TampilkanSemua()->result();
-        
+        $matapel = $this->M_mapel->TampilkanMapel()->result();
         $data = array(
 	            'title' => 'Home',
 	            'content' => 'form/f_absensi',
 	            'judul' => 'Home',
                 'kelombel'  => $kelombel,
-                
+                'matapel' => $matapel,
 	        );
 	        $this->load->view('layout', $data);
         }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
@@ -31,7 +32,9 @@ class C_absensi extends CI_Controller {
     function tampilSiswa(){
         if($this->session->userdata('akses') == 'admin'){
             $kelas = $this->input->post('kelas');
+            $mapel = $this->input->post('mapel');
             $this->load->model('M_siswa');
+            $this->load->model('M_mapel');
             $this->load->model('M_jadwal_les');
             $siswa = $this->M_siswa->tampilSiswaPerKelas($kelas)->result();
             $data = array( 
@@ -39,7 +42,8 @@ class C_absensi extends CI_Controller {
                 'content'  => 'tabel/t_absensi',
                 'judul' => 'Input Absensi',
                 'siswa' => $siswa,
-                'kelas' => $kelas
+                'kelas' => $kelas,
+                'mapel' => $mapel
                 );
             $this->load->view('layout', $data);
         }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
@@ -53,12 +57,14 @@ class C_absensi extends CI_Controller {
             $this->load->model('M_siswa');
             $this->load->model('M_absensi');
             $absensi = $this->M_absensi->tampilKehadiran()->result();
+            $jumlah = $this->M_absensi->tampilPertemuan()->result();
             $data = array( 
                 'title'    => 'Data Absensi',
-                'content'  => 't_detail_absen',
+                'content'  => 'tabel/t_absensi2',
                 'judul' => 'Absensi Siswa',
                 'absensi' => $absensi,
-                'kelas' => $kelas
+                'kelas' => $kelas,
+                'jumlah' => $jumlah
 
                 );
             $this->load->view('layout', $data);
@@ -115,9 +121,6 @@ class C_absensi extends CI_Controller {
                         $this->M_absensi->simpan($nosiswaa[$i],$status, $materi, $keterangan);
                         $a=1;
                     }
-
-
-
                 }
                     if($a!=1){
                         $status='A';
@@ -125,8 +128,7 @@ class C_absensi extends CI_Controller {
                     }
 
             }
-            redirect(site_url('C_absensi/tampilAbsensi'));
-
+            redirect('C_absensi/tampilAbsensi');
     }
     
 }

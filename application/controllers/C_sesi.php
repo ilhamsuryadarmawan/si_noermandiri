@@ -1,11 +1,11 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-    class Sesi extends CI_Controller {
+    class C_sesi extends CI_Controller {
 
         function __construct(){
         parent::__construct();
             if($this->session->userdata('masuk') != TRUE){
-                redirect(site_url('Auth'));
+                redirect(site_url('login'));
             }
         $this->load->library('form_validation');
         }
@@ -16,30 +16,16 @@
                 $sesi = $this->M_API->getAll('sesi')->result();
                 $data = array(
                         'sesi'       => $sesi,
-        	            'title'      => 'Data Sesi',
-        	            'content'    => 'tabel/t_sesi',
-        	            'judul'      => 'Data Sesi',
-        	        );
-        	        $this->load->view('layout', $data);
+                        'title'      => 'Data Sesi',
+                        'content'    => 'tabel/t_sesi',
+                        'judul'      => 'Data Sesi',
+                    );
+                    $this->load->view('layout', $data);
             }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
                 echo"<script>history.go(-1);</script>";
             }
         }
 
-        public function tambah() {
-            //jika sebagai admin
-            if($this->session->userdata('akses') == 'admin'){
-            $this->load->library('form_validation');
-            $data = array(
-                'judul'     => 'Form Tambah Data Sesi',
-                'title'     => 'Tambah data sesi',
-                'content'   => 'form/f_sesi',
-            );
-            $this->load->view('layout', $data);
-            }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
-                echo "<script>history.go(-1);</script>";
-            }
-        }
 
         public function hapus($id)
         {
@@ -61,6 +47,24 @@
                 $this->M_API->saveData('sesi',$data);
                 $this->session->set_flashdata('flash','Disimpan');
                 redirect(site_url('Sesi'));
+
+            }else{
+                echo "<script>history.go(-1);</script>";
+            }
+        }
+
+        public function update(){
+            if($this->session->userdata('akses') == 'admin'){
+                $id = $this->input->post('id_edit', TRUE);
+                $data = array(
+                    'JAM_MULAI'     => $this->input->post('jam_mulai_edit', TRUE),
+                    'JAM_SELESAI'   => $this->input->post('jam_selesai_edit', TRUE),
+                );
+                $this->load->model('M_sesi');
+                $this->M_sesi->update($data, $id);
+                $this->session->set_flashdata('flash','ubah');
+
+                redirect(site_url('C_sesi'));
 
             }else{
                 echo "<script>history.go(-1);</script>";

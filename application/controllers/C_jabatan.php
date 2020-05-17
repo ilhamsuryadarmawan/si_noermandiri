@@ -5,7 +5,7 @@
         function __construct(){
         parent::__construct();
             if($this->session->userdata('masuk') != TRUE){
-                redirect(site_url('C_login'));
+                redirect(site_url('login'));
             }
         $this->load->library('form_validation');
         }
@@ -26,34 +26,35 @@
             }
         }
 
-        public function tambah() {
-            //jika sebagai admin
+        public function aksiTambah(){
             if($this->session->userdata('akses') == 'admin'){
+            //load library form validation
             $this->load->library('form_validation');
-            $this->load->model('M_jabatan');
-            $jab = $this->M_jabatan->TampilkanSemua()->result();
-            $data = array(
-                'jab' => $jab,
-                'judul'     => 'Form Tambah Jabatan',
-                'title'     => 'Input Jabatan',
-                'content'   => 'form/f_jabatan',
-            );
-            $this->load->view('layout', $data);
-            }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
-                echo "<script>history.go(-1);</script>";
-            }
-        }
 
-        public function simpan(){             
-            $this->load->model('M_jabatan');
-            $simpan = $this->M_jabatan;
-            $validasi=$this->form_validation;
-            $validasi->set_rules($simpan->rules());             
-            if($validasi->run()){
-                $simpan->simpan();                 
-                redirect('C_jabatan/index','refresh');
+            $this->form_validation->set_error_delimiters('<div style="color:red; margin-bottom: 5px">', '</div>');
+
+            //rules validasi
+            $this->form_validation->set_rules('nama', 'NAMA JABATAN', 'required|min_length[5]|max_length[15]',['required' => 'Nama Jabatan tidak boleh kosong',
+                'min_length' => 'Nama ruangan minimal 5 karakter',
+                'max_length' => 'Nama ruangan maksimal 15 karakter',]);
+
+                if ($this->form_validation->run() == FALSE) {
+                    //jika validasi gagal maka akan kembali ke list ruangan
+                    $this->index();
+                    } else {    
+                    //jika validasi berhasil
+                        $data = array(
+                            'JABATAN'    => $this->input->post('nama', TRUE),
+                        );
+                        $this->load->model('M_jabatan');
+                        $this->M_jabatan->tambah($data);
+                        $this->session->set_flashdata('flash','Disimpan');
+
+                        redirect(site_url('C_Jabatan'));
+                    }
+
             }else{
                 echo "<script>history.go(-1);</script>";
             }
-        } 
+        }
     }

@@ -14,46 +14,33 @@
             //jika sebagai admin
             if($this->session->userdata('akses') == 'admin'){
                 $this->load->model('M_mapel');
-                $this->load->library('pagination');
 
-                $config['base_url'] = 'http://localhost/si_noermandiri/C_mapel/index';
-                $config['total_rows'] = $this->M_mapel->hitung_mapel();
-                $config['per_page'] = 5;
-
-                //initialize
-                $this->pagination->initialize($config);
-
-                $d['start'] = $this->uri->segment(3);
-                $rows = $this->M_mapel->tampilkanSemua($config['per_page'],$d['start'])->result();
+                $rows = $this->M_mapel->tampilkanSemua()->result();
                 $data = array(
-                        'mata_ajar'    => $rows,
+                        'mapel'        => $rows,
         	            'title'        => 'Data Mata Pelajaran',
         	            'content'      => 'tabel/t_mata_pelajaran',
         	            'judul'        => 'Data Mata Pelajaran',
-                        'start'        => $this->uri->segment(3)
         	        );
         	        $this->load->view('layout', $data);
             }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
                 echo"<script>history.go(-1);</script>";
             }
         }
-        public function get_mapel(){
-            $kode = $this->input->post('kode_mapel');
-            $data =$this->M_mapel->getMapelById($kode);
-            echo json_encode($data);
-        }
 
-        public function aksiTambah(){
+        // public function get_mapel(){
+        //     $kode = $this->input->post('kode_mapel');
+        //     $data =$this->M_mapel->getMapelById($kode);
+        //     echo json_encode($data);
+        // }
+
+        public function tambah(){
             if($this->session->userdata('akses') == 'admin'){
             //load library form validation
             $this->load->library('form_validation');
             $this->form_validation->set_error_delimiters('<div style="color:red; margin-bottom: 5px">','</div>');
 
             //rules validasi
-            // $this->form_validation->set_rules('id_mapel', 'ID Mapel', 'trim|required|min_length[3]|max_length[6]', [
-            //     'required' => 'ID mapel tidak boleh kosong',
-            //     'min_length'=>'Minimal 3 karakter',
-            //     'max_length' => 'Maksimal 6 karakter']);
 
             $this->form_validation->set_rules('nama_mapel', 'ID Mapel', 'trim|required|min_length[3]|max_length[16]', [
                 'required' => 'Nama mapel tidak boleh kosong',
@@ -66,7 +53,6 @@
                     } else {    
                     //jika validasi berhasil
                         $data = array(
-                            // 'ID_MAPEL'   => $this->input->post('id_mapel', TRUE),
                             'NAMA_MAPEL'  => $this->input->post('nama_mapel', TRUE),
                         );
 
@@ -76,6 +62,23 @@
 
                         redirect(site_url('C_mapel'));
                     }
+
+            }else{
+                echo "<script>history.go(-1);</script>";
+            }
+        }
+
+        public function update(){
+            if($this->session->userdata('akses') == 'admin'){
+                $id = $this->input->post('id_edit', TRUE);
+                $data = array(
+                    'NAMA_MAPEL'     => $this->input->post('nama_edit', TRUE)
+                );
+                $this->load->model('M_mapel');
+                $this->M_kelas->update($data, $id);
+                $this->session->set_flashdata('flash','ubah');
+
+                redirect(site_url('C_mapel'));
 
             }else{
                 echo "<script>history.go(-1);</script>";

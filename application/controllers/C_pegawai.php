@@ -5,7 +5,7 @@
         function __construct(){
         parent::__construct();
             if($this->session->userdata('masuk') != TRUE){
-                redirect(site_url('C_Login'));
+                redirect(site_url('Login'));
             }
         $this->load->library('form_validation');
         }
@@ -13,33 +13,12 @@
             //jika sebagai admin
             if($this->session->userdata('akses') == 'admin'){
                 $this->load->model('M_pegawai');
-                $this->load->library('pagination');
-
-                // filter search
-                if ($this->input->post('submit')) {
-                    $d['keyword'] = $this->input->post('keyword');
-                }else{
-                    $d['keyword'] = null;
-                }
-
-                //config
-                $config['base_url'] = 'http://localhost/si_noermandiri/C_Pegawai';
-                $this->db->like('NAMA_PEGAWAI',$d['keyword']);
-                $this->db->from('pegawai');
-                $config['total_rows'] = $this->db->count_all_results();
-                $config['per_page'] = 5;
-
-                //initialize
-                $this->pagination->initialize($config);
-
-                $d['start'] = $this->uri->segment(3);
-                $rows = $this->M_pegawai->tampilkanSemua($config['per_page'],$d['start'],$d['keyword'])->result();
+                $rows = $this->M_pegawai->tampilkanSemua()->result();
                 $data = array(
                         'pegawai'          => $rows,
         	            'title'        => 'Data Pegawai',
         	            'content'      => 'tabel/t_pegawai',
         	            'judul'        => 'Data Pegawai',
-                        'start'        => $this->uri->segment(3)
         	        );
         	        $this->load->view('layout', $data);
             }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang

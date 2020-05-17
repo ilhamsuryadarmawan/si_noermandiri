@@ -64,14 +64,16 @@ $route['inputpegawai'] = 'C_pegawai/tambahPegawai';
 
 //datasiswa
 $route['daftarsiswa'] = 'C_siswa/index';
-$route['forminputsiswa'] = 'C_siswa/tambah';
 $route['updatesiswa'] = 'C_siswa/update';
 
 //datamapel
-$route['listmapel'] = 'C_mapel/index';
-$route['forminputmapel'] = 'C_mapel/tambah';
-$route['tambahmapel'] = 'C_mapel/aksitambah';
+$route['tambahmapel'] = 'C_mapel/tambah';
+$route['updatemapel'] = 'C_mapel/update';
 
+$route['tambahruangan'] = 'C_ruangan/tambah';
+$route['updateruangan'] = 'C_ruangan/update';
+
+$route['tambahkelas'] = 'C_kelas/tambah';
 
 $route['simpanabsen'] = 'C_absensi/simpan';
 

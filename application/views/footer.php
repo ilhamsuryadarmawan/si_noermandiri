@@ -1,16 +1,17 @@
-<footer class="footer">
-				<div class="container-fluid">
-					<nav class="pull-left">
-						
-					</nav>
-					<div class="copyright ml-auto">
-            Copyright &#169;2020 Lembaga Bimbingan Belajar Noermandiri
-					</div>				
-				</div>
-			</footer>
-		</div>
-		
+		<footer class="footer">
+			<div class="container-fluid">
+				<nav class="pull-left">		
+				</nav>
+				<div class="footer-copy-right">
+	           		Copyright &#169;2020 Lembaga Bimbingan Belajar Noermandiri
+				</div>				
+			</div>
+		</footer>
 	</div>
+</div>
+
+
+
 	<!--   Core JS Files   -->
 	<script src="<?php echo base_url('assets/adm/js/core/jquery.3.2.1.min.js')?>"></script>
 	<script src="<?php echo base_url('assets/adm/js/core/popper.min.js')?>"></script>
@@ -34,7 +35,7 @@
 	<script src="<?php echo base_url('assets/adm/js/plugin/chart-circle/circles.min.js')?>"></script>
 
 	<!-- Datatables -->
-	<script src="<?php echo base_url('assets/adm/dataTables/datatables.min.js')?>"></script>
+	<script src="<?php echo base_url('assets/adm/js/plugin/datatables/datatables.min.js')?>"></script>
 
 
 	<!-- jQuery Vector Maps -->
@@ -48,7 +49,7 @@
 	<script src="<?php echo base_url('assets/adm/js/atlantis.min.js')?>"></script>
   	<script src="<?php echo base_url('assets/js/sweetalert/sweetalert2.all.min.js')?>"></script>
  	<script src="<?php echo base_url('assets/js/myscript.js')?>"></script>
-
+ 	
 	<script>
 		Circles.create({
 			id:'circles-1',
@@ -142,8 +143,9 @@
 			lineColor: '#ffa534',
 			fillColor: 'rgba(255, 165, 52, .14)'
     });
-    
-    $(document).ready(function() {
+	</script>
+	<script>
+		$(document).ready(function() {
 			$('#basic-datatables').DataTable({
 			});
 
@@ -190,5 +192,6 @@
 			});
 		});
 	</script>
+
 </body>
 </html>

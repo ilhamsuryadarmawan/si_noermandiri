@@ -23,7 +23,7 @@
                 }
 
                 //config
-                $config['base_url'] = 'http://localhost/si_noermandiri/Siswa/index';
+                $config['base_url'] = 'http://localhost/si_noermandiri/C_Siswa/index';
                 $this->db->like('NAMA_SISWA',$d['keyword']);
                 $this->db->from('siswa');
                 $config['total_rows'] = $this->db->count_all_results();
@@ -53,7 +53,7 @@
                 $id = $this->input->post('no_regist', TRUE);
                 $this->load->model('M_siswa');
                 $data = array(
-                    'NO_INDUK'           => '',
+                    'NOINDUK'           => '',
                     'ID_KELAS'           => $this->input->post('kelas', TRUE),
                     'NAMA_SISWA'         => $this->input->post('nama', TRUE),
                     'ALAMAT_SISWA'       => $this->input->post('alamat', TRUE),

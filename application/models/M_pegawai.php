@@ -10,14 +10,11 @@ class M_pegawai extends CI_Model {
     }
 
     //tampilkan semua data
-    public function tampilkanSemua($limit,$start,$keyword) {
-        if ($keyword) {
-            $this->db->like('NAMA_PEGAWAI',$keyword);
-        }
+    public function tampilkanSemua() {
+
         $this->db->SELECT('*');
         $this->db->FROM('pegawai p');
         $this->db->join('jabatan jab','p.ID_JABATAN = jab.ID_JABATAN');
-        $this->db->limit($limit,$start);
         $query = $this->db->get();
         return $query;
     }

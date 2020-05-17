@@ -1,90 +1,101 @@
-<div class="data-table-area mg-b-15">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="sparkline13-list shadow-reset">
-                            </div>
-                                <div class="sparkline13-hd">
-                                    <div class="main-sparkline13-hd">
-                                        <h1><?php echo $judul;?></h1>
-                                    </div>
-                                </div>
-                                <div class="sparkline13-graph">
-                                    <div class="datatable-dashv1-list custom-datatable-overright">
-                                        <div id="toolbar">
-
+<div class="main-panel">
+    <div class="content">
+        <div class="panel-header bg-primary-gradient">
+            <div class="page-inner py-5">
+                <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                    <div>
+                        <h2 class="text-white pb-2 fw-bold">Input Data Absensi</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-inner mt--5">
+            <div class="row">
+                <div class="col-md-12">
+                <?php if (validation_errors()) : ?>
+                                        <div class="alert alert-danger">
+                                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                            <?php echo validation_errors(); ?>
                                         </div>
-                                        
-<!--                                             <div class="form-group-inner">
-                                                <div class="row">
-                                                    <div class="col-lg-2">
-                                                        <label class="login2 pull-left pull-left-pro">ID_JADWAL</label>
-                                                    </div>
-                                                    <div class="col-lg-3">
-                                                        <input type="hidden" class="form-control" id="ID_JADWAL" name="ID_JADWAL" readonly value="<?php echo $ID_JADWAL ?>">
-                                                    </div>
+                            <?php endif; ?>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title"><?php echo $judul?></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form action="<?php echo base_url('C_absensi/tampilabsensi')?>" enctype="multipart/form-data" method="POST">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-lg-2 mt-4">
+                                                    <label>Tgl Absen dibuat</label>
                                                 </div>
-                                            </div> -->
-                                            <div class="form-group-inner">
-                                                <div class="row">
-                                                    <div class="col-lg-2">
-                                                        <label class="login2 pull-left pull-left-pro">Pengajar</label>
-                                                    </div>
-                                                    <div class="col-lg-3">
-                                                        <input type="text" class="form-control" id="pengajar" name="pengajar" value="<?php echo $this->session->userdata('ses_id'); ?>" readonly>
-                                                    </div>
+                                                <div class="col-lg-6 mt-3">
+                                                    <input type="hidden" class="form-control" id="TGL_ABSEN_DIBUAT" name="TGL_ABSEN_DIBUAT" value="<?php echo date('Y-m-d')?>" readonly>
                                                 </div>
                                             </div>
-                                            <div class="form-group-inner">
-                                                <div class="row">
-                                                    <div class="col-lg-2">
-                                                        <label class="login2 pull-left pull-left-pro">Kelas</label>
-                                                    </div>
-                                                    <div class="col-lg-3">
-                                                        <input type="text" class="form-control" id="kelas" name="kelas" value="<?php echo $kelas?>" readonly>
-                                                    </div>
+                                        </div>
+<!--                                         <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-lg-1">
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <label>ID Jadwal</label>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <input type="hidden" class="form-control" id="ID_JADWAL" name="ID_JADWAL" value="<?php echo $ID_JADWAL ?>" readonly>
                                                 </div>
                                             </div>
-<!--                                             <div class="form-group-inner">
-                                                <div class="row">
-                                                    <div class="col-lg-2">
-                                                        <label class="login2 pull-left pull-left-pro">Tanggal Absensi</label>
-                                                    </div>
-                                                    <div class="col-lg-3">
-                                                        <input type="date" class="form-control" id="TANGGAL_ABSEN" name="TANGGAL_ABSEN" value="<?php echo date('Y-m-d')?>">
-                                                    </div>
+                                        </div> -->
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-lg-2 mt-4">
+                                                    <label>Pengajar</label>
                                                 </div>
-                                            </div> -->
-                                            <div class="form-group-inner">
-                                                <div class="row">
-                                                    <div class="col-lg-2">
-                                                        <label class="login2 pull-left pull-left-pro">Materi</label>
-                                                    </div>
-                                                    <div class="col-lg-3">
-                                                        <input type="text" class="form-control" id="MATERI" name="materi">
-                                                    </div>
+                                                <div class="col-lg-6 mt-3">
+                                                    <input type="text" class="form-control" id="pengajar" name="pengajar" value="<?php echo $this->session->userdata('ses_id'); ?>" readonly>
                                                 </div>
                                             </div>
-                                            <div class="form-group-inner">
-                                                <div class="row">
-                                                    <div class="col-lg-2">
-                                                        <label class="login2 pull-left pull-left-pro">Keterangan Absen</label>
-                                                    </div>
-                                                    <div class="col-lg-3">
-                                                        <input type="text" class="form-control" id="KETERANGAN_ABSEN" name="keterangan">
-                                                    </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-lg-2 mt-4">
+                                                    <label>Kelas</label>
+                                                </div>
+                                                <div class="col-lg-6 mt-3">
+                                                    <input type="text" class="form-control" id="kelas" name="kelas" value="<?php echo $kelas?>" readonly>
                                                 </div>
                                             </div>
-
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-lg-2 mt-4">
+                                                    <label>Mata Pelajaran</label>
+                                                </div>
+                                                <div class="col-lg-6 mt-3">
+                                                    <input type="text" class="form-control" id="mapel" name="mapel" value="<?php echo $mapel?>" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+<!--                                         <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-lg-2 mt-4">
+                                                    <label>Keterangan Absensi</label>
+                                                </div>
+                                                <div class="col-lg-6 mt-3">
+                                                    <input type="text" class="form-control" id="KETERANGAN_ABSEN" name="keterangan">
+                                                </div>
+                                            </div>
+                                        </div> -->
                                         <table class="table sparkle-table" id="table" data-toggle="table" data-pagination="false" data-search="false" data-cookie-id-table="saveId" data-click-to-select="false" data-toolbar="#toolbar">
                                             <thead>
                                                 <tr>
                                                     <th data-field="no">No</th>
                                                     <th data-field="noinduk">NIS</th>
-                                                    <th data-field="kelas">Nama Siswa</th>
-                                                    <th data-field="tglAbsen">Status Absen</th>
-
-                                                    
+                                                    <th data-field="nama">Nama Siswa</th>
+                                                    <th data-field="status">Status Absen</th>                                                
                                                 </tr>
                                             </thead>
                                             
@@ -100,7 +111,7 @@
                                                     <td>
                                                         <input type="hidden" class="form-control" id="NOINDUK" name="noinduk[]" value="<?php echo $sis->NOINDUK?>" readonly>
                                                         <label>
-                                                            <input type="checkbox" value="<?php echo $sis->NOINDUK ?>" name="hadir[]"> Hadir
+                                                            <input type="checkbox" class="check" value="<?php echo $sis->NOINDUK ?>" name="hadir[]" checked> Hadir
                                                         </label>
 <!--                                                         <label>
                                                             <input type="checkbox" value="<?php echo $sis->NOINDUK ?>" name="alpha[]"> Alpha
@@ -109,38 +120,31 @@
                                                 <?php
                                                 }
                                                 ?>
+                                                </tr>
                                             </tbody>
                                         </table>
 
-                                            <div class="form-group-inner">
-                                                <div class="row">
-                                                    <div class="col-lg-3">
-                                                        <input type="hidden" class="form-control" id="TGL_ABSEN_DIBUAT" name="TGL_ABSEN_DIBUAT" value="<?php echo date('Y-m-d')?>" readonly>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-lg-4"></div>
+                                                <div class="col-lg-6">
+                                                    <div class="login-horizental cancel-wp pull-left">
+                                                        <button type="reset" class="btn btn-danger btn-sm" name="Batal">Batal</button>&nbsp;
+                                                        <button type="submit" class="btn btn-primary btn-sm" name="Tambah" onclick="absensi()">Simpan Absensi</button> 
                                                     </div>
                                                 </div>
                                             </div>
-                                            
-
-                                        <div class="form-group-inner">
-                                            <div class="login-btn-inner">
-                                                <div class="row">
-                                                        <div class="col-lg-9">
-                                                            <div class="login-horizental cancel-wp pull-left">
-                                                                <button type="reset" class="btn btn-danger btn-fill pull-left" name="Batal">Batal</button>&nbsp;
-                                                                <button type="submit" class="btn btn-primary btn-fill pull-right" name="Tambah" onclick="absensi()">Simpan Data</button> 
-                                                            </div>
-                                                        </div>
-                                                </div>
-                                            </div>
                                         </div>
-                                    
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+ 
+
 
 <script type="text/javascript">
 function absensi(){
@@ -174,7 +178,6 @@ function absensi(){
     console.log(nosis);
 
     url = '<?php echo base_url().'C_absensi/simpan';?>';
- 
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function(){
               //jika berhasil
@@ -185,24 +188,29 @@ function absensi(){
                 if(this.responseText==0)
                 {
 
-                  // history.go(0);
                   
                   console.log(this.responseText);
+                  
                 }
                 else
                 {
-                  alert("Connection Error, try again");
+                  alert("Connection Error, try again");                  
                 }
                 
+              } alert("Data Tersimpan, Success");
 
-              }
             }
       //console.log("data="+jsonData+"&peminjaman="+jsonData2);
       xhttp.open("POST", url, true);
       xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xhttp.send("hadir="+daftarHadir+"&nosiswa="+nosis+"&materi="+mat+"&keterangan="+ket);
-
+      
 }
 
-
+// function selectall() {
+//   let checkboxs = document.getElementsByName(hadir[]);
+//   for(let i = 1; i < checkboxs.length ; i++) {
+//     checkboxs[i].checked = !checkboxs[i].checked;
+//   }
+// }
 </script>
