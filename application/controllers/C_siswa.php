@@ -10,46 +10,26 @@
         $this->load->library('form_validation');
         }
         function index(){
-            //jika sebagai admin
-            if($this->session->userdata('akses') == 'admin'){
+            //jika sebagai Administrator
+            if($this->session->userdata('akses') == 'Administrator'){
                 $this->load->model('M_siswa');
-                $this->load->library('pagination');
 
-                // filter search
-                if ($this->input->post('submit')) {
-                    $d['keyword'] = $this->input->post('keyword');
-                }else{
-                    $d['keyword'] = null;
-                }
-
-                //config
-                $config['base_url'] = 'http://localhost/si_noermandiri/C_Siswa/index';
-                $this->db->like('NAMA_SISWA',$d['keyword']);
-                $this->db->from('siswa');
-                $config['total_rows'] = $this->db->count_all_results();
-                $config['per_page'] = 5;
-
-                //initialize
-                $this->pagination->initialize($config);
-
-                $d['start'] = $this->uri->segment(3);
-                $row = $this->M_siswa->tampilkanSemua($config['per_page'],$d['start'],$d['keyword'])->result();
+                $row = $this->M_siswa->tampilkanSemua()->result();
                 $data = array(
                         'murid'    => $row, 
         	            'title'    => 'Data Siswa',
         	            'content'  => 'tabel/t_siswa',
         	            'judul'    => 'Data Siswa',
-                        'start'    => $this->uri->segment(3)
         	        );
         	        $this->load->view('layout', $data);
-            }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
+            }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
                 echo"<script>history.go(-1);</script>";
             }
         }
 
         function simpan()
         {
-            if($this->session->userdata('akses') == 'admin'){
+            if($this->session->userdata('akses') == 'Administrator'){
                 $id = $this->input->post('no_regist', TRUE);
                 $this->load->model('M_siswa');
                 $data = array(
@@ -76,7 +56,7 @@
         }
 
         public function update(){
-            if($this->session->userdata('akses') == 'admin'){
+            if($this->session->userdata('akses') == 'Administrator'){
                 $id = $this->input->post('noinduk_edit', TRUE);
                 $data = array(
                     'NAMA_SISWA'          => $this->input->post('nama_edit', TRUE),

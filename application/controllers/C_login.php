@@ -10,8 +10,7 @@ class C_login extends CI_Controller {
         $data = array(
             'title' => 'Halaman Login',
             'action'=> site_url('C_login/login'),
-            'error' => $error,
-            // 'judul' => 'Login'
+            'error' => $error
         );
         $this->load->view('v_login', $data);
     }
@@ -26,32 +25,34 @@ class C_login extends CI_Controller {
         if($cek_pegawai->num_rows() > 0){ 
             $data=$cek_pegawai->row_array();
             $this->session->set_userdata('masuk',TRUE);
-            if($data['ID_JABATAN']=='JAB001'){ //akses login utk admin sesuai id_jab
-                $this->session->set_userdata('akses','admin');
+            //akses login utk admin
+            if($data['LEVEL']=='1'){ 
+                $this->session->set_userdata('akses','Administrator');
                 $this->session->set_userdata('ses_id',$data['ID_PEGAWAI']);
                 $this->session->set_userdata('ses_nama',$data['NAMA_PEGAWAI']);
                 redirect(site_url('C_home'));
-            }elseif($data['ID_JABATAN']=='JAB002'){ //akses login utk pemilik
-                $this->session->set_userdata('akses','pemilik');
+            }elseif($data['LEVEL']=='2'){ //akses login utk pemilik
+                $this->session->set_userdata('akses','Pemilik');
                 $this->session->set_userdata('ses_id',$data['ID_PEGAWAI']);
                 $this->session->set_userdata('ses_nama',$data['NAMA_PEGAWAI']);
                 redirect(site_url('C_home'));
-            }elseif($data['ID_JABATAN']=='JAB003'){ //akses login utk tentor
-                $this->session->set_userdata('akses','tentor');
+            }elseif($data['LEVEL']=='3'){ //akses login utk tentor
+                $this->session->set_userdata('akses','Tentor');
                 $this->session->set_userdata('ses_id',$data['ID_PEGAWAI']);
                 $this->session->set_userdata('ses_nama',$data['NAMA_PEGAWAI']);
                 redirect(site_url('C_home'));
             }else{
-                $error = '<div class="alert alert-danger" role="alert"> Username atau Password salah </div>';
+                $error = '<div class="alert alert-danger" role="alert"> Username atau Password yang Anda masukkan salah. Silahkan coba lagi. </div>';
                 $this->index($error);
             }
-        
+
         }else { 
-            $cek_siswa=$this->M_login->akses_siswa($username,$password); //jika login sebagai siswa
+            // jika login sebagai siswa
+            $cek_siswa=$this->M_login->akses_siswa($username,$password); 
             if ($cek_siswa->num_rows() > 0) {
                 $data=$cek_siswa->row_array();
                 $this->session->set_userdata('masuk',TRUE);
-                $this->session->set_userdata('akses','siswa');
+                $this->session->set_userdata('akses','Siswa');
                 $this->session->set_userdata('ses_id',$data['NOINDUK']);
                 $this->session->set_userdata('ses_nama',$data['NAMA_SISWA']);
                 $this->session->set_userdata('ses_kelas',$data['ID_KELAS']);

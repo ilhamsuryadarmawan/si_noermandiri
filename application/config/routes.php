@@ -52,29 +52,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'C_landingpage';
 
 $route['landingpage'] = 'C_landingpage';
-//admin
+
 
 $route['login'] = 'C_login';
 $route['logout'] = 'C_login/logout';
 
-//datapegawai
+//akses admin
+//data pegawai
 $route['daftarpegawai'] = 'C_pegawai/index';
 $route['forminput'] = 'C_pegawai/tambah';
 $route['inputpegawai'] = 'C_pegawai/tambahPegawai';
+$route['updatepegawai'] = 'C_pegawai/update';
 
-//datasiswa
+//data siswa
 $route['daftarsiswa'] = 'C_siswa/index';
 $route['updatesiswa'] = 'C_siswa/update';
 
-//datamapel
+//data mapel
 $route['tambahmapel'] = 'C_mapel/tambah';
 $route['updatemapel'] = 'C_mapel/update';
 
+//data ruangan
 $route['tambahruangan'] = 'C_ruangan/tambah';
 $route['updateruangan'] = 'C_ruangan/update';
 
+//data kelas
 $route['tambahkelas'] = 'C_kelas/tambah';
+$route['updatekelas'] = 'C_kelas/update';
 
+$route['tambahskala'] = 'C_skala/tambah';
+
+$route['updatesesi'] = 'C_sesi/update';
+
+$route['tambahjenisujian'] = 'C_jenis_ujian/tambah';
+$route['updatejenisujian'] = 'C_jenis_ujian/update';
+
+//data absen
 $route['simpanabsen'] = 'C_absensi/simpan';
 
 $route['404_override'] = '';

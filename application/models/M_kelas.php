@@ -37,11 +37,6 @@ class M_kelas extends CI_Model {
         return $query;
     }
 
-    public function tambah($data)
-    {
-        $this->db->insert($this->table, $data);
-    }
-
     public function getKelass($jenjang)
     {
         $query=$this->db->query("SELECT *
@@ -50,9 +45,9 @@ class M_kelas extends CI_Model {
         return $query;
     }
 
-    function update($data , $id){
-        $this->db->where('ID_KELAS', $id);
-        $this->db->update($this->table, $data);
+    public function tambah($data)
+    {
+        $this->db->insert($this->table, $data);
     }
 
     function getById($id){
@@ -60,5 +55,16 @@ class M_kelas extends CI_Model {
         $this->db->from('kelas');
         $this->db->where('ID_KELAS', $id);
         return $this->db->get();
+    }
+
+    function update($data , $id){
+        $this->db->where('ID_KELAS', $id);
+        $this->db->update($this->table, $data);
+    }
+
+    function hapus($id)
+    {
+        $this->db->where('ID_KELAS', $id);
+        $this->db->delete('kelas');
     }
 }

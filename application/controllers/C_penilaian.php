@@ -10,42 +10,66 @@
         $this->load->library('form_validation');
         }
         function index(){
-            //jika sebagai admin
-            if($this->session->userdata('akses') == 'admin'){
-            $this->load->model('M_kelas');
-            $this->load->model('M_mapel');
-            $kelombel = $this->M_kelas->TampilkanSemua()->result();
-            $matapel = $this->M_mapel->TampilkanSemua()->result();
-                $data = array(
-        	            'title'    => 'Data Penilaian Siswa',
-        	            'content'  => 'form/f_penilaian',
-        	            'judul' => 'Data Penilaian Siswa',
-                        'kelombel'  => $kelombel,
-                        'matapel' => $matapel
-        	        );
-        	        $this->load->view('layout', $data);
-            }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
+            if($this->session->userdata('akses') == 'Administrator'){
+                $kelas = $this->input->post('kelas');
+                $this->load->model('M_siswa');
+                $this->load->model('M_nilai');
+                $nilai = $this->M_nilai->tampilNilai()->result();
+                $jumlah = $this->M_absensi->tampilPertemuan()->result();
+                $data = array( 
+                    'title'    => 'Data Absensi',
+                    'content'  => 'tabel/t_penilaian2',
+                    'judul' => 'Penilaian Siswa',
+                    'nilai' => $nilai,
+                    'kelas' => $kelas,
+                    'jumlah' => $jumlah
+
+                    );
+                $this->load->view('layout', $data);
+            }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
                 echo"<script>history.go(-1);</script>";
-            }
+                }
+
         }
 
         function tampilSiswa(){
-            if($this->session->userdata('akses') == 'admin'){
+            if($this->session->userdata('akses') == 'Administrator'){
                 $kelas = $this->input->post('kelas');
                 $mapel = $this->input->post('mapel');
                 $this->load->model('M_siswa');
+                $this->load->model('M_mapel');
+                $this->load->model('M_jadwal_les');
                 $siswa = $this->M_siswa->tampilSiswaPerKelas($kelas)->result();
                 $data = array( 
-                        'title'    => 'Data Penilaian Siswa',
-                        'content'  => 'tabel/t_penilaian',
-                        'judul' => 'Data Penilaian Siswa',
-                        'siswa' => $siswa,
-                        'kelas' => $kelas,
-                        'mapel' => $mapel,                        
+                    'title'    => 'Data Absensi',
+                    'content'  => 'tabel/t_penilaian',
+                    'judul' => 'Input Penilaian',
+                    'siswa' => $siswa,
+                    'kelas' => $kelas,
+                    'mapel' => $mapel
                     );
-                    $this->load->view('layout', $data);
-            }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
+                $this->load->view('layout', $data);
+            }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
                 echo"<script>history.go(-1);</script>";
+                }
             }
+
+        function inputNilai(){
+            if($this->session->userdata('akses') == 'Administrator'){
+            $this->load->model('M_kelas');
+            $this->load->model('M_mapel');
+            $kelombel = $this->M_kelas->TampilkanSemua()->result();
+            $matapel = $this->M_mapel->TampilkanMapel()->result();
+            $data = array(
+                    'title' => 'Home',
+                    'content' => 'form/f_penilaian',
+                    'judul' => 'Home',
+                    'kelombel'  => $kelombel,
+                    'matapel' => $matapel,
+                );
+                $this->load->view('layout', $data);
+            }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
+                    echo"<script>history.go(-1);</script>";
+                }
         }
     }    

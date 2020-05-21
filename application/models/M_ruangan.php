@@ -21,5 +21,11 @@ class M_ruangan extends CI_Model {
         $this->db->update($this->table, $data);
     }
 
+    function hapus($id)
+    {
+        $this->db->where('ID_RUANGAN', $id);
+        $this->db->delete('ruangan');
+    }
+
 
 }

@@ -12,14 +12,14 @@ class M_sesi extends CI_Model {
         return $q;
     }
 
-    public function hapus($id)
-    {
-        $this->db->where('ID_SESI', $id);
-        $this->db->delete('sesi');
-    }
-
     function update($data , $id){
         $this->db->where('ID_SESI', $id);
         $this->db->update($this->table, $data);
+    }
+
+    function hapus($id)
+    {
+        $this->db->where('ID_SESI', $id);
+        $this->db->delete('sesi');
     }
 }

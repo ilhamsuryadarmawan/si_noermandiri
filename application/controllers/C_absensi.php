@@ -11,26 +11,51 @@ class C_absensi extends CI_Controller {
     }
 
     function index(){
-        if($this->session->userdata('akses') == 'admin'){
-        $this->load->model('M_kelas');
-        $this->load->model('M_mapel');
-        $kelombel = $this->M_kelas->TampilkanSemua()->result();
-        $matapel = $this->M_mapel->TampilkanMapel()->result();
-        $data = array(
-	            'title' => 'Home',
-	            'content' => 'form/f_absensi',
-	            'judul' => 'Home',
-                'kelombel'  => $kelombel,
-                'matapel' => $matapel,
-	        );
-	        $this->load->view('layout', $data);
-        }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
-                echo"<script>history.go(-1);</script>";
+        if($this->session->userdata('akses') == 'Administrator'){
+            $this->load->model('M_siswa');
+            $this->load->model('M_kelas');
+            $this->load->model('M_jadwal_les');
+            $this->load->model('M_absensi');
+
+            if ($this->input->post('submit')) {
+                if ($this->input->post('periode') == "") {
+                    $d['periode'] = null;
+                    $d['kelas'] = $this->input->post('kelas');
+                }elseif($this->input->post('kelas') == ""){
+                    $d['periode'] = $this->input->post('periode');
+                    $d['kelas'] = null;
+                }else{
+                    $d['periode'] = $this->input->post('periode');
+                    $d['kelas'] = $this->input->post('kelas');
+                }
+            }else{
+                    $d['periode'] = null;
+                    $d['kelas'] = null;
             }
+
+            $kelombel   = $this->M_kelas->TampilkanSemua()->result();
+            $jadwal = $this->M_absensi->getAll($d['kelas'],$d['periode'])->result();
+            $jumlah = $this->M_absensi->getAll($d['kelas'],$d['periode'])->num_rows();
+            $absensi = $this->M_absensi->tampilKehadiran()->result();
+            $data = array( 
+                'title'    => 'Data Absensi',
+                'content'  => 'tabel/t_absensi2',
+                'judul' => 'Absensi Siswa',
+                'absensi' => $absensi,
+                // 'kelas' => $kelas,
+                'kelombel'  => $kelombel,
+                'jadwal'    => $jadwal,
+                'jumlah'    => $jumlah,
+
+                );
+            $this->load->view('layout', $data);
+        }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
+            echo"<script>history.go(-1);</script>";
+        }
     }
 
     function tampilSiswa(){
-        if($this->session->userdata('akses') == 'admin'){
+        if($this->session->userdata('akses') == 'Administrator'){
             $kelas = $this->input->post('kelas');
             $mapel = $this->input->post('mapel');
             $this->load->model('M_siswa');
@@ -46,35 +71,32 @@ class C_absensi extends CI_Controller {
                 'mapel' => $mapel
                 );
             $this->load->view('layout', $data);
-        }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
+        }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
             echo"<script>history.go(-1);</script>";
             }
     }
 
-    function tampilAbsensi(){
-        if($this->session->userdata('akses') == 'admin'){
-            $kelas = $this->input->post('kelas');
-            $this->load->model('M_siswa');
-            $this->load->model('M_absensi');
-            $absensi = $this->M_absensi->tampilKehadiran()->result();
-            $jumlah = $this->M_absensi->tampilPertemuan()->result();
-            $data = array( 
-                'title'    => 'Data Absensi',
-                'content'  => 'tabel/t_absensi2',
-                'judul' => 'Absensi Siswa',
-                'absensi' => $absensi,
-                'kelas' => $kelas,
-                'jumlah' => $jumlah
-
-                );
+    function inputAbsen(){
+        if($this->session->userdata('akses') == 'Administrator'){
+        $this->load->model('M_kelas');
+        $this->load->model('M_mapel');
+        $kelombel = $this->M_kelas->TampilkanSemua()->result();
+        $matapel = $this->M_mapel->TampilkanMapel()->result();
+        $data = array(
+                'title' => 'Home',
+                'content' => 'form/f_absensi',
+                'judul' => 'Home',
+                'kelombel'  => $kelombel,
+                'matapel' => $matapel,
+            );
             $this->load->view('layout', $data);
-        }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
-            echo"<script>history.go(-1);</script>";
+        }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
+                echo"<script>history.go(-1);</script>";
             }
     }
 
     //   function tampilPertemuan(){
-    //     if($this->session->userdata('akses') == 'admin'){
+    //     if($this->session->userdata('akses') == 'Administrator'){
     //         $kelas = $this->input->post('kelas');
     //         $this->load->model('M_siswa');
     //         $this->load->model('M_absensi');
@@ -90,7 +112,7 @@ class C_absensi extends CI_Controller {
 
     //             );
     //         $this->load->view('layout', $data);
-    //     }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
+    //     }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
     //         echo"<script>history.go(-1);</script>";
     //         }
     // }
@@ -128,7 +150,7 @@ class C_absensi extends CI_Controller {
                     }
 
             }
-            redirect('C_absensi/tampilAbsensi');
+            redirect('C_absensi');
     }
     
 }

@@ -49,11 +49,12 @@
                                         </thead>
                                         <tbody>
                                             <?php
+                                            $nourut = 1;
                                             foreach ($murid as $sis) {
                                                 $id = $sis->NOINDUK;
                                             ?>
                                             <tr>
-                                                <td><?php echo ++$start;?></td>
+                                                <td><?php echo $nourut++;?></td>
                                                 <td><?php echo $sis->NOINDUK; ?></td>
                                                 <td><?php echo $sis->NAMA_KELAS; ?></td>
                                                 <td><?php echo $sis->NAMA_SISWA; ?></td>

@@ -41,7 +41,7 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-select-list">
-                                                        <select class="form-control" name="sesi" id="sesi" onchange="getTentor(); getRuangan()">
+                                                        <select class="form-control" name="sesi" id="sesi" onchange="getPegawai(); getRuangan()">
                                                             <option value="">- Pilih Jam -</option>
                                                             <?php
                                                             foreach($sesi as $jam) { ?>
@@ -109,11 +109,11 @@
                                                     <div class="form-select-list">
                                                         <select class="form-control" name="tentor" id="tentor" >
                                                             <option value="">- Pilih Tentor -</option>
-                                                            <!-- <?php
+                                                            <?php
                                                             foreach($pengajar as $tentor) { ?>
                                                             <option value="<?php echo $tentor->ID_PEGAWAI;?>"><?php echo $tentor->NAMA_PEGAWAI;?> - <?php echo $tentor->NAMA_MAPEL;?></option>
                                                             <?php
-                                                            } ?> -->
+                                                            } ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -130,7 +130,7 @@
                                                     <div class="form-select-list">
                                                         <select class="form-control" name="ruangan" id="ruangan">
                                                             <option value="">- Pilih Ruangan -</option>
-                                                            <!-- <?php
+<!--                                                             <?php
                                                             foreach($ruangan as $room) { ?>
                                                             <option value="<?php echo $room->ID_RUANGAN;?>"><?php echo $room->NAMA_RUANGAN; ?></option>
                                                             <?php
@@ -164,7 +164,7 @@
 <script type="text/javascript">
 
 
-    function getTentor(){
+    function getPegawai(){
         var tgl = document.getElementById('tanggal').value;
         var time = document.getElementById('sesi').value;
         $.ajax({
@@ -180,7 +180,7 @@
                 var html = '';
                         var i;
                         for(i=0; i<data.length; i++){
-                            html += '<option value='+data[i].ID_TENTOR+'>'+data[i].NAMA_TENTOR+" - "+data[i].NAMA_MAPEL+'</option>';
+                            html += '<option value='+data[i].ID_PEGAWAI+'>'+data[i].NAMA_PEGAWAI+'</option>';
                         }
                         $('#tentor').html(html);
             }

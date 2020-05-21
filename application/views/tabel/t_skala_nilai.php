@@ -39,14 +39,14 @@
                                                 <?php echo validation_errors(); ?>
                                             </div>
                                         <?php endif; ?>
-                                        <form action="<?php echo base_url('sesi/aksiTambah')?>" method="POST">
+                                        <form action="<?php echo base_url('tambahskala')?>" method="POST">
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-lg-3">
                                                     <label>Batas Atas</label>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="jam_mulai" name="jam_mulai"/>
+                                                    <input type="text" class="form-control" id="batas_atas" name="batas_atas"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -56,7 +56,17 @@
                                                     <label>Batas Bawah</label>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <input type="time" class="form-control" id="jam_selesai" name="jam_selesai"/>
+                                                    <input type="text" class="form-control" id="batas_bawah" name="batas_bawah"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-lg-3">
+                                                    <label>Grade</label>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <input type="text" class="form-control" id="grade" name="grade"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -101,7 +111,8 @@
                                             <tr>
                                                 <td><?php echo $nourut++;?></td>
                                                 <td><?php echo $sk->ID_SKALA; ?></td>
-                                                <td><?php echo $sk->BATAS_BAWAH - $sk->BATAS_ATAS; ?></td>
+                                                <td><?php echo ($sk->BATAS_BAWAH);?> - <?php echo ($sk->BATAS_ATAS);?></td>
+                                                <td><?php echo $sk->GRADE; ?></td>
                                                 <td><button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-pencil-alt"></i></button><a href="<?php echo base_url('c_skala/hapus/'.$id)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a></td>
                                             </tr>
                                             <?php

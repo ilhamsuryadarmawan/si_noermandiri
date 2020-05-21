@@ -5,13 +5,13 @@
         function __construct(){
         parent::__construct();
             if($this->session->userdata('masuk') != TRUE){
-                redirect(site_url('Login'));
+                redirect(site_url('login'));
             }
         $this->load->library('form_validation');
         }
         function index(){
-            //jika sebagai admin
-            if($this->session->userdata('akses') == 'admin'){
+            //jika sebagai Administator
+            if($this->session->userdata('akses') == 'Administrator'){
                 $this->load->model('M_pegawai');
                 $rows = $this->M_pegawai->tampilkanSemua()->result();
                 $data = array(
@@ -21,26 +21,26 @@
         	            'judul'        => 'Data Pegawai',
         	        );
         	        $this->load->view('layout', $data);
-            }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
+            }else{ //jika selain Administator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
                 echo"<script>history.go(-1);</script>";
             }
         }
         public function tambah() {
-            //jika sebagai admin
-            if($this->session->userdata('akses') == 'admin'){
+            //jika sebagai Administator
+            if($this->session->userdata('akses') == 'Administrator'){
             $data = array(
                 'judul'     => 'Form Tambah Data Pegawai',
                 'title'     => 'Tambah data pegawai',
                 'content'   => 'form/f_tambah_pegawai',
             );
             $this->load->view('layout', $data);
-            }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
+            }else{ //jika selain Administator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
                 echo "<script>history.go(-1);</script>";
             }
         }
 
         public function tambahPegawai(){
-            if($this->session->userdata('akses') == 'admin'){
+            if($this->session->userdata('akses') == 'Administrator'){
             //load library form validation
             $this->form_validation->set_error_delimiters('<div style="margin-bottom:-10px"><span style="color:red;font-size:12px">', '</span></div>');
 
@@ -92,7 +92,7 @@
         }
 
         public function update(){
-            if($this->session->userdata('akses') == 'admin'){
+            if($this->session->userdata('akses') == 'Administator'){
             //load library form validation
             $this->form_validation->set_error_delimiters('<div style="margin-bottom:-10px"><span style="color:red;font-size:12px">', '</span></div>');
 

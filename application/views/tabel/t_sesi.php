@@ -134,7 +134,7 @@
         </button>
         </div>
         <div class="modal-body">
-        <form action="<?php echo base_url('Tentor/update')?>" method="POST">
+        <form action="<?php echo base_url('updatesesi')?>" method="POST">
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-4">

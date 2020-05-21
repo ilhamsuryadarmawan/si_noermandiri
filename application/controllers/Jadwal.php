@@ -5,13 +5,13 @@
         function __construct(){
         parent::__construct();
             if($this->session->userdata('masuk') != TRUE){
-                redirect(site_url('Auth'));
+                redirect(site_url('login'));
             }
         $this->load->library('form_validation');
         }
         function index(){
-            //jika sebagai admin
-            if($this->session->userdata('akses') == 'admin'){
+            //jika sebagai Administrator
+            if($this->session->userdata('akses') == 'Administrator'){
                 $this->load->model('M_kelas');
                 $this->load->model('M_jadwal_les');
                 $this->load->model('M_sesi');
@@ -70,13 +70,13 @@
                         'judul'   => 'Jadwal Les',
                     );
                     $this->load->view('layout', $data);
-            }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
+            }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
                 echo"<script>history.go(-1);</script>";
             }
         }
         public function tambah() {
-            //jika sebagai admin
-            if($this->session->userdata('akses') == 'admin'){
+            //jika sebagai Administrator
+            if($this->session->userdata('akses') == 'Administrator'){
             $this->load->library('form_validation');
             $this->load->model('M_jadwal_les');
             $this->load->model('M_API');
@@ -90,13 +90,13 @@
                 'content'   => 'form/f_jadwal',
             );
             $this->load->view('layout', $data);
-            }else{//jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
+            }else{//jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
                 echo "<script>history.go(-1);</script>";
             }
         }
 
         public function aksiTambah(){
-            if($this->session->userdata('akses') == 'admin'){
+            if($this->session->userdata('akses') == 'Administrator'){
             //load library form validation
              $this->load->library('form_validation');
             $this->form_validation->set_error_delimiters('<div style="margin-bottom:-10px"><span style="color:red;font-size:12px">', '</span></div>');
@@ -104,9 +104,9 @@
             //rules validasi
             $this->form_validation->set_rules('kelas', 'ID_KELAS', 'required',['required' => 'Kelas tidak boleh kosong']);
             $this->form_validation->set_rules('mapel', 'ID_MAPEL', 'required',['required' => 'Mapel tidak boleh kosong']);
-            $this->form_validation->set_rules('tentor','ID_TENTOR', 'required',['required' => 'Tentor tidak boleh kosong']);
+            $this->form_validation->set_rules('pegawai','ID_PEGAWAI', 'required',['required' => 'Tentor tidak boleh kosong']);
             $this->form_validation->set_rules('ruangan', 'ID_RUANGAN', 'required',['required' => 'Ruangan tidak boleh kosong']);
-            $this->form_validation->set_rules('sesi', 'ID_WAKTU', 'required',['required' => 'Jam tidak boleh kosong']);
+            $this->form_validation->set_rules('sesi', 'ID_SESI', 'required',['required' => 'Jam tidak boleh kosong']);
             $this->form_validation->set_rules('tanggal', 'TANGGAL', 'required',['required' => 'Tanggal tidak boleh kosong']);
 
                 if ($this->form_validation->run() == FALSE) {
@@ -121,7 +121,7 @@
                         $id = $tgl.$bulan.$tahun;
                         $data = array(
                             'ID_JADWAL'   => 'J'.$this->input->post('kelas').$id,
-                            'ID_TENTOR'   => $this->input->post('tentor', TRUE),
+                            'ID_PEGAWAI'   => $this->input->post('pegawai', TRUE),
                             'ID_MAPEL'    => $this->input->post('mapel', TRUE),
                             'ID_KELAS'    => $this->input->post('kelas', TRUE),
                             'ID_RUANGAN'  => $this->input->post('ruangan', TRUE),

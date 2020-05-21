@@ -11,8 +11,8 @@
             $this->load->library('form_validation');
         }
         function index(){
-            //jika sebagai admin
-            if($this->session->userdata('akses') == 'admin'){
+            //jika sebagai Administrator
+            if($this->session->userdata('akses') == 'Administrator'){
                 $this->load->model('M_mapel');
 
                 $rows = $this->M_mapel->tampilkanSemua()->result();
@@ -23,7 +23,7 @@
         	            'judul'        => 'Data Mata Pelajaran',
         	        );
         	        $this->load->view('layout', $data);
-            }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
+            }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
                 echo"<script>history.go(-1);</script>";
             }
         }
@@ -35,7 +35,7 @@
         // }
 
         public function tambah(){
-            if($this->session->userdata('akses') == 'admin'){
+            if($this->session->userdata('akses') == 'Administrator'){
             //load library form validation
             $this->load->library('form_validation');
             $this->form_validation->set_error_delimiters('<div style="color:red; margin-bottom: 5px">','</div>');
@@ -69,7 +69,7 @@
         }
 
         public function update(){
-            if($this->session->userdata('akses') == 'admin'){
+            if($this->session->userdata('akses') == 'Administrator'){
                 $id = $this->input->post('id_edit', TRUE);
                 $data = array(
                     'NAMA_MAPEL'     => $this->input->post('nama_edit', TRUE)

@@ -25,7 +25,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form action="<?php echo base_url('C_absensi/tampilabsensi')?>" enctype="multipart/form-data" method="POST">
+                                    <form action="<?php echo base_url('C_absensi')?>" enctype="multipart/form-data" method="POST">
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-lg-2 mt-4">
@@ -113,9 +113,6 @@
                                                         <label>
                                                             <input type="checkbox" class="check" value="<?php echo $sis->NOINDUK ?>" name="hadir[]" checked> Hadir
                                                         </label>
-<!--                                                         <label>
-                                                            <input type="checkbox" value="<?php echo $sis->NOINDUK ?>" name="alpha[]"> Alpha
-                                                        </label> -->
                                                     </td>
                                                 <?php
                                                 }

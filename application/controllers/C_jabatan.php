@@ -10,8 +10,8 @@
         $this->load->library('form_validation');
         }
         function index(){
-            //jika sebagai admin
-            if($this->session->userdata('akses') == 'admin'){
+            //jika sebagai Administrator
+            if($this->session->userdata('akses') == 'Administrator'){
                 $this->load->model('M_jabatan');
                 $row = $this->M_jabatan->tampilkanSemua()->result();
                 $data = array(
@@ -21,13 +21,13 @@
         	            'judul' => 'Data Jabatan',
         	        );
         	        $this->load->view('layout', $data);
-            }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
+            }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
                 echo"<script>history.go(-1);</script>";
             }
         }
 
         public function aksiTambah(){
-            if($this->session->userdata('akses') == 'admin'){
+            if($this->session->userdata('akses') == 'Administrator'){
             //load library form validation
             $this->load->library('form_validation');
 
