@@ -41,37 +41,27 @@
                                                 </div>
                                             <?php endif; ?>
                                             <form action="<?php echo base_url('C_jenjang_kelas/aksiTambah')?>" method="POST">
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-lg-3">
-                                                        <label>Nama Jenjang Kelas</label>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="nama" name="nama"/>
-                                                    </div>
+                                            <br>
+                                                <div class="form-group form-floating-label">
+                                                    <input id="inputFloatingLabel" type="text" class="form-control input-border-bottom" id="nama" name="nama" required>
+                                                    <label for="inputFloatingLabel" class="placeholder">Nama Jenjang Kelas</label>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-lg-3">
-                                                        <label>Biaya</label>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="biaya" name="biaya"/>
-                                                    </div>
+                                            <br>
+                                                <div class="form-group form-floating-label">
+                                                    <input id="inputFloatingLabel" type="text" class="form-control input-border-bottom" id="biaya" name="biaya" required>
+                                                    <label for="inputFloatingLabel" class="placeholder">Biaya Per Semester</label>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-lg-3"></div>
-                                                    <div class="col-lg-4">
-                                                        <div class="login-horizental cancel-wp pull-left">
-                                                            <button type="reset" class="btn btn-danger btn-sm" name="Batal">Batal</button>&nbsp;
-                                                            <button type="submit" class="btn btn-primary btn-sm" name="Tambah">Simpan</button> 
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-lg-3"></div>
+                                                        <div class="col-lg-4">
+                                                            <div class="login-horizental cancel-wp pull-left">
+                                                                <button type="reset" class="btn btn-danger btn-sm" name="Batal">Batal</button>&nbsp;
+                                                                <button type="submit" class="btn btn-primary btn-sm" name="Tambah">Simpan</button> 
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                             </form>
                                         </div>
                                     </div>
@@ -88,7 +78,6 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>ID Jenjang Kelas</th>
                                                 <th>Jenjang Kelas</th>
                                                 <th>Biaya</th>
                                                 <th>Aksi</th>
@@ -98,13 +87,13 @@
                                             <?php
                                             $nourut = 1;
                                             foreach ($jenjang as $jk) {
+                                                $id = $jk->ID_JENJANG;
                                             ?>
                                             <tr>
                                                 <td><?php echo $nourut++?></td>
-                                                <td><?php echo $jk->ID_JENJANG; ?></td>
                                                 <td><?php echo $jk->NAMA_JENJANG; ?></td>
                                                 <td><?php echo $jk->BIAYA; ?></td>
-                                                <td><button type="button" class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $jk->ID_JENJANG;?>"><i class="fa fa-pencil-alt"></i></button></td>
+                                                <td><button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-edit"></i></button><a href="<?php echo base_url('C_jenjang_kelas/hapus/'.$id)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a></td>
                                             </tr>
                                             <?php
                                             }
@@ -137,7 +126,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?php echo base_url('update_ruang')?>" method="POST">
+                <form action="<?php echo base_url('updatejenjang')?>" method="POST">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-lg-4">

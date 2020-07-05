@@ -48,4 +48,10 @@ class M_Jenjang_Kelas extends CI_Model {
         $this->db->where('ID_JENJANG', $id);
         $this->db->update($this->table, $data);
     }
+
+    function hapus($id)
+    {
+        $this->db->where('ID_JENJANG', $id);
+        $this->db->delete('jenjang_kelas');
+    }
 }

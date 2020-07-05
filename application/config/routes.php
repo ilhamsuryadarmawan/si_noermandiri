@@ -84,6 +84,10 @@ $route['tambahskala'] = 'C_skala/tambah';
 
 $route['updatesesi'] = 'C_sesi/update';
 
+$route['updatejabatan'] = 'C_jabatan/update';
+
+$route['updatejenjang'] = 'C_jenjang_kelas/update';
+
 $route['tambahjenisujian'] = 'C_jenis_ujian/tambah';
 $route['updatejenisujian'] = 'C_jenis_ujian/update';
 

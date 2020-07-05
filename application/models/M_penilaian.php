@@ -1,37 +1,49 @@
 <?php
 
-class M_absensi extends CI_Model {
-	//nama tabel dan primary key
-    private $table = 'absensi_siswa';
-    private $pk = 'ID_ABSENSI';
+class M_penilaian extends CI_Model {
+    //nama tabel dan primary key
+    private $table = 'nilai_siswa';
+    private $pk = 'ID_NILAI';
 
-	//tampilkan semua data
+    //tampilkan semua data
     public function tampilkanSemua() {
         $q = $this->db->order_by($this->pk);
         $q = $this->db->get($this->table);
         return $q;
     }
 
+    public function getById($id)
+    {
+        $this->db->select('*');
+        $this->db->from('nilai_siswa ns');
+        $this->db->join('kelas k','ns.ID_KELAS = k.ID_KELAS');
+        // $this->db->join('mata_pelajaran mp','ns.ID_MAPEL = mp.ID_MAPEL');
+        $this->db->join('pegawai t','ns.ID_PEGAWAI = t.ID_PEGAWAI');
+        $this->db->where('ns.ID_NILAI',$id);
+        return $this->db->get();
+    }
+
     public function getAll($kelas=null,$periode=null) {
 
         if ($kelas && $periode) {
-            $this->db->where('j.ID_KELAS',$kelas);
-            $this->db->where('date_format(j.TANGGAL,"%m-%Y")',$periode);
+            $this->db->where('nil.ID_KELAS',$kelas);
+            // $this->db->where('date_format(j.TANGGAL,"%m-%Y")',$periode);
         }elseif (strlen($kelas)>0) {
-            $this->db->where('j.ID_KELAS',$kelas);
-        }elseif (strlen($periode)>0) {
-            $this->db->where('date_format(j.TANGGAL,"%m-%Y")',$periode);
+            $this->db->where('nil.ID_KELAS',$kelas);
         }
+        // elseif (strlen($periode)>0) {
+        //     $this->db->where('date_format(j.TANGGAL,"%m-%Y")',$periode);
+        // }
 
         $this->db->select('*');
-        $this->db->from('absensi_siswa abs');
-        $this->db->join('jadwal_les j','abs.ID_JADWAL = j.ID_JADWAL');
-        $this->db->join('kelas k','j.ID_KELAS = k.ID_KELAS');
-        $this->db->join('mata_pelajaran mp','j.ID_MAPEL = mp.ID_MAPEL');
-        $this->db->join('ruangan r','j.ID_RUANGAN = r.ID_RUANGAN');
-        $this->db->join('pegawai t','j.ID_PEGAWAI = t.ID_PEGAWAI');
-        $this->db->join('siswa sis','abs.NOINDUK = sis.NOINDUK');
-        $this->db->join('sesi s','j.ID_SESI = s.ID_SESI');
+        $this->db->from('nilai_siswa nil');
+        $this->db->join('jenis_ujian j','nil.ID_JENIS_UJIAN = j.ID_JENIS_UJIAN');
+        $this->db->join('kelas k','nil.ID_KELAS = k.ID_KELAS');
+        // $this->db->join('mata_pelajaran mp','j.ID_MAPEL = mp.ID_MAPEL');
+        // $this->db->join('ruangan r','j.ID_RUANGAN = r.ID_RUANGAN');
+        $this->db->join('pegawai t','nil.ID_PEGAWAI = t.ID_PEGAWAI');
+        $this->db->join('siswa sis','nil.NOINDUK = sis.NOINDUK');
+        // $this->db->join('sesi s','j.ID_SESI = s.ID_SESI');
         return $this->db->get();
     }
 
@@ -69,11 +81,13 @@ class M_absensi extends CI_Model {
                                 JOIN siswa s ON s.NOINDUK = a.NOINDUK
                                 WHERE STATUS_ABSEN = 'A' GROUP BY NOINDUK");
         return $query;
-    }
+    } 
 
-    public function rekap_absen($periode)
+    public function tampilKelas($id)
     {
-        return $this->db->query("select NOINDUK as nis,NAMA_SISWA,ID_KELAS as kls ,(SELECT COUNT(NOINDUK) FROM absensi_siswa JOIN jadwal_les ON absensi_siswa.ID_JADWAL=jadwal_les.ID_JADWAL WHERE absensi_siswa.NOINDUK = nis AND date_format(jadwal_les.TANGGAL,'%Y-%m')='$periode' AND absensi_siswa.STATUS_ABSEN='H') hadir, (SELECT COUNT(NOINDUK) FROM absensi_siswa JOIN jadwal_les ON absensi_siswa.ID_JADWAL=jadwal_les.ID_JADWAL WHERE absensi_siswa.NOINDUK = nis AND date_format(jadwal_les.TANGGAL,'%Y-%m')='$periode' AND absensi_siswa.STATUS_ABSEN='A') alpha, (SELECT COUNT(ID_JADWAL) FROM jadwal_les WHERE ID_KELAS=kls AND date_format(TANGGAL,'%Y-%m')='$periode') pertemuan
-            FROM siswa");
+        $this->db->select('*');
+        $this->db->from('nilai_siswa ns');
+        $this->db->join('kelas k','k.ID_KELAS = ns.ID_KELAS');
+        return $this->db->get();
     }
 }

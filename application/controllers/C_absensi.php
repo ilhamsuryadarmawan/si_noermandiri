@@ -11,7 +11,7 @@ class C_absensi extends CI_Controller {
     }
 
     function index(){
-        if($this->session->userdata('akses') == 'Administrator'){
+        if($this->session->userdata('akses') == 'Tentor'){
             $this->load->model('M_siswa');
             $this->load->model('M_kelas');
             $this->load->model('M_jadwal_les');
@@ -39,7 +39,7 @@ class C_absensi extends CI_Controller {
             $absensi = $this->M_absensi->tampilKehadiran()->result();
             $data = array( 
                 'title'    => 'Data Absensi',
-                'content'  => 'tabel/t_absensi2',
+                'content'  => 'tabel/t_rekap_absensi',
                 'judul' => 'Absensi Siswa',
                 'absensi' => $absensi,
                 // 'kelas' => $kelas,
@@ -49,45 +49,75 @@ class C_absensi extends CI_Controller {
 
                 );
             $this->load->view('layout', $data);
-        }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
-            echo"<script>history.go(-1);</script>";
-        }
-    }
-
-    function tampilSiswa(){
-        if($this->session->userdata('akses') == 'Administrator'){
-            $kelas = $this->input->post('kelas');
-            $mapel = $this->input->post('mapel');
-            $this->load->model('M_siswa');
-            $this->load->model('M_mapel');
-            $this->load->model('M_jadwal_les');
-            $siswa = $this->M_siswa->tampilSiswaPerKelas($kelas)->result();
-            $data = array( 
-                'title'    => 'Data Absensi',
-                'content'  => 'tabel/t_absensi',
-                'judul' => 'Input Absensi',
-                'siswa' => $siswa,
-                'kelas' => $kelas,
-                'mapel' => $mapel
-                );
-            $this->load->view('layout', $data);
-        }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
-            echo"<script>history.go(-1);</script>";
+            //jika sebagai tentor
+            }elseif ($this->session->userdata('akses') == 'Administrator') {
+                $data = array(
+                        'title' => 'Data Absensi',
+                        'content' => 'tabel/t_rekap_absensi',
+                        'judul' => 'Absensi Siswa',
+                    );
+                    $this->load->view('layout', $data);
+            //jika sebagai siswa
+            }elseif ($this->session->userdata('akses') == 'Siswa'){
+                $this->load->model('M_jadwal_les');
+                $kelas = $this->session->userdata('ses_kelas');
+                $rows = $this->M_jadwal_les->getJadwalSiswaByBulan($kelas)->result();
+                $data = array(
+                        'jdwl'    => $rows,
+                        'title'   => 'Histori Absensi',
+                        'content' => 'tabel/t_rekap_absensi_siswa',
+                        'judul'   => 'Histori Absensi',
+                    );
+                    $this->load->view('layout', $data);
+            }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
+                echo"<script>history.go(-1);</script>";
             }
     }
 
-    function inputAbsen(){
+    // function tampilSiswa(){
+    //     if($this->session->userdata('akses') == 'Administrator'){
+    //         $kelas = $this->input->post('kelas');
+    //         $mapel = $this->input->post('mapel');
+    //         $this->load->model('M_siswa');
+    //         $this->load->model('M_mapel');
+    //         $this->load->model('M_jadwal_les');
+    //         $siswa = $this->M_siswa->tampilSiswaPerKelas($kelas)->result();
+    //         $data = array( 
+    //             'title'    => 'Data Absensi',
+    //             'content'  => 'tabel/t_absensi',
+    //             'judul' => 'Input Absensi',
+    //             'siswa' => $siswa,
+    //             'kelas' => $kelas,
+    //             'mapel' => $mapel
+    //             );
+    //         $this->load->view('layout', $data);
+    //     }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
+    //         echo"<script>history.go(-1);</script>";
+    //         }
+    // }
+
+    function inputAbsen($id){
         if($this->session->userdata('akses') == 'Administrator'){
-        $this->load->model('M_kelas');
-        $this->load->model('M_mapel');
-        $kelombel = $this->M_kelas->TampilkanSemua()->result();
-        $matapel = $this->M_mapel->TampilkanMapel()->result();
-        $data = array(
-                'title' => 'Home',
-                'content' => 'form/f_absensi',
-                'judul' => 'Home',
-                'kelombel'  => $kelombel,
-                'matapel' => $matapel,
+
+            
+
+            $this->load->model('M_kelas');
+            $this->load->model('M_mapel');
+            $this->load->model('M_jadwal_les');
+            $this->load->model('M_absensi');
+            $this->load->model('M_siswa');
+
+            $jadwal = $this->M_jadwal_les->getById($id)->row();
+            $siswa  = $this->M_siswa->tampilSiswaPerKelas($jadwal->ID_KELAS)->result();
+            // $absensi = $this->M_absensi->getId($id)->result();
+            // $kelombel = $this->M_kelas->TampilkanSemua()->result();
+            // $matapel = $this->M_mapel->TampilkanMapel()->result();
+            $data = array(
+                    'title' => 'Home',
+                    'content' => 'tabel/t_absensi',
+                    'judul' => 'Home',
+                    'jadwal'  => $jadwal,
+                    'siswa'   => $siswa
             );
             $this->load->view('layout', $data);
         }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
@@ -95,27 +125,6 @@ class C_absensi extends CI_Controller {
             }
     }
 
-    //   function tampilPertemuan(){
-    //     if($this->session->userdata('akses') == 'Administrator'){
-    //         $kelas = $this->input->post('kelas');
-    //         $this->load->model('M_siswa');
-    //         $this->load->model('M_absensi');
-    //         // $absensi = $this->M_absensi->tampilKehadiran()->result();
-    //         $temu = $this->M_absensi->tampilPertemuan()->result();
-    //         $data = array( 
-    //             'title'    => 'Data Absensi',
-    //             'content'  => 't_detail_absen',
-    //             'judul' => 'Absensi Siswa',
-    //             // 'absensi' => $absensi,
-    //             // 'kelas' => $kelas,
-    //             'temu' => $temu
-
-    //             );
-    //         $this->load->view('layout', $data);
-    //     }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
-    //         echo"<script>history.go(-1);</script>";
-    //         }
-    // }
 
     public function simpan(){             
             $this->load->model('M_absensi');
@@ -125,9 +134,8 @@ class C_absensi extends CI_Controller {
             $kehadiran = json_decode($this->input->post('hadir'));
             $nosiswaa = json_decode($this->input->post('nosiswa'));
 
-
-            $materi = $this->input->post('materi');
-            $keterangan = $this->input->post('keterangan');
+            $id_jadwal = $this->input->post('id_jadwal');
+            // $tgl = $this->input->post('tanggal');
 
             print_r($kehadiran);
             print_r($nosiswaa);
@@ -140,17 +148,24 @@ class C_absensi extends CI_Controller {
                 for ($j=0; $j < $len ; $j++) { 
                     if ($nosiswaa[$i]==$kehadiran[$j]) {
                         $status='H';
-                        $this->M_absensi->simpan($nosiswaa[$i],$status, $materi, $keterangan);
+                        $this->M_absensi->simpan($id_jadwal, $nosiswaa[$i],$status);
                         $a=1;
                     }
                 }
                     if($a!=1){
                         $status='A';
-                        $this->M_absensi->simpan($nosiswaa[$i],$status, $materi, $keterangan);  
+                        $this->M_absensi->simpan($id_jadwal, $nosiswaa[$i],$status);  
                     }
 
             }
             redirect('C_absensi');
+    }
+
+    public function get_laporan()
+    {
+        $this->load->model('M_absensi');
+        $data= $this->M_absensi->rekap_absen($this->input->post('periode'))->result();
+        echo json_encode($data);
     }
     
 }

@@ -69,7 +69,7 @@
                                                     <?php }?>
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-pencil-alt"></i></button>
+                                                    <button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-edit"></i></button>
                                                 </td>
                                             </tr>
                                             <?php

@@ -17,7 +17,7 @@ class C_home extends CI_Controller {
             if ($this->session->userdata('akses') == 'siswa') {
                 $jadwal = $this->M_jadwal_les->jadwal_siswa_hari_ini($this->session->userdata('ses_kelas'),date("Y-m-d"))->result();
             }else{
-                $jadwal = $this->M_jadwal_les->jadwal_tentor_hari_ini($this->session->userdata('ses_id'),date("Y-m-d"))->result();
+                $jadwal = $this->M_jadwal_les->jadwal_pegawai_hari_ini($this->session->userdata('ses_id'),date("Y-m-d"))->result();
             }
             $data = array(
                     'title'            => 'Home',

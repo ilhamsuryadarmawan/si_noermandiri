@@ -20,4 +20,10 @@ class M_jabatan extends CI_Model {
         $this->db->where('ID_JABATAN', $id);
         $this->db->update($this->table, $data);
     }
+
+    function hapus($id)
+    {
+        $this->db->where('ID_JABATAN', $id);
+        $this->db->delete('jabatan');
+    }
 }

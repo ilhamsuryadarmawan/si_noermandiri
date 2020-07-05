@@ -149,4 +149,19 @@ class M_jadwal_les extends CI_Model {
         $this->db->delete('jadwal_les');
         redirect(site_url('Jadwal'));
     }
+
+    public function getById($id)
+    {
+        $this->db->select('*');
+        $this->db->from('jadwal_les j');
+        $this->db->join('kelas k','j.ID_KELAS = k.ID_KELAS');
+        $this->db->join('mata_pelajaran mp','j.ID_MAPEL = mp.ID_MAPEL');
+        $this->db->join('ruangan r','j.ID_RUANGAN = r.ID_RUANGAN');
+        $this->db->join('pegawai t','j.ID_PEGAWAI = t.ID_PEGAWAI');
+        $this->db->join('sesi s','j.ID_SESI = s.ID_SESI');
+        $this->db->where('j.ID_JADWAL',$id);
+        return $this->db->get();
+    }
+
+
 }

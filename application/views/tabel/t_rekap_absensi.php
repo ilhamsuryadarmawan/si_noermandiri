@@ -88,9 +88,9 @@
                                         <th data-field="no">No</th>
                                         <th data-field="noinduk">NIS</th>
                                         <th data-field="kelas">Nama Siswa</th>
-                                        <th data-field="tglAbsen">Jumlah Kehadiran</th>
-                                        <th data-field="tglAbsen">Jumlah Tidak Hadir</th>
-                                        <th data-field="Pertemuan">Jumlah Pertemuan</th>
+                                        <th data-field="hadir">Jumlah Kehadiran</th>
+                                        <th data-field="absen">Jumlah Tidak Hadir</th>
+                                        <th data-field="pertemuan">Jumlah Pertemuan</th>
                                     </tr>
                                 </thead>           
                                 <tbody id="show_data">

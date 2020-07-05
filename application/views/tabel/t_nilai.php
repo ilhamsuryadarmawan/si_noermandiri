@@ -4,7 +4,7 @@
             <div class="page-inner py-5">
                 <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
                     <div>
-                        <h2 class="text-white pb-2 fw-bold">Input Data Absensi</h2>
+                        <h2 class="text-white pb-2 fw-bold">Input Data Penilaian</h2>
                     </div>
                 </div>
             </div>
@@ -25,9 +25,9 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form action="<?php echo base_url('C_absensi')?>" enctype="multipart/form-data" method="POST">                         
-                                            <input type="hidden" class="form-control" id="id_jadwal" name="id_jadwal" value="<?php echo $jadwal->ID_JADWAL?>" readonly>
-                                        <div class="form-group">
+                                    <form action="<?php echo base_url('C_penilaian')?>" enctype="multipart/form-data" method="POST">
+<!--                                         <input type="hidden" class="form-control" id="id_kelas" name="id_kelas" value="<?php echo $nilai->ID_KELAS?>" readonly> -->
+<!--                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-lg-2 mt-4">
                                                     <label>Tgl Absen dibuat</label>
@@ -36,7 +36,7 @@
                                                     <input type="date" class="form-control" id="TGL_ABSEN_DIBUAT" name="TGL_ABSEN_DIBUAT" value="<?php echo $jadwal->TANGGAL?>" readonly>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="form-group">
                                             <div class="row">
@@ -48,17 +48,17 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+<!--                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-lg-2 mt-4">
                                                     <label>Kelas</label>
                                                 </div>
                                                 <div class="col-lg-6 mt-3">
-                                                    <input type="text" class="form-control" id="kelas" name="kelas" value="<?php echo $jadwal->NAMA_KELAS?>" readonly>
+                                                    <input type="text" class="form-control" id="kelas" name="kelas" value="<?php echo $nilai->NAMA_KELAS?>" readonly>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
+                                        </div> -->
+<!--                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-lg-2 mt-4">
                                                     <label>Mata Pelajaran</label>
@@ -67,7 +67,7 @@
                                                     <input type="text" class="form-control" id="mapel" name="mapel" value="<?php echo $jadwal->NAMA_MAPEL?>" readonly>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <br>
                                         <table class="table sparkle-table" id="table" data-toggle="table" data-pagination="false" data-search="false" data-cookie-id-table="saveId" data-click-to-select="false" data-toolbar="#toolbar">
                                             <thead>
@@ -75,7 +75,7 @@
                                                     <th data-field="no">No</th>
                                                     <th data-field="noinduk">NIS</th>
                                                     <th data-field="nama">Nama Siswa</th>
-                                                    <th data-field="status">Status Absen</th>                                                
+                                                    <th data-field="status">Status Nilai</th>                                                
                                                 </tr>
                                             </thead>
                                             
@@ -89,9 +89,9 @@
                                                     <td><?php echo $sis->NOINDUK; ?></td>
                                                     <td><?php echo $sis->NAMA_SISWA; ?></td>
                                                     <td>
-                                                        <input type="hidden" class="form-control" id="NOINDUK" name="noinduk[]" value="<?php echo $sis->NOINDUK?>" readonly>
+                                                        <!-- <input type="hidden" class="form-control" id="NOINDUK" name="noinduk[]" value="<?php echo $sis->NOINDUK?>" readonly> -->
                                                         <label>
-                                                            <input type="checkbox" class="check" value="<?php echo $sis->NOINDUK ?>" name="hadir[]" checked> Hadir
+                                                            <input type="text" class="form-control" name="nilai[]">
                                                         </label>
                                                     </td>
                                                 <?php

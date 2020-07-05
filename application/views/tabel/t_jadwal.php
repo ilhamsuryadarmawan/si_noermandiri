@@ -17,8 +17,8 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <a href="<?php echo base_url('Jadwal/tambah')?>"><button type="button" class="btn btn-primary btn-round" >Tambah data</button></a>
-                                </div>
+                                   <!--  <a href="<?php echo base_url('Jadwal/tambah')?>"><button type="button" class="btn btn-primary btn-round" >Tambah data</button></a>
+ -->                                </div>
                                 <div class="col-md-9">
                                     <form action="<?php echo base_url('Jadwal/index')?>" method="POST">
                                     <div class="row">
@@ -45,12 +45,14 @@
                                                 <option value="02-<?php echo $tahun?>">Februari</option>
                                                 <option value="03-<?php echo $tahun?>">Maret</option>
                                                 <option value="04-<?php echo $tahun?>">April</option>
-                                                <option value="05-<?php echo $tahun?>">Mei</option><option value="06-<?php echo $tahun?>">Juni</option>
+                                                <option value="05-<?php echo $tahun?>">Mei</option>
+                                                <option value="06-<?php echo $tahun?>">Juni</option>
                                                 <option value="07-<?php echo $tahun?>">Juli</option>
                                                 <option value="08-<?php echo $tahun?>">Agustus</option>
                                                 <option value="09-<?php echo $tahun?>">September</option>
                                                 <option value="10-<?php echo $tahun?>">Oktober</option>
-                                                <option value="11-<?php echo $tahun?>">November</option><option value="12-<?php echo $tahun?>">Desember</option>
+                                                <option value="11-<?php echo $tahun?>">November</option>
+                                                <option value="12-<?php echo $tahun?>">Desember</option>
                                             </select>
                                         </div>
                                         <div class="col-md-2 mt-2">
@@ -91,9 +93,10 @@
                                             <td><?php echo $j->NAMA_RUANGAN?></td>
                                             <td><?php echo $j->NAMA_PEGAWAI?></td>
                                             <td>
-                                                <a class="btn btn-danger btn-sm tombol_hapus" href="<?php echo base_url('Jadwal/hapus/'.$j->ID_JADWAL)?>">Hapus</a>
-                                                <!-- <button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $j->ID_JADWAL?>"><i class="fa fa-pencil-alt"></i></button> -->
+                                                <button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $j->ID_JADWAL?>"><i class="fa fa-edit"></i></button>
+                                                <a href="<?php echo base_url('Jadwal/hapus/'.$j->ID_JADWAL)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a>
                                             </td>
+                                            <td><a href="<?php echo base_url('C_absensi/inputAbsen/'.$j->ID_JADWAL)?>"><button class="btn btn-primary btn-sm">Input Absen</button></a></td>  
                                         </tr>
                                         <?php
                                         }

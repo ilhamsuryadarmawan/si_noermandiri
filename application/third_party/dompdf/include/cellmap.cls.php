@@ -404,6 +404,7 @@ class Cellmap {
     $node = $frame->get_node();
     
     // Determine where this cell is going
+    if (get_class($node) != 'DOMText') {
     $colspan = $node->getAttribute("colspan");
     $rowspan = $node->getAttribute("rowspan");
 
@@ -419,7 +420,7 @@ class Cellmap {
     $key = $frame->get_id();
 
     $bp = $style->get_border_properties();
-
+    }
 
     // Add the frame to the cellmap
     $max_left = $max_right = 0;

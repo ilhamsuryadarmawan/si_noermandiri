@@ -51,7 +51,7 @@
                     );
                     $this->load->view('layout', $data);
             //jika sebagai tentor
-            }elseif ($this->session->userdata('akses') == 'tentor') {
+            }elseif ($this->session->userdata('akses') == 'Tentor') {
                 $data = array(
                         'title' => 'Jadwal Mengajar',
                         'content' => 'tabel/t_jadwal_tentor',
@@ -59,7 +59,7 @@
                     );
                     $this->load->view('layout', $data);
             //jika sebagai siswa
-            }elseif ($this->session->userdata('akses') == 'siswa'){
+            }elseif ($this->session->userdata('akses') == 'Siswa'){
                 $this->load->model('M_jadwal_les');
                 $kelas = $this->session->userdata('ses_kelas');
                 $rows = $this->M_jadwal_les->getJadwalSiswaByBulan($kelas)->result();

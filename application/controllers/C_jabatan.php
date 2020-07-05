@@ -57,4 +57,29 @@
                 echo "<script>history.go(-1);</script>";
             }
         }
+
+        public function update(){
+            if($this->session->userdata('akses') == 'Administrator'){
+                $id = $this->input->post('id_edit', TRUE);
+                $data = array(
+                    'JABATAN'     => $this->input->post('nama_edit', TRUE)
+                );
+                $this->load->model('M_jabatan');
+                $this->M_jabatan->update($data, $id);
+                $this->session->set_flashdata('flash','ubah');
+
+                redirect(site_url('C_jabatan'));
+
+            }else{
+                echo "<script>history.go(-1);</script>";
+            }
+        }
+
+        public function hapus($id)
+        {
+            $this->load->model('M_jabatan');
+            $this->M_jabatan->hapus($id);
+            $this->session->set_flashdata('flash','Dihapus');
+            redirect(site_url('C_jabatan'));
+        }
     }

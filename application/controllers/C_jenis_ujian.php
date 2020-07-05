@@ -74,5 +74,13 @@
                 echo "<script>history.go(-1);</script>";
             }
         }
+
+        public function hapus($id)
+        {
+            $this->load->model('M_jenis_ujian');
+            $this->M_jenis_ujian->hapus($id);
+            $this->session->set_flashdata('flash','Dihapus');
+            redirect(site_url('C_jenis_ujian'));
+        }
     }
 ?>

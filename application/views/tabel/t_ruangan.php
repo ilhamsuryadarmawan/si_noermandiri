@@ -40,16 +40,11 @@
                                             </div>
                                         <?php endif; ?>
                                         <form action="<?php echo base_url('tambahruangan')?>" method="POST">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-lg-3">
-                                                    <label>Nama Ruangan</label>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="nama" name="nama"/>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <br>
+                                        <div class="form-group form-floating-label">
+                                            <input id="inputFloatingLabel" type="text" class="form-control input-border-bottom" id="nama" name="nama" required>
+                                            <label for="inputFloatingLabel" class="placeholder">Nama Ruang Kelas</label>
+                                        </div>                                       
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-lg-3"></div>
@@ -76,7 +71,7 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>ID Ruangan</th>
+                                                <!-- <th>ID Ruangan</th> -->
                                                 <th>Nama Ruangan</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -85,12 +80,13 @@
                                             <?php
                                             $nourut = 1;
                                             foreach ($ruangan as $rk) {
+                                                $id = $rk->ID_RUANGAN;
                                             ?>
                                             <tr>
                                                 <td><?php echo $nourut++?></td>
-                                                <td><?php echo $rk->ID_RUANGAN; ?></td>
+                                                <!-- <td><?php echo $rk->ID_RUANGAN; ?></td> -->
                                                 <td><?php echo $rk->NAMA_RUANGAN; ?></td>
-                                                <td><button type="button" class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $rk->ID_RUANGAN;?>"><i class="fa fa-pencil-alt"></i></button></td>
+                                                <td><button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-edit"></i></button><a href="<?php echo base_url('C_ruangan/hapus/'.$id)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a></td>
                                             </tr>
                                             <?php
                                             }

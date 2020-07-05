@@ -56,11 +56,37 @@
                         $this->M_jenjang_kelas->tambah($data);
                         $this->session->set_flashdata('flash','Disimpan');
 
-                        redirect(site_url('Jenjang_Kelas'));
+                        redirect(site_url('C_jenjang_kelas'));
                     }
 
             }else{
                 echo "<script>history.go(-1);</script>";
             }
+        }
+
+        public function update(){
+            if($this->session->userdata('akses') == 'Administrator'){
+                $id = $this->input->post('id_edit', TRUE);
+                $data = array(
+                    'NAMA_JENJANG'     => $this->input->post('nama_edit', TRUE),
+                    'BIAYA'     => $this->input->post('biaya_edit', TRUE)
+                );
+                $this->load->model('M_jenjang_kelas');
+                $this->M_jenjang_kelas->update($data, $id);
+                $this->session->set_flashdata('flash','ubah');
+
+                redirect(site_url('C_jenjang_kelas'));
+
+            }else{
+                echo "<script>history.go(-1);</script>";
+            }
+        }
+
+        public function hapus($id)
+        {
+            $this->load->model('M_jenjang_kelas');
+            $this->M_jenjang_kelas->hapus($id);
+            $this->session->set_flashdata('flash','Dihapus');
+            redirect(site_url('C_jenjang_kelas'));
         }
     }

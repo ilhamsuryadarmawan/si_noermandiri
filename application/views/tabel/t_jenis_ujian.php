@@ -40,16 +40,11 @@
                                             </div>
                                         <?php endif; ?>
                                         <form action="<?php echo base_url('tambahjenisujian')?>" method="POST">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-lg-3">
-                                                    <label>Nama Jenis Ujian</label>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="nama" name="nama"/>
-                                                </div>
+                                        <br>
+                                            <div class="form-group form-floating-label">
+                                                <input id="inputFloatingLabel" type="text" class="form-control input-border-bottom" id="nama" name="nama" required>
+                                                <label for="inputFloatingLabel" class="placeholder">Nama Jenis Ujian</label>
                                             </div>
-                                        </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-lg-3"></div>
@@ -76,7 +71,6 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>ID Jenis Ujian</th>
                                                 <th>Nama Jenis Ujian</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -85,12 +79,12 @@
                                             <?php
                                             $nourut = 1;
                                             foreach ($jenis_ujian as $ju) {
+                                                $id = $ju->ID_JENIS_UJIAN;
                                             ?>
                                             <tr>
                                                 <td><?php echo $nourut++?></td>
-                                                <td><?php echo $ju->ID_JENIS_UJIAN; ?></td>
                                                 <td><?php echo $ju->NAMA_JENIS_UJIAN; ?></td>
-                                                <td><button type="button" class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $ju->ID_JENIS_UJIAN;?>"><i class="fa fa-pencil-alt"></i></button></td>
+                                                <td><button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-edit"></i></button><a href="<?php echo base_url('C_jenis_ujian/hapus/'.$id)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a></td>
                                             </tr>
                                             <?php
                                             }

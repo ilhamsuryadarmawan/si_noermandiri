@@ -40,16 +40,11 @@
                                             </div>
                                         <?php endif; ?>
                                         <form action="<?php echo base_url('C_jabatan/aksiTambah')?>" method="POST">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-lg-3">
-                                                    <label>Nama Jabatan</label>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="nama" name="nama"/>
-                                                </div>
+                                        <br>
+                                            <div class="form-group form-floating-label">
+                                                <input id="inputFloatingLabel" type="text" class="form-control input-border-bottom" id="nama" name="nama" required>
+                                                <label for="inputFloatingLabel" class="placeholder">Nama Jabatan</label>
                                             </div>
-                                        </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-lg-3"></div>
@@ -76,19 +71,20 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>ID Jabatan</th>
                                     <th>Jabatan</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 $nourut = 1;
                                 foreach ($jabatan as $jab) {
+                                    $id = $jab->ID_JABATAN;
                                 ?>
                                 <tr>
                                     <td><?php echo $nourut++;?></td>
-                                    <td><?php echo $jab->ID_JABATAN; ?></td>
                                     <td><?php echo $jab->JABATAN; ?></td>
+                                    <td><button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-edit"></i></button><a href="<?php echo base_url('C_jabatan/hapus/'.$id)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a></td>
                                 </tr>
                                 <?php
                                 }
@@ -102,4 +98,50 @@
         </div>
     </div>
 
+<?php
+    foreach($jabatan as $jb):
+    $id = $jb->ID_JABATAN;
+    $nama = $jb->JABATAN;
+?>
+
+<div class="modal fade" id="modal_edit<?php echo $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLongTitle" align="center">Form Edit Data Jabatan</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="<?php echo base_url('updatejabatan')?>" method="POST">
+                    <div class="form-group form-inline">
+                        <label for="inlineinput" class="col-md-3 col-form-label">ID Jabatan</label>
+                        <div class="col-md-9 p-0">
+                            <input type="text" class="form-control input-full" placeholder="Enter Input" name="id_edit" id="id_edit" value="<?php echo $id?>" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <label for="inlineinput" class="col-md-3 col-form-label">Nama Jabatan</label>
+                        <div class="col-md-9 p-0">
+                            <input type="text" class="form-control input-full" placeholder="Enter Input" name="nama_edit" id="nama_edit" value="<?php echo $nama?>" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-8">
+                                <div class="login-horizental cancel-wp pull-left">
+                                    <button type="reset" class="btn btn-danger btn-sm" class="close" data-dismiss="modal" aria-label="Close" name="Batal">Batal</button>&nbsp;
+                                    <button type="submit" class="btn btn-primary btn-sm" name="Tambah">Simpan</button> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endforeach;?>
    

@@ -75,7 +75,7 @@
                     'NAMA_MAPEL'     => $this->input->post('nama_edit', TRUE)
                 );
                 $this->load->model('M_mapel');
-                $this->M_kelas->update($data, $id);
+                $this->M_mapel->update($data, $id);
                 $this->session->set_flashdata('flash','ubah');
 
                 redirect(site_url('C_mapel'));
@@ -83,6 +83,14 @@
             }else{
                 echo "<script>history.go(-1);</script>";
             }
+        }
+
+        public function hapus($id)
+        {
+            $this->load->model('M_mapel');
+            $this->M_mapel->hapus($id);
+            $this->session->set_flashdata('flash','Dihapus');
+            redirect(site_url('C_mapel'));
         }
     }
 ?>

@@ -19,7 +19,7 @@
                                 <div class="col-md-4">
                                     <a href="<?php echo base_url('jadwal')?>"><button type="button" class="btn btn-primary btn-round" >Tambah data</button></a>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <form action="<?php echo base_url('C_absensi/index')?>" method="POST">
                                     <div class="row">
                                         <div class="col-md-2"></div>
@@ -56,27 +56,10 @@
                                             </select>
                                         </div>
                                         <div class="col-md-2 mt-2">
-                                            <input type="submit" class="btn btn-primary" name="submit"/> 
+                                            <input type="submit" class="btn btn-primary" name="submit"/>
                                         </div>
                                     </div>
                                     </form>
-                                </div>
-<!--                                 <div class="col-md-2 mt-3">
-                                    <a href="#" class="btn btn-info btn-border btn-round btn-sm mr-2">
-                                        <span class="btn-label">
-                                            <i class="fa fa-pencil"></i>
-                                        </span>
-                                        Export
-                                    </a>
-                                    <a href="#" class="btn btn-info btn-border btn-round btn-sm">
-                                        <span class="btn-label">
-                                            <i class="fa fa-print"></i>
-                                        </span>
-                                        Print
-                                    </a>
-                                </div> -->
-                                <div class="col-md-2 mt-2">
-                                    <a href="<?php echo base_url('laporan_absensi')?>"><button type="button" class="btn btn-info btn-border btn-round fas fa-file-export" > Export PDF</button></a>
                                 </div>
                             </div>
                         </div>
@@ -131,41 +114,3 @@
             });
         });
     </script>
-
-<!--     <script >
-    function getAbsen(){
-        var kls = document.getElementById('kelas').value;
-        var periode = document.getElementById('periode').value;
-        $.ajax({
-            url : "<?php echo base_url('Jadwal/getJadwalByFilter')?>",
-            method: "POST",
-            dataType :"json",
-            data: {
-            kls : kls,
-            periode : periode
-            },
-            success : function(data){
-                var html = '';
-                    if (data.length > 0) {
-                        var i;
-                        for(i=0; i<data.length; i++){
-                            html += '<tr>'+
-                                    '<td>'+data[i].tanggal+'</td>'+
-                                    '<td>'+data[i].jam+'</td>'+
-                                    '<td>'+data[i].NAMA_KELAS+'</td>'+
-                                    '<td>'+data[i].NAMA_MAPEL+'</td>'+
-                                    '<td>'+data[i].NAMA_RUANGAN+'</td>'+
-                                    '<td>'+data[i].NAMA_TENTOR+'</td>'+
-                                    // '<td><a href=""><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-alt"></i></button></a></td>'+
-                                    '</tr>';
-                        }
-                    }else{
-                        html += '<tr>'+
-                                    '<td colspan = "6">'+'<center>'+"Jadwal belum tersedia"+'</center>'+'</td>'+
-                                '</tr>';
-                    }
-                    $('#show_data').html(html);
-            }
-        });
-    }   
-    </script> -->

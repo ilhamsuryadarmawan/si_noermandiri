@@ -221,28 +221,6 @@
 								</ul>
 							</div>
 						</li>
-<!-- 						<li class="nav-item">
-							<a data-toggle="collapse" href="#sidebarLayouts">
-								<i class="fas fa-th-list"></i>
-								<p>Data Pendaftaran</p>
-								<span class="caret"></span>
-							</a>
-							<div class="collapse" id="sidebarLayouts">
-								<ul class="nav nav-collapse">
-									<li>
-										<a href="<?php echo base_url('Pendaftaran/siswa_baru')?>">
-											<span class="sub-item">Pendaftaran Siswa Baru
-                                            </span>
-										</a>
-									</li>
-									<li>
-										<a href="overlay-sidebar.html">
-											<span class="sub-item">Daftar Ulang</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li> -->
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#nilai">
 								<i class="fas fa-pencil-alt"></i>
@@ -252,7 +230,7 @@
 							<div class="collapse" id="nilai">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="<?php echo base_url('C_penilaian/inputNilai')?>">
+										<a href="<?php echo base_url('C_penilaian/tampilKelas')?>">
 											<span class="sub-item">Tambah Data Nilai</span>
 										</a>
 									</li>
@@ -262,7 +240,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="<?php echo base_url('C_penilaian/tampilNilai')?>">
+										<a href="<?php echo base_url('C_penilaian')?>">
 											<span class="sub-item">Laporan Kumulatif Nilai</span>
 										</a>
 									</li>
@@ -277,11 +255,6 @@
 							</a>
 							<div class="collapse" id="absensi">
 								<ul class="nav nav-collapse">
-									<li>
-										<a href="<?php echo base_url('C_absensi/inputAbsen')?>">
-											<span class="sub-item">Tambah Data Absensi</span>
-										</a>
-									</li>
 									<li>
 										<a href="#">
 											<span class="sub-item">Ubah Data Absensi</span>
@@ -329,8 +302,8 @@
 							<div class="collapse" id="base">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="components/avatars.html">
-											<span class="sub-item">Laporan Pendaftaran</span>
+										<a href="<?php echo base_url('Laporan/absensi')?>">
+											<span class="sub-item">Laporan Absensi Siswa</span>
 										</a>
 									</li>
 									<li>
@@ -355,7 +328,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a data-toggle="collapse" href="#<?php echo base_url('Jadwal')?>">
+							<a data-toggle="collapse" href="<?php echo base_url('Jadwal')?>">
 								<i class="fas fa-calendar-alt"></i>
 								<p>Jadwal Mengajar</p>
 							</a>
@@ -409,20 +382,37 @@
 											<span class="sub-item">Laporan Kumulatif Absensi</span> 
 										</a>
 									</li>
-<!-- 									<li>
-										<a href="#">
-											<span class="sub-item">Laporan Tanggal Absensi</span> 
-										</a>
-									</li> -->
 								</ul>
 							</div>
 						</li>
-<!--                         <li class="nav-item">
-							<a data-toggle="collapse" href="#base">
-								<i class="fas fa-pencil-alt"></i>
-								<p>Daftar Ulang</p>
+                        
+                       	<?php elseif($this->session->userdata('akses')=='Siswa'):?>
+                        <li class="nav-item active">
+							<a href="<?php echo base_url('Home')?>" class="collapsed" aria-expanded="false">
+								<i class="fas fa-home"></i>
+								<p>Dashboard</p>
 							</a>
-                        </li> -->
+						</li>
+						<li class="nav-item">
+							<a data-toggle="collapse" href="<?php echo base_url('Jadwal')?>">
+								<i class="fas fa-calendar-alt"></i>
+								<p>Jadwal Les</p>
+							</a>
+                        </li>
+                        <li class="nav-item">
+							<a data-toggle="collapse" href="#<?php echo base_url('C_penilaian')?>">
+								<i class="fas fa-history"></i>
+								<p>Histori Nilai</p>
+							</a>
+                        </li>
+                        <li class="nav-item">
+							<a data-toggle="collapse" href="#<?php echo base_url('C_Absensi')?>">
+								<i class="fas fa-history"></i>
+								<p>Histori Absensi</p>
+							</a>
+                        </li>
+
+
                         <?php else:?>
                         <?php endif;?>    
 					</ul>

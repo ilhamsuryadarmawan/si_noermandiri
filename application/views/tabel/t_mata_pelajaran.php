@@ -40,15 +40,10 @@
                                                 </div>
                                             <?php endif; ?>
                                             <form action="<?php echo base_url('tambahmapel')?>" method="POST">
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-lg-3">
-                                                            <label>Mata Pelajaran</label>
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                            <input type="text" class="form-control" name="nama_mapel" id="nama_mapel" />
-                                                        </div>
-                                                    </div>
+                                                <br>
+                                                <div class="form-group form-floating-label">
+                                                    <input id="inputFloatingLabel" type="text" class="form-control input-border-bottom" name="nama_mapel" id="nama_mapel" required>
+                                                    <label for="inputFloatingLabel" class="placeholder">Nama Mata Pelajaran</label>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="row">
@@ -76,7 +71,6 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>ID Mapel</th>
                                                 <th>Mata Pelajaran</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -85,12 +79,12 @@
                                             <?php
                                             $nourut = 1;
                                             foreach ($mapel as $mpl) {
+                                                $id = $mpl->ID_MAPEL;
                                             ?>
                                             <tr>
                                                 <td><?php echo $nourut++;?></td>
-                                                <td><?php echo $mpl->ID_MAPEL; ?></td>
                                                 <td><?php echo $mpl->NAMA_MAPEL; ?></td>
-                                                <td><button type="button" class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $mpl->ID_MAPEL;?>"><i class="fa fa-pencil-alt"></i></button></td>
+                                                <td><button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-edit"></i></button><a href="<?php echo base_url('C_mapel/hapus/'.$id)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a></td>
                                             </tr>
                                             <?php
                                             }
@@ -123,25 +117,17 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?php echo base_url('update_mapel')?>" method="POST">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <label>ID MAPEL</label>
-                            </div>
-                            <div class="col-lg-7">
-                                <input type="text" class="form-control" name="id_edit" id="id_edit" value="<?php echo $id?>" readonly/>
-                            </div>
+                <form action="<?php echo base_url('updatemapel')?>" method="POST">
+                    <div class="form-group form-inline">
+                        <label for="inlineinput" class="col-md-3 col-form-label">ID MAPEL</label>
+                        <div class="col-md-9 p-0">
+                            <input type="text" class="form-control input-full" placeholder="Enter Input" name="id_edit" id="id_edit" value="<?php echo $id?>" readonly>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <label>Nama Mata Pelajaran</label>
-                            </div>
-                            <div class="col-lg-7">
-                                <input type="text" class="form-control" name="nama_edit" id="nama_edit" value="<?php echo $nama?>" required/>
-                            </div>
+                    <div class="form-group form-inline">
+                        <label for="inlineinput" class="col-md-3 col-form-label">NAMA MAPEL</label>
+                        <div class="col-md-9 p-0">
+                            <input type="text" class="form-control input-full" placeholder="Enter Input" name="nama_edit" id="nama_edit" value="<?php echo $nama?>" required>
                         </div>
                     </div>
                     <div class="form-group">
