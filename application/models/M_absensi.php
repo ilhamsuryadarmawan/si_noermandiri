@@ -71,9 +71,10 @@ class M_absensi extends CI_Model {
         return $query;
     }
 
-    public function rekap_absen($periode)
+    public function rekap_absen($periode,$kls)
     {
         return $this->db->query("select NOINDUK as nis,NAMA_SISWA,ID_KELAS as kls ,(SELECT COUNT(NOINDUK) FROM absensi_siswa JOIN jadwal_les ON absensi_siswa.ID_JADWAL=jadwal_les.ID_JADWAL WHERE absensi_siswa.NOINDUK = nis AND date_format(jadwal_les.TANGGAL,'%Y-%m')='$periode' AND absensi_siswa.STATUS_ABSEN='H') hadir, (SELECT COUNT(NOINDUK) FROM absensi_siswa JOIN jadwal_les ON absensi_siswa.ID_JADWAL=jadwal_les.ID_JADWAL WHERE absensi_siswa.NOINDUK = nis AND date_format(jadwal_les.TANGGAL,'%Y-%m')='$periode' AND absensi_siswa.STATUS_ABSEN='A') alpha, (SELECT COUNT(ID_JADWAL) FROM jadwal_les WHERE ID_KELAS=kls AND date_format(TANGGAL,'%Y-%m')='$periode') pertemuan
-            FROM siswa");
+            FROM siswa
+            where ID_KELAS = '$kls'");
     }
 }

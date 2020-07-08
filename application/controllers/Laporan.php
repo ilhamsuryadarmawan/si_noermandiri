@@ -14,8 +14,9 @@
             $this->load->library('dompdf_gen');           
 
             $this->load->model('M_absensi');
-            $rekap = $this->M_absensi->rekap_absen($this->input->post('periode'))->result();
+            $rekap = $this->M_absensi->rekap_absen($this->input->post('periode'),$this->input->post('kls'))->result();
             $data['absen']      = $rekap;
+            $data['kelas']      = $this->input->post('kls');
             $data['periode']    = $this->input->post('periode');
             
             $html = $this->output->get_output($this->load->view('laporan_absensi', $data));

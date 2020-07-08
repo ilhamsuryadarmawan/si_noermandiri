@@ -164,7 +164,7 @@ class C_absensi extends CI_Controller {
     public function get_laporan()
     {
         $this->load->model('M_absensi');
-        $data= $this->M_absensi->rekap_absen($this->input->post('periode'))->result();
+        $data= $this->M_absensi->rekap_absen($this->input->post('periode'),$this->input->post('kls'))->result();
         echo json_encode($data);
     }
     

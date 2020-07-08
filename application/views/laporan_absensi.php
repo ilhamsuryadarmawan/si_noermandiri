@@ -85,6 +85,11 @@
           </th>
       </thead>
     </table>
+    <table>
+      <thead>
+          <th>Kelas </th><th>: <?php echo $kelas?></th>
+      </thead>
+    </table>
     <div id="outtable">
     	<table>
             <thead>
