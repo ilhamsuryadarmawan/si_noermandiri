@@ -25,7 +25,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form action="<?php echo base_url('C_penilaian')?>" enctype="multipart/form-data" method="POST">
+                                    <form action="<?php echo base_url('C_penilaian/tambahNilai')?>" enctype="multipart/form-data" method="POST">
 <!--                                         <input type="hidden" class="form-control" id="id_kelas" name="id_kelas" value="<?php echo $nilai->ID_KELAS?>" readonly> -->
 <!--                                         <div class="form-group">
                                             <div class="row">
@@ -45,6 +45,7 @@
                                                 </div>
                                                 <div class="col-lg-6 mt-3">
                                                     <input type="text" class="form-control" id="pengajar" name="pengajar" value="<?php echo $this->session->userdata('ses_nama'); ?>" readonly>
+                                                    <input type="text" class="form-control" id="kelas" name="kelas" value="<?php echo str_replace("%20"," ",$id) ?>" readonly>
                                                 </div>
                                             </div>
                                         </div>

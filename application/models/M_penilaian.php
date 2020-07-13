@@ -65,6 +65,11 @@ class M_penilaian extends CI_Model {
         $this->db->insert($this->table, $this); 
     }
 
+    public function tambah($data)
+    {
+        $this->db->insert($this->table, $data); 
+    }
+
     function tampilKehadiran(){
         $query=$this->db->query("
                             SELECT a.NOINDUK, s.NAMA_SISWA, SUM(case when STATUS_ABSEN = 'H' then 1 ELSE 0 end) as kehadiran, SUM(CASE WHEN STATUS_ABSEN = 'A' then 1 else 0 end) as alfa, SUM(CASE WHEN STATUS_ABSEN = 'H' then 1 when STATUS_ABSEN = 'A' THEN 1 else 0 END) as pertemuan 
