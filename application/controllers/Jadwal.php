@@ -11,7 +11,7 @@
         }
         function index(){
             //jika sebagai Administrator
-            if($this->session->userdata('akses') == 'Administrator'){
+            if($this->session->userdata('akses') == 'Administrator' || $this->session->userdata('akses') == "Tentor"){
                 $this->load->model('M_kelas');
                 $this->load->model('M_jadwal_les');
                 $this->load->model('M_sesi');
@@ -51,13 +51,13 @@
                     );
                     $this->load->view('layout', $data);
             //jika sebagai tentor
-            }elseif ($this->session->userdata('akses') == 'Tentor') {
-                $data = array(
-                        'title' => 'Jadwal Mengajar',
-                        'content' => 'tabel/t_jadwal_tentor',
-                        'judul' => 'Jadwal Mengajar',
-                    );
-                    $this->load->view('layout', $data);
+            // }elseif ($this->session->userdata('akses') == 'Tentor') {
+            //     $data = array(
+            //             'title' => 'Jadwal Mengajar',
+            //             'content' => 'tabel/t_jadwal_tentor',
+            //             'judul' => 'Jadwal Mengajar',
+            //         );
+            //         $this->load->view('layout', $data);
             //jika sebagai siswa
             }elseif ($this->session->userdata('akses') == 'Siswa'){
                 $this->load->model('M_jadwal_les');

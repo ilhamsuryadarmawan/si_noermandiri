@@ -11,7 +11,7 @@ class C_absensi extends CI_Controller {
     }
 
     function index(){
-        if($this->session->userdata('akses') == 'Tentor'){
+        if($this->session->userdata('akses') == 'Tentor' || $this->session->userdata('akses') == 'Administrator'){
             $this->load->model('M_siswa');
             $this->load->model('M_kelas');
             $this->load->model('M_jadwal_les');
@@ -49,15 +49,7 @@ class C_absensi extends CI_Controller {
 
                 );
             $this->load->view('layout', $data);
-            //jika sebagai tentor
-            }elseif ($this->session->userdata('akses') == 'Administrator') {
-                $data = array(
-                        'title' => 'Data Absensi',
-                        'content' => 'tabel/t_rekap_absensi',
-                        'judul' => 'Absensi Siswa',
-                    );
-                    $this->load->view('layout', $data);
-            //jika sebagai siswa
+            
             }elseif ($this->session->userdata('akses') == 'Siswa'){
                 $this->load->model('M_jadwal_les');
                 $kelas = $this->session->userdata('ses_kelas');
@@ -97,7 +89,7 @@ class C_absensi extends CI_Controller {
     // }
 
     function inputAbsen($id){
-        if($this->session->userdata('akses') == 'Administrator'){
+        if($this->session->userdata('akses') == 'Administrator' || $this->session->userdata('akses') == 'Tentor'){
 
             
 

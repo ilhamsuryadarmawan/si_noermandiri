@@ -234,11 +234,11 @@
 											<span class="sub-item">Tambah Data Nilai</span>
 										</a>
 									</li>
-									<li>
+<!-- 									<li>
 										<a href="#">
 											<span class="sub-item">Ubah Data Nilai</span>
 										</a>
-									</li>
+									</li> -->
 									<li>
 										<a href="<?php echo base_url('C_penilaian')?>">
 											<span class="sub-item">Laporan Kumulatif Nilai</span>
@@ -255,11 +255,11 @@
 							</a>
 							<div class="collapse" id="absensi">
 								<ul class="nav nav-collapse">
-									<li>
+<!-- 									<li>
 										<a href="#">
 											<span class="sub-item">Ubah Data Absensi</span>
 										</a>
-									</li>
+									</li> -->
 									<li>
 										<a href="<?php echo base_url('C_Absensi')?>">
 											<span class="sub-item">Laporan Kumulatif Absensi</span> 
@@ -288,7 +288,7 @@
 
                     <?php elseif($this->session->userdata('akses')=='Pemilik'):?>
                         <li class="nav-item active">
-							<a href="<?php echo base_url('Home')?>" class="collapsed" aria-expanded="false">
+							<a href="<?php echo base_url('C_home')?>" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
 								<p>Dashboard</p>
 							</a>
@@ -328,7 +328,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a data-toggle="collapse" href="<?php echo base_url('Jadwal')?>">
+							<a href="<?php echo base_url('Jadwal')?>">
 								<i class="fas fa-calendar-alt"></i>
 								<p>Jadwal Mengajar</p>
 							</a>

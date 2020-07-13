@@ -46,7 +46,7 @@
 </head><body>
     <div class="row">
         <div class="col-md-12">
-            <center><img src="<?php echo $_SERVER['DOCUMENT_ROOT']."./LBBNoermandiri/assets/img/header_invoice1.png";?>" width="650" height="125"></center>
+            <center><img src="<?php echo $_SERVER['DOCUMENT_ROOT']."./si_noermandiri/assets/img/header_invoice1.png";?>" width="650" height="125"></center>
         </div>
     </div><hr>
     <div class="row">

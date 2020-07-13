@@ -89,7 +89,7 @@
                                                     <td><?php echo $sis->NOINDUK; ?></td>
                                                     <td><?php echo $sis->NAMA_SISWA; ?></td>
                                                     <td>
-                                                        <!-- <input type="hidden" class="form-control" id="NOINDUK" name="noinduk[]" value="<?php echo $sis->NOINDUK?>" readonly> -->
+                                                        <input type="hidden" class="form-control" id="NOINDUK" name="noinduk[]" value="<?php echo $sis->NOINDUK?>" readonly>
                                                         <label>
                                                             <input type="text" class="form-control" name="nilai[]">
                                                         </label>
@@ -107,7 +107,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="login-horizental cancel-wp pull-left">
                                                         <button type="reset" class="btn btn-danger btn-sm" name="Batal">Batal</button>&nbsp;
-                                                        <button type="submit" class="btn btn-primary btn-sm" name="Tambah" onclick="absensi()">Simpan Absensi</button> 
+                                                        <button type="submit" class="btn btn-primary btn-sm" name="submit">Simpan Absensi</button> 
                                                     </div>
                                                 </div>
                                             </div>
@@ -123,7 +123,7 @@
  
 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 function absensi(){
     var nis =[] ;
     var hadirValue = [];
@@ -188,4 +188,4 @@ function absensi(){
 //     checkboxs[i].checked = !checkboxs[i].checked;
 //   }
 // }
-</script>
+</script> -->

@@ -148,21 +148,8 @@
             $this->form_validation->set_error_delimiters('<div style="margin-bottom:-10px"><span style="color:red;font-size:12px">', '</span></div>');
 
             //rules validasi
-            $this->form_validation->set_rules('id_mapel', 'id_mapel', 'required|max_length[30]',[
-                'required' =>'*mapel tidak boleh kosong',
-                'max_length'=> '*mapel maksimal 30 karakter']);
-            $this->form_validation->set_rules('alamat', 'alamat', 'required|max_length[50]',[
-                'required' =>'*alamat tidak boleh kosong',
-                'max_length'=> '*alamat maksimal 50 karakter']);
-            $this->form_validation->set_rules('tgl_lahir', 'tgl_lahir', 'required',[
-                'required' =>'*tanggal lahir tidak boleh kosong']);
-            $this->form_validation->set_rules('notelp', 'notelp', 'required|max_length[13]|numeric',[
-                'required' =>'*telepon tidak boleh kosong',
-                'max_length'=> '*telepon maksimal 13 karakter']);
-            $this->form_validation->set_rules('email', 'email', 'required|max_length[50]',[
-                'required' =>'*email tidak boleh kosong',
-                'max_length'=> '*email maksimal 50 karakter']);
-            $this->form_validation->set_rules('id_jabatan','id_jabatan', 'required',['required' => '*jabatan tidak boleh kosong']);
+
+            $this->form_validation->set_rules('nilai[]','nilai[]', 'required',['required' => '*nilai tidak boleh kosong']);
 
                 if ($this->form_validation->run() == FALSE) {
                     //jika validasi gagal maka akan kembali ke form tambah jadwal
@@ -171,14 +158,14 @@
                     //jika validasi berhasil
                         $data = array(
                             'ID_NILAI'          => '',
-                            'ID_KELAS'        => $this->input->post('id_kelas', TRUE),
-                            'ID_PEGAWAI'      => $this->input->post('id_peg', TRUE),
+                            'ID_KELAS'          => $this->input->post('id_kelas', TRUE),
+                            'ID_PEGAWAI'        => $this->input->post('id_peg', TRUE),
                             'ID_MAPEL'          => $this->input->post('id_mapel', TRUE),
-                            'ID_JENIS_UJIAN'       => $this->input->post('id_ju', TRUE),
-                            'NOINDUK'      => $this->input->post('noinduk', TRUE),
-                            'TGL_PENILAIAN'               => $this->input->post('tgl', TRUE),
-                            'JUMLAH_NILAI'          => $this->input->post('nilai', TRUE),
-                            'KETERANGAN_NILAI'    => $this->input->post('ket', TRUE)
+                            'ID_JENIS_UJIAN'    => $this->input->post('id_ju', TRUE),
+                            'NOINDUK'           => $this->input->post('noinduk', TRUE),
+                            'TGL_PENILAIAN'     => $this->input->post('tgl', TRUE),
+                            'JUMLAH_NILAI'      => $this->input->post('nilai[]', TRUE),
+                            // 'KETERANGAN_NILAI'    => $this->input->post('ket', TRUE)
 
                         );
                         $this->load->model('M_penilaian');

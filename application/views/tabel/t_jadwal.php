@@ -92,10 +92,10 @@
                                             <td><?php echo $j->NAMA_MAPEL?></td>
                                             <td><?php echo $j->NAMA_RUANGAN?></td>
                                             <td><?php echo $j->NAMA_PEGAWAI?></td>
-                                            <td>
+<!--                                             <td>
                                                 <button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $j->ID_JADWAL?>"><i class="fa fa-edit"></i></button>
                                                 <a href="<?php echo base_url('Jadwal/hapus/'.$j->ID_JADWAL)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a>
-                                            </td>
+                                            </td> -->
                                             <td><a href="<?php echo base_url('C_absensi/inputAbsen/'.$j->ID_JADWAL)?>"><button class="btn btn-primary btn-sm">Input Absen</button></a></td>  
                                         </tr>
                                         <?php
