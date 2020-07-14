@@ -184,4 +184,10 @@
                 echo "<script>history.go(-1);</script>";
             }
         }
+
+        public function get_laporan(){
+            $this->load->model('M_penilaian');
+            $data= $this->M_penilaian->rekap_nilai($this->input->post('kls'))->result();
+            echo json_encode($data);
+        }
     }

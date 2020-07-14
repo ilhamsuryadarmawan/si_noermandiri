@@ -95,4 +95,13 @@ class M_penilaian extends CI_Model {
         $this->db->join('kelas k','k.ID_KELAS = ns.ID_KELAS');
         return $this->db->get();
     }
+
+    public function rekap_nilai($kelas)
+    {
+        $query = $this->db->query("SELECT NOINDUK as nis, NAMA_SISWA, kelas.NAMA_KELAS, (select nilai_siswa.JUMLAH_NILAI from nilai_siswa JOIN jenis_ujian on nilai_siswa.ID_JENIS_UJIAN = jenis_ujian.ID_JENIS_UJIAN WHERE nilai_siswa.NOINDUK = nis AND jenis_ujian.ID_JENIS_UJIAN ='UJI001') tryout, (select nilai_siswa.JUMLAH_NILAI from nilai_siswa JOIN jenis_ujian on nilai_siswa.ID_JENIS_UJIAN = jenis_ujian.ID_JENIS_UJIAN WHERE nilai_siswa.NOINDUK = nis AND jenis_ujian.ID_JENIS_UJIAN ='UJI002') tugas1
+            from siswa
+            JOIN kelas ON siswa.ID_KELAS = kelas.ID_KELAS
+            WHERE siswa.ID_KELAS = '$kelas'");   
+        return $query; 
+    }
 }

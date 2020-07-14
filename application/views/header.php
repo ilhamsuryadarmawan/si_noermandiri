@@ -307,15 +307,10 @@
 										</a>
 									</li>
 									<li>
-										<a href="components/buttons.html">
-											<span class="sub-item">Laporan Pembayaran</span>
+										<a href="<?php echo base_url('Laporan/nilai')?>">
+											<span class="sub-item">Laporan Penilaian</span>
 										</a>
                                     </li>
-                                    <li>
-										<a href="components/buttons.html">
-											<span class="sub-item">Laporan Jadwal Les</span>
-										</a>
-									</li>
 								</ul>
 							</div>
 						</li>
