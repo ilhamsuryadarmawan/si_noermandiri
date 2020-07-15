@@ -9,6 +9,11 @@ class M_pegawai extends CI_Model {
         $this->db->insert($this->tabel, $data);
     }
 
+    public function getById($id)
+    {
+        $this->db->where('ID_PEGAWAI',$id);
+        return $this->db->get('pegawai')->row();
+    }
     //tampilkan semua data
     public function tampilkanSemua() {
 

@@ -149,7 +149,12 @@
           <div class="col-lg-5">
             <div class="card bg-secondary shadow border-0">
               <div class="card-header bg-white pb-6">
-                <div class="text-muted text-center mb-3"><br>Lembaga Bimbingan Belajar Noermandiri</div>
+                  <center><div class="col-sm-4 col-6">
+                <img src="./assets/img/logo/logo1.ico" alt="Rounded image" class="img-fluid rounded shadow" style="width: 150px;">
+                 </div><br>
+                         <div class="col-sm-12">
+          <h3 class="display-4 mb-2">Lembaga Bimbingan Belajar Noermandiri</h3>
+        </div></center>
 <!--                 <div class="btn-wrapper text-center">
                   <a href="#" class="btn btn-neutral btn-icon">
                     <span class="btn-inner--icon">
@@ -165,16 +170,11 @@
                   </a>
                 </div> -->
               </div>
+
               <div class="card-body px-lg-5 py-lg-5">
                 <form class="login100-form validate-form" action="<?php echo $action; ?>" method="POST">
-   <!--                <div class="form-group mb-3">
-                    <div class="input-group input-group-alternative">
-                      <div class="input-group-prepend validate-input" data-validate = "Enter Username">
-                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                      </div>
-                      <input class="form-control" name="username" placeholder="Username" type="text">
-                    </div>
-                  </div> -->
+
+
                 <div class="form-group">
                   <div class="input-group input-group-alternative wrap-input100 validate-input" data-validate = "Enter username">
                       <div class="input-group-prepend">

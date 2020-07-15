@@ -25,49 +25,66 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form action="<?php echo base_url('C_absensi')?>" enctype="multipart/form-data" method="POST">                         
-                                            <input type="hidden" class="form-control" id="id_jadwal" name="id_jadwal" value="<?php echo $jadwal->ID_JADWAL?>" readonly>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-lg-2 mt-4">
-                                                    <label>Tgl Absen dibuat</label>
-                                                </div>
-                                                <div class="col-lg-6 mt-3">
-                                                    <input type="date" class="form-control" id="TGL_ABSEN_DIBUAT" name="TGL_ABSEN_DIBUAT" value="<?php echo $jadwal->TANGGAL?>" readonly>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-lg-2 mt-4">
-                                                    <label>Pengajar</label>
-                                                </div>
-                                                <div class="col-lg-6 mt-3">
-                                                    <input type="text" class="form-control" id="pengajar" name="pengajar" value="<?php echo $this->session->userdata('ses_nama'); ?>" readonly>
+                                    <form action="<?php echo base_url('C_absensi')?>" enctype="multipart/form-data" method="POST">                
+                                <div class="row row-card-no-pd mt--2">
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="card card-stats card-round">
+                                            <div class="card-body ">
+                                                <div class="row">
+                                                    <div class="col-7 col-stats">
+                                                        <div class="numbers">
+                                                            <p class="card-category">Tanggal Absen</p>
+                                                            <h4 class="card-title"><?php echo $jadwal->TANGGAL?></h4>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-lg-2 mt-4">
-                                                    <label>Kelas</label>
-                                                </div>
-                                                <div class="col-lg-6 mt-3">
-                                                    <input type="text" class="form-control" id="kelas" name="kelas" value="<?php echo $jadwal->NAMA_KELAS?>" readonly>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-lg-2 mt-4">
-                                                    <label>Mata Pelajaran</label>
-                                                </div>
-                                                <div class="col-lg-6 mt-3">
-                                                    <input type="text" class="form-control" id="mapel" name="mapel" value="<?php echo $jadwal->NAMA_MAPEL?>" readonly>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="card card-stats card-round">
+                                            <div class="card-body ">
+                                                <div class="row">
+                                                    <div class="col-7 col-stats">
+                                                        <div class="numbers">
+                                                            <p class="card-category">Tentor</p>
+                                                            <h4 class="card-title"><?php echo $this->session->userdata('ses_nama'); ?></h4>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="card card-stats card-round">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-7 col-stats">
+                                                        <div class="numbers">
+                                                            <p class="card-category">Kelas</p>
+                                                            <h4 class="card-title"><?php echo $jadwal->NAMA_KELAS?></h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="card card-stats card-round">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-7 col-stats">
+                                                        <div class="numbers">
+                                                            <p class="card-category">Mata Pelajaran</p>
+                                                            <h4 class="card-title"><?php echo $jadwal->NAMA_MAPEL?></h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                 
+                                        <input type="hidden" class="form-control" id="id_jadwal" name="id_jadwal" value="<?php echo $jadwal->ID_JADWAL?>" readonly>
                                         <br>
                                         <table class="table sparkle-table" id="table" data-toggle="table" data-pagination="false" data-search="false" data-cookie-id-table="saveId" data-click-to-select="false" data-toolbar="#toolbar">
                                             <thead>

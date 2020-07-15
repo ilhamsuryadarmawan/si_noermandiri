@@ -105,9 +105,9 @@ class C_absensi extends CI_Controller {
             // $kelombel = $this->M_kelas->TampilkanSemua()->result();
             // $matapel = $this->M_mapel->TampilkanMapel()->result();
             $data = array(
-                    'title' => 'Home',
+                    'title' => 'Input Absensi',
                     'content' => 'tabel/t_absensi',
-                    'judul' => 'Home',
+                    'judul' => 'Input Absensi',
                     'jadwal'  => $jadwal,
                     'siswa'   => $siswa
             );
