@@ -37,28 +37,36 @@
                                                 </div>
                                             </div>
                                         </div> -->
-
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-lg-2 mt-4">
-                                                    <label>Pengajar</label>
-                                                </div>
-                                                <div class="col-lg-6 mt-3">
-                                                    <input type="text" class="form-control" id="pengajar" name="pengajar" value="<?php echo $this->session->userdata('ses_nama'); ?>" readonly>
-                                                    <input type="text" class="form-control" id="kelas" name="kelas" value="<?php echo str_replace("%20"," ",$id) ?>" readonly>
+                                        <div class="row row-card-no-pd mt--2">
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="card card-stats card-round">
+                                            <div class="card-body ">
+                                                <div class="row">
+                                                    <div class="col-7 col-stats">
+                                                        <div class="numbers">
+                                                            <p class="card-category">Tentor</p>
+                                                            <h4 class="card-title"><?php echo $this->session->userdata('ses_nama'); ?></h4>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-<!--                                         <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-lg-2 mt-4">
-                                                    <label>Kelas</label>
-                                                </div>
-                                                <div class="col-lg-6 mt-3">
-                                                    <input type="text" class="form-control" id="kelas" name="kelas" value="<?php echo $nilai->NAMA_KELAS?>" readonly>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="card card-stats card-round">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-7 col-stats">
+                                                        <div class="numbers">
+                                                            <p class="card-category">Kelas</p>
+                                                            <h4 class="card-title"><input type="text" class="form-control" id="kelas" name="kelas" value="<?php echo str_replace("%20"," ",$id) ?>"></h4>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div> -->
+                                        </div>
+                                    </div>
+                                </div>
 <!--                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-lg-2 mt-4">
@@ -76,7 +84,7 @@
                                                     <th data-field="no">No</th>
                                                     <th data-field="noinduk">NIS</th>
                                                     <th data-field="nama">Nama Siswa</th>
-                                                    <th data-field="status">Status Nilai</th>                                                
+                                                    <th data-field="status">Nilai</th>                                                
                                                 </tr>
                                             </thead>
                                             

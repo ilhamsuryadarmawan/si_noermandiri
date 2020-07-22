@@ -53,54 +53,10 @@
             }
         }
 
-        // function index(){
-        //     if($this->session->userdata('akses') == 'Administrator'){
-        //         $kelas = $this->input->post('kelas');
-        //         $this->load->model('M_siswa');
-        //         $this->load->model('M_nilai');
-        //         $nilai = $this->M_nilai->tampilNilai()->result();
-        //         $jumlah = $this->M_absensi->tampilPertemuan()->result();
-        //         $data = array( 
-        //             'title'    => 'Data Absensi',
-        //             'content'  => 'tabel/t_penilaian2',
-        //             'judul' => 'Penilaian Siswa',
-        //             'nilai' => $nilai,
-        //             'kelas' => $kelas,
-        //             'jumlah' => $jumlah
-
-        //             );
-        //         $this->load->view('layout', $data);
-        //     }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
-        //         echo"<script>history.go(-1);</script>";
-        //         }
-
-        // }
-
-        // function tampilSiswa(){
-        //     if($this->session->userdata('akses') == 'Administrator'){
-        //         $kelas = $this->input->post('kelas');
-        //         $mapel = $this->input->post('mapel');
-        //         $this->load->model('M_siswa');
-        //         $this->load->model('M_mapel');
-        //         $this->load->model('M_jadwal_les');
-        //         $siswa = $this->M_siswa->tampilSiswaPerKelas($kelas)->result();
-        //         $data = array( 
-        //             'title'    => 'Data Absensi',
-        //             'content'  => 'tabel/t_penilaian',
-        //             'judul' => 'Input Penilaian',
-        //             'siswa' => $siswa,
-        //             'kelas' => $kelas,
-        //             'mapel' => $mapel
-        //             );
-        //         $this->load->view('layout', $data);
-        //     }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
-        //         echo"<script>history.go(-1);</script>";
-        //         }
-        // }
 
         function tampilKelas(){
             //jika sebagai Administrator
-            if($this->session->userdata('akses') == 'Administrator'){
+            if($this->session->userdata('akses') == 'Tentor'){
                 $this->load->model('M_kelas');
                 $this->load->model('M_jenjang_kelas');
                 $kelas = $this->M_kelas->tampilkanSemua()->result();
@@ -119,7 +75,7 @@
         }
 
         function tampilSiswa($id){
-            if($this->session->userdata('akses') == 'Administrator'){
+            if($this->session->userdata('akses') == 'Tentor'){
 
                 $this->load->model('M_kelas');
                 $this->load->model('M_mapel');
@@ -144,7 +100,7 @@
         }
 
         public function tambahNilai(){
-            if($this->session->userdata('akses') == 'Administrator'){
+            if($this->session->userdata('akses') == 'Tentor'){
             //load library form validation
             $this->load->model('M_penilaian');
             $this->form_validation->set_error_delimiters('<div style="margin-bottom:-10px"><span style="color:red;font-size:12px">', '</span></div>');
@@ -158,13 +114,14 @@
             //         $this->tambah();
             //     } else {    
                     //jika validasi berhasil
+                    $kelas = $this->input->post('kelas');
                     $nilai = $this->input->post('nilai');
                     $noinduk = $this->input->post('noinduk');
                     date_default_timezone_set('Asia/Jakarta');
                         foreach ($noinduk as $key => $value) {
                             $data = array(
                                 'ID_NILAI'          => '',
-                                'ID_KELAS'          => '9SMA-A',
+                                'ID_KELAS'          => str_replace("%20"," ",$kelas),
                                 'ID_PEGAWAI'        => $this->session->userdata('ses_id'),
                                 // 'ID_MAPEL'          => 'MPL001',
                                 'ID_JENIS_UJIAN'    => 'UJI002',

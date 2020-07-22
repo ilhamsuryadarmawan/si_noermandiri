@@ -68,6 +68,7 @@
 							<a class="nav-link" data-toggle="collapse" href="#search-nav" role="button" aria-expanded="false" aria-controls="search-nav">
 								<i class="fa fa-search"></i>
 							</a>
+
 						</li>
 						<li class="nav-item dropdown hidden-caret">
 							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
@@ -83,6 +84,7 @@
 											<div class="u-text">
 												<h4><?php echo $this->session->userdata('ses_nama'); ?></h4>
 												<p class="text-muted"><?php echo $this->session->userdata('akses'); ?></p>
+												<a href="<?php echo base_url('Profil')?>" class="btn btn-xs btn-secondary btn-sm">Ubah Profil</a>
 											</div>
 										</div>
 									</li>
@@ -118,13 +120,13 @@
 					</div>
 					<ul class="nav nav-primary">
                     <?php if($this->session->userdata('akses')=='Administrator'):?>
-						<li class="nav-item active">
+						<li <?=$this->uri->segment(1) == 'C_Home' ? 'class="nav-item active"' : 'class="nav-item"'?>>
 							<a href="<?php echo base_url('C_Home')?>" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
 								<p>Dashboard</p>
 							</a>
 						</li>
-						<li class="nav-item">
+						<li <?=$this->uri->segment(1) == 'C_Pegawai' || $this->uri->segment(1) == 'C_jabatan' || $this->uri->segment(1) == 'C_siswa' || $this->uri->segment(1) == 'C_mapel' || $this->uri->segment(1) == 'C_ruangan' || $this->uri->segment(1) == 'C_kelas' || $this->uri->segment(1) == 'C_jenjang_kelas' || $this->uri->segment(1) == 'C_sesi' || $this->uri->segment(1) == 'C_skala' || $this->uri->segment(1) == 'C_jenis_ujian' ? 'class="nav-item active submenu"' : 'class="nav-item"'?>>
 							<a data-toggle="collapse" href="#base">
 								<i class="fas fa-database"></i>
 								<p>Data Master</p>
@@ -221,7 +223,7 @@
 								</ul>
 							</div>
 						</li>
-						<li class="nav-item">
+						<li <?=$this->uri->segment(1) == 'C_penilaian' ? 'class="nav-item active"' : 'class="nav-item"'?>>
 							<a data-toggle="collapse" href="#nilai">
 								<i class="fas fa-pencil-alt"></i>
 								<p>Data Penilaian Siswa</p>
@@ -247,7 +249,7 @@
 								</ul>
 							</div>
 						</li>
-						<li class="nav-item">
+						<li <?=$this->uri->segment(1) == 'C_absensi' ? 'class="nav-item active"' : 'class="nav-item"'?>>
 							<a data-toggle="collapse" href="#absensi">
 								<i class="fas fa-clipboard-list"></i>
 								<p>Data Absensi Siswa</p>
@@ -273,13 +275,7 @@
 								</ul>
 							</div>
 						</li>
-<!-- 						<li class="nav-item">
-							<a href="<?php echo base_url('Pembayaran')?>">
-								<i class="fas fa-money-bill-alt"></i>
-								<p>Data Pembayaran</p>
-							</a>
-						</li> -->
-						<li class="nav-item">
+						<li <?=$this->uri->segment(1) == 'Jadwal' ? 'class="nav-item active"' : 'class="nav-item"'?>>
 							<a href="<?php echo base_url('Jadwal')?>">
 								<i class="fas fa-calendar-alt"></i>
 								<p>Jadwal Les</p>
@@ -287,13 +283,13 @@
                         </li>
 
                     <?php elseif($this->session->userdata('akses')=='Pemilik'):?>
-                        <li class="nav-item active">
+                        <li <?=$this->uri->segment(1) == 'C_home' ? 'class="nav-item active"' : 'class="nav-item"'?>>
 							<a href="<?php echo base_url('C_home')?>" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
 								<p>Dashboard</p>
 							</a>
 						</li>
-						<li class="nav-item">
+						<li <?=$this->uri->segment(1) == 'Laporan' ? 'class="nav-item active"' : 'class="nav-item"'?>>
 							<a data-toggle="collapse" href="#base">
 								<i class="fas fa-database"></i>
 								<p>Laporan</p>
@@ -308,27 +304,32 @@
 									</li>
 									<li>
 										<a href="<?php echo base_url('Laporan/nilai')?>">
-											<span class="sub-item">Laporan Penilaian</span>
+											<span class="sub-item">Laporan Penilaian Siswa</span>
 										</a>
                                     </li>
+                                    <li>
+										<a href="components/buttons.html">
+											<span class="sub-item">Laporan Data Siswa Les</span>
+										</a>
+									</li>
 								</ul>
 							</div>
 						</li>
 
                     <?php elseif($this->session->userdata('akses')=='Tentor'):?>
-                        <li class="nav-item active">
-							<a href="<?php echo base_url('Home')?>" class="collapsed" aria-expanded="false">
+                        <li <?=$this->uri->segment(1) == 'C_home' ? 'class="nav-item active"' : 'class="nav-item"'?>>
+							<a href="<?php echo base_url('C_home')?>" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
 								<p>Dashboard</p>
 							</a>
 						</li>
-						<li class="nav-item">
+						<li <?=$this->uri->segment(1) == 'Jadwal' ? 'class="nav-item active"' : 'class="nav-item"'?>>
 							<a href="<?php echo base_url('Jadwal')?>">
 								<i class="fas fa-calendar-alt"></i>
 								<p>Jadwal Mengajar</p>
 							</a>
                         </li>
-                       	<li class="nav-item">
+                       	<li <?=$this->uri->segment(1) == 'C_penilaian' ? 'class="nav-item active"' : 'class="nav-item"'?>>
 							<a data-toggle="collapse" href="#nilai">
 								<i class="fas fa-pencil-alt"></i>
 								<p>Data Penilaian Siswa</p>
@@ -337,7 +338,7 @@
 							<div class="collapse" id="nilai">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="<?php echo base_url('C_penilaian/inputNilai')?>">
+										<a href="<?php echo base_url('C_penilaian/tampilKelas')?>">
 											<span class="sub-item">Tambah Data Nilai</span>
 										</a>
 									</li>
@@ -354,7 +355,7 @@
 								</ul>
 							</div>
 						</li>
-						<li class="nav-item">
+						<li <?=$this->uri->segment(1) == 'C_absensi' ? 'class="nav-item active"' : 'class="nav-item"'?>>
 							<a data-toggle="collapse" href="#absensi">
 								<i class="fas fa-clipboard-list"></i>
 								<p>Data Absensi Siswa</p>
@@ -363,7 +364,7 @@
 							<div class="collapse" id="absensi">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="<?php echo base_url('C_Absensi/inputAbsen')?>">
+										<a href="<?php echo base_url('Jadwal')?>">
 											<span class="sub-item">Tambah Data Absensi</span>
 										</a>
 									</li>
