@@ -41,7 +41,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <button class="btn btn-xs btn-secondary btn-sm" style="float: right;"data-toggle="modal" data-target="#modal_edit">Edit Profil</button>
-                                    <a class="btn btn-xs btn-info btn-sm" style="float: right; margin-right: 5px" href="<?php echo base_url('Profil/ubah_password')?>">Ubah Password</a>
+                                    <button class="btn btn-xs btn-info btn-sm" style="float: right; margin-right: 5px" data-toggle="modal" data-target="#modal_ganti">Ganti Password</button>
                                 </div>
                             </div>
                         </div>
@@ -106,6 +106,41 @@
                         </div>
                         <div class="col-lg-7">
                             <input type="email" class="form-control" name="email_edit" id="email_edit" value="<?php echo $email?>" required/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-8">
+                            <button type="button" class="btn btn-danger btn-sm" name="Batal" class="close" data-dismiss="modal">Batal</button>&nbsp;
+                            <button type="submit" class="btn btn-primary btn-sm" name="Tambah">Simpan</button> 
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>
+
+<!-- modal edit profil -->
+<div class="modal fade" id="modal_ganti" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="card card-stats card-info card-roundr" style="padding-top: 40px;padding-bottom: 20px">
+                <center><i class="fa fa-user-circle fa-7x"></i></center>
+                <center><strong><p>Ganti Password</p></strong></center>
+            </div>
+            <form action="<?php echo base_url('Profil/update_password')?>" method="POST">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label>Password Baru</label>
+                        </div>
+                        <div class="col-lg-7">
+                            <input type="text" class="form-control" name="pass_edit" id="pass_edit"/>
                         </div>
                     </div>
                 </div>

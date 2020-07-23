@@ -108,7 +108,7 @@
                             </div>
                         </div>
                     </div>
-                    <?php elseif($this->session->userdata('akses')=='tentor'):?>
+                    <?php elseif($this->session->userdata('akses')=='Tentor'):?>
                     <!-- <div class="col-sm-6 col-md-3">
                         <div class="card card-stats card-primary card-round">
                             <a href="<?php echo base_url('Jadwal')?>">
@@ -129,7 +129,7 @@
                             </a> 
                         </div>
                     </div> -->
-                    <?php elseif($this->session->userdata('akses')=='siswa'):?>
+                    <?php elseif($this->session->userdata('akses')=='Siswa'):?>
                     <!-- <div class="col-sm-6 col-md-3">
                         <div class="card card-stats card-primary card-round">
                             <a href="<?php echo base_url('Jadwal')?>">
@@ -150,7 +150,7 @@
                             </a> 
                         </div>
                     </div> -->
-                    <?php elseif($this->session->userdata('akses')=='pemilik'):?>
+                    <?php elseif($this->session->userdata('akses')=='Pemilik'):?>
                     <div class="col-sm-6 col-md-6">
                         <div class="card card-stats card-round">
                             <div class="card-body">
@@ -160,12 +160,12 @@
                                             <i class="flaticon-graph"></i>
                                         </div>
                                     </div>
-                                    <div class="col col-stats ml-3 ml-sm-0">
+<!--                                     <div class="col col-stats ml-3 ml-sm-0">
                                         <div class="numbers">
                                             <p class="card-category">Total Pembayaran Daftar Siswa Baru </p>
                                             <h4 class="card-title">Rp. <?php echo number_format($pembayaran->total,0,',','.')?></h4>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -179,12 +179,12 @@
                                             <i class="flaticon-graph"></i>
                                         </div>
                                     </div>
-                                    <div class="col col-stats ml-3 ml-sm-0">
+ <!--                                    <div class="col col-stats ml-3 ml-sm-0">
                                         <div class="numbers">
                                             <p class="card-category">Total Pembayaran Daftar Ulang</p>
                                             <h4 class="card-title">Rp. <?php echo number_format($p_daftar_ulang->total,0,',','.')?></h4>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -198,12 +198,12 @@
                                             <i class="flaticon-users"></i>
                                         </div>
                                     </div>
-                                    <div class="col col-stats ml-3 ml-sm-0">
+<!--                                     <div class="col col-stats ml-3 ml-sm-0">
                                         <div class="numbers">
                                             <p class="card-category">Tentor</p>
                                             <h4 class="card-title"><?php echo $tentor?></h4>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -217,19 +217,19 @@
                                             <i class="flaticon-users"></i>
                                         </div>
                                     </div>
-                                    <div class="col col-stats ml-3 ml-sm-0">
+<!--                                     <div class="col col-stats ml-3 ml-sm-0">
                                         <div class="numbers">
                                             <p class="card-category">Siswa</p>
                                             <h4 class="card-title"><?php echo $siswa?></h4>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
                     </div>
                     <?php endif;?>
                 </div>
-                <?php if($this->session->userdata('akses') == 'tentor'):?>
+                <?php if($this->session->userdata('akses') == 'Tentor'):?>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
@@ -274,7 +274,7 @@
                                 </div>
                             </div>
                         </div>
-                    <?php elseif($this->session->userdata('akses') == 'siswa'):?>
+                    <?php elseif($this->session->userdata('akses') == 'Siswa'):?>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">

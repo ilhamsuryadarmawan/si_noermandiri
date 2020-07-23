@@ -23,6 +23,7 @@
                     'telp'       => $profil->NOTELP_PEGAWAI,
                     'email'      => $profil->EMAIL,
                     'tgl_lahir'  => $profil->TGL_LAHIR_PEG,
+                    'password'  => $profil->PASSWORD_PEGAWAI
                 );
             }elseif($this->session->userdata('akses')=='Siswa'){
                 $this->load->model('M_siswa');
@@ -36,23 +37,24 @@
                     'telp'       => $profil->NOTELP_SISWA,
                     'email'      => $profil->EMAIL_SISWA,
                     'tgl_lahir'  => $profil->TGL_LAHIR_SISWA,
+                    'password'  => $profil->PASSWORD_SISWA
                 );
             }
     	    $this->load->view('layout', $data);
         }
             
 
-        public function ubah_password()
-        {
-                $data = array(
-                    'judul'     => 'Ubah Password',
-                    'title'     => 'Ubah Password',
-                    'content'   => 'form/f_ubah_password'
-                );
-                $this->load->view('layout',$data);
-        }
+        // public function ubah_password()
+        // {
+        //         $data = array(
+        //             'judul'     => 'Ubah Password',
+        //             'title'     => 'Ubah Password',
+        //             'content'   => 'form/f_ubah_password'
+        //         );
+        //         $this->load->view('layout',$data);
+        // }
 
-        public function aksi_ubah_password()
+        public function update_password()
         {
             $this->form_validation->set_error_delimiters('<div style="margin-bottom:-10px"><span style="color:red;font-size:12px">', '</span></div>');
             //rules validasi
@@ -63,24 +65,18 @@
                 $this->ubah_password();
                 } else {
                         $id = $this->session->userdata('ses_id');
-                        if ($this->session->userdata('akses')=='admin' || $this->session->userdata('akses')=='pemilik') {
+                        if ($this->session->userdata('akses')=='Administrator' || $this->session->userdata('akses')=='Pemilik' || $this->session->userdata('akses')=='Tentor') {
                            $data = array(
                                 'PASSWORD_PEGAWAI' => MD5($this->input->post('password'))
                             );
                             $this->load->model('M_pegawai');
                             $this->M_pegawai->update_password($data,$id);
-                        }elseif ($this->session->userdata('akses')=='siswa') {
+                        }else{
                             $data = array(
                                 'PASSWORD_SISWA' => MD5($this->input->post('password'))
                             );
                             $this->load->model('M_siswa');
                             $this->M_siswa->update($data,$id);
-                        }else{
-                            $data = array(
-                                'PASSWORD_TENTOR' => MD5($this->input->post('password'))
-                            );
-                            $this->load->model('M_tentor');
-                            $this->M_tentor->update($data,$id);
                         }
                         $this->session->set_flashdata('flash','pass');
                         redirect(site_url('Profil'));
@@ -90,7 +86,7 @@
         public function update_profil()
         {
             $id = $this->session->userdata('ses_id');
-            if ($this->session->userdata('akses')=='admin' || $this->session->userdata('akses')=='pemilik') {
+            if ($this->session->userdata('akses')=='Administrator' || $this->session->userdata('akses')=='pemilik') {
                 $data = array(
                     'ALAMAT_PEGAWAI'    => $this->input->post('alamat_edit'),
                     'TGL_LAHIR_PEG'     => $this->input->post('tgl_lahir_edit'),
