@@ -25,7 +25,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form action="<?php echo base_url('C_absensi')?>" enctype="multipart/form-data" method="POST">                
+                                <form action="<?php echo base_url('Jadwal')?>" enctype="multipart/form-data" method="POST">           
                                 <div class="row row-card-no-pd mt--2">
                                     <div class="col-sm-6 col-md-3">
                                         <div class="card card-stats card-round">
@@ -189,7 +189,7 @@ function absensi(){
                   alert("Connection Error, try again");                  
                 }
                 
-              } alert("Data Tersimpan, Success");
+              } alert("Data Sudah Tersimpan, Success");
 
             }
       //console.log("data="+jsonData+"&peminjaman="+jsonData2);

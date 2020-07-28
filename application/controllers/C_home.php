@@ -47,8 +47,7 @@ class C_home extends CI_Controller {
                     // 'p_daftar_ulang'   => $pembayaran_daftar_ulang,
                     // 'pendaftaran'      => $pendaftaran,
                     // 'daftar_ulang'     => $daftar_ulang,
-                    'siswa'            => $siswa,
-                    'pegawai'           => $pegawai
+                   
             );
             $this->load->view('layout', $data);
         }

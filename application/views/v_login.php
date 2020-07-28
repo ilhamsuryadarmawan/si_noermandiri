@@ -150,7 +150,7 @@
             <div class="card bg-secondary shadow border-0">
               <div class="card-header bg-white pb-6">
                   <center><div class="col-sm-4 col-6">
-                <img src="./assets/img/logo/logo1.ico" alt="Rounded image" class="img-fluid rounded shadow" style="width: 150px;">
+                <img src="<?php echo base_url('assets/img/logo1.png')?>" alt="Rounded image" class="img-fluid rounded shadow" style="width: 150px;">
                  </div><br>
                          <div class="col-sm-12">
           <h3 class="display-4 mb-2">Lembaga Bimbingan Belajar Noermandiri</h3>

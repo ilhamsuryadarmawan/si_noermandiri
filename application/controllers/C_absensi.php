@@ -66,27 +66,6 @@ class C_absensi extends CI_Controller {
             }
     }
 
-    // function tampilSiswa(){
-    //     if($this->session->userdata('akses') == 'Administrator'){
-    //         $kelas = $this->input->post('kelas');
-    //         $mapel = $this->input->post('mapel');
-    //         $this->load->model('M_siswa');
-    //         $this->load->model('M_mapel');
-    //         $this->load->model('M_jadwal_les');
-    //         $siswa = $this->M_siswa->tampilSiswaPerKelas($kelas)->result();
-    //         $data = array( 
-    //             'title'    => 'Data Absensi',
-    //             'content'  => 'tabel/t_absensi',
-    //             'judul' => 'Input Absensi',
-    //             'siswa' => $siswa,
-    //             'kelas' => $kelas,
-    //             'mapel' => $mapel
-    //             );
-    //         $this->load->view('layout', $data);
-    //     }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
-    //         echo"<script>history.go(-1);</script>";
-    //         }
-    // }
 
     function inputAbsen($id){
         if($this->session->userdata('akses') == 'Administrator' || $this->session->userdata('akses') == 'Tentor'){
@@ -120,13 +99,15 @@ class C_absensi extends CI_Controller {
 
     public function simpan(){             
             $this->load->model('M_absensi');
+            $id_jadwal = $this->input->post('id_jadwal');
+            $data_absensi = $this->M_absensi->cekAbsensi($id_jadwal)->result();
             $simpan = $this->M_absensi;
             $validasi=$this->form_validation;
 
             $kehadiran = json_decode($this->input->post('hadir'));
             $nosiswaa = json_decode($this->input->post('nosiswa'));
 
-            $id_jadwal = $this->input->post('id_jadwal');
+            
             // $tgl = $this->input->post('tanggal');
 
             print_r($kehadiran);
@@ -135,6 +116,13 @@ class C_absensi extends CI_Controller {
 
             $len=count($kehadiran);
             $lent=count($nosiswaa);
+
+            if (count($data_absensi) > 0) {
+                    redirect('jadwal');
+                }else{
+                    $this->load->model('M_absensi');
+                    $this->load->model('M_jadwal_les');
+                    // $this->M_absensi->simpan($data);
             for ($i=0; $i < $lent ; $i++) { 
                 $a=0;
                 for ($j=0; $j < $len ; $j++) { 
@@ -150,7 +138,15 @@ class C_absensi extends CI_Controller {
                     }
 
             }
-            redirect('C_absensi');
+
+
+                    $absen = $this->M_absensi->get_by_id_jadwal($id_jadwal)->num_rows();
+                    $data2  = array('STATUS_JADWAL' => '1');
+                    if ($absen > 0) {
+                        $this->M_jadwal_les->update_status($data2,$id_jadwal);
+                    }
+}
+            redirect('jadwal');
     }
 
     public function get_laporan()

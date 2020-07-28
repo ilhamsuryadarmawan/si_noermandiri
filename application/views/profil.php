@@ -140,7 +140,8 @@
                             <label>Password Baru</label>
                         </div>
                         <div class="col-lg-7">
-                            <input type="text" class="form-control" name="pass_edit" id="pass_edit"/>
+                            <input type="text" class="form-control" name="pass_edit" id="pass_edit" required autofocus />
+                            <?php echo form_error('password'); ?>
                         </div>
                     </div>
                 </div>

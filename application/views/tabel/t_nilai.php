@@ -37,14 +37,13 @@
                                                 </div>
                                             </div>
                                         </div> -->
-                                        <div class="row row-card-no-pd mt--2">
-                                    <div class="col-sm-6 col-md-3">
+                                        <div class="col-sm-6 col-md-3">
                                         <div class="card card-stats card-round">
                                             <div class="card-body ">
                                                 <div class="row">
                                                     <div class="col-7 col-stats">
                                                         <div class="numbers">
-                                                            <p class="card-category">Tentor</p>
+                                                            <p class="card-category">Nama Tentor</p>
                                                             <h4 class="card-title"><?php echo $this->session->userdata('ses_nama'); ?></h4>
                                                         </div>
                                                     </div>
@@ -52,6 +51,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                <div class="row row-card-no-pd mt--2">
                                     <div class="col-sm-6 col-md-3">
                                         <div class="card card-stats card-round">
                                             <div class="card-body">
@@ -66,7 +66,71 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="card card-stats card-round">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-7 col-stats">
+                                                        <div class="numbers">
+                                                            <p class="card-category">Mata Pelajaran</p>
+                                                            <h4 class="card-title">                                            
+                                                                <select class="form-control input-border-bottom" name="mapel" id="mapel" required>
+                                                                    <option value="">- Pilih Mapel -</option>
+                                                                    <?php
+                                                                    foreach ($matapel as $mapel) { ?>
+                                                                        <option value="<?php echo $mapel->ID_MAPEL;?>"><?php echo $mapel->NAMA_MAPEL;?></option>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="card card-stats card-round">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-7 col-stats">
+                                                        <div class="numbers">
+                                                            <p class="card-category">Jenis Ujian</p>
+                                                            <h4 class="card-title">                                            
+                                                                <select class="form-control input-border-bottom" name="ujian" id="ujian" required>
+                                                                    <option value="">- Pilih Jenis Ujian -</option>
+                                                                    <?php
+                                                                    foreach ($jenis as $ujian) { ?>
+                                                                        <option value="<?php echo $ujian->ID_JENIS_UJIAN;?>"><?php echo $ujian->NAMA_JENIS_UJIAN;?></option>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="card card-stats card-round">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-7 col-stats">
+                                                        <div class="numbers">
+                                                            <p class="card-category">Topik Pembahasan</p>
+                                                            <h4 class="card-title"><input type="text" class="form-control" id="topik" name="topik"></h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
+
 <!--                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-lg-2 mt-4">
@@ -131,70 +195,3 @@
         </div>
  
 
-
-<!-- <script type="text/javascript">
-function absensi(){
-    var nis =[] ;
-    var hadirValue = [];
-    var cboxes = document.getElementsByName('hadir[]');
-    var id = document.getElementById('id_jadwal').value;
-    var noinduk= document.getElementsByName('noinduk[]');
-    var len = cboxes.length;
-
-    for(var i=0; i<len; ++i){
-          if(cboxes[i].checked){
-               hadirValue[i] = cboxes[i].value;
-          }
-    }
-
-    var lenDen= noinduk.length;
-    for(var i=0; i<lenDen; ++i){
-        nis[i] = noinduk[i].value;  
-    }
-
-    var daftarHadir= JSON.stringify(hadirValue);
-    var nosis= JSON.stringify(nis);
-    //var keterangan = JSON.stringify(ket);
-    //var materi = JSON.stringify(mat);  
-
-    console.log(id);
-    console.log(daftarHadir);
-    console.log(nosis);
-
-    url = '<?php echo base_url().'C_absensi/simpan';?>';
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function(){
-              //jika berhasil
-              if(this.readyState==4 && this.status == 200)
-              {
-                 console.log(this.responseText);
-                
-                if(this.responseText==0)
-                {
-
-                  
-                  console.log(this.responseText);
-                  
-                }
-                else
-                {
-                  alert("Connection Error, try again");                  
-                }
-                
-              } alert("Data Tersimpan, Success");
-
-            }
-      //console.log("data="+jsonData+"&peminjaman="+jsonData2);
-      xhttp.open("POST", url, true);
-      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      xhttp.send("&id_jadwal="+id+"&hadir="+daftarHadir+"&nosiswa="+nosis);
-      
-}
-
-// function selectall() {
-//   let checkboxs = document.getElementsByName(hadir[]);
-//   for(let i = 1; i < checkboxs.length ; i++) {
-//     checkboxs[i].checked = !checkboxs[i].checked;
-//   }
-// }
-</script> -->

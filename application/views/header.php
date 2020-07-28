@@ -257,21 +257,21 @@
 							</a>
 							<div class="collapse" id="absensi">
 								<ul class="nav nav-collapse">
-<!-- 									<li>
-										<a href="#">
-											<span class="sub-item">Ubah Data Absensi</span>
+									<li>
+										<a href="<?php echo base_url('Jadwal')?>">
+											<span class="sub-item">Tambah Data Absensi</span>
 										</a>
-									</li> -->
+									</li>
 									<li>
 										<a href="<?php echo base_url('C_Absensi')?>">
 											<span class="sub-item">Laporan Kumulatif Absensi</span> 
 										</a>
 									</li>
-									<li>
+<!-- 									<li>
 										<a href="<?php echo base_url('Laporan/siswa')?>">
 											<span class="sub-item">Laporan Absensi</span> 
 										</a>
-									</li>
+									</li> -->
 								</ul>
 							</div>
 						</li>
@@ -308,7 +308,7 @@
 										</a>
                                     </li>
                                     <li>
-										<a href="components/buttons.html">
+										<a href="<?php echo base_url('Laporan/siswa')?>">
 											<span class="sub-item">Laporan Data Siswa Les</span>
 										</a>
 									</li>
@@ -348,7 +348,7 @@
 										</a>
 									</li> -->
 									<li>
-										<a href="<?php echo base_url('C_penilaian/tampilNilai')?>">
+										<a href="<?php echo base_url('C_penilaian')?>">
 											<span class="sub-item">Laporan Kumulatif Nilai</span>
 										</a>
 									</li>

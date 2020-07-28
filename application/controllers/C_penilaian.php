@@ -11,46 +11,58 @@
         }
 
         function index(){
-            if($this->session->userdata('akses') == 'Administrator'){
-                $this->load->model('M_siswa');
-                $this->load->model('M_kelas');
-                $this->load->model('M_jadwal_les');
-                $this->load->model('M_absensi');
-
-                if ($this->input->post('submit')) {
-                    if ($this->input->post('periode') == "") {
-                        $d['periode'] = null;
-                        $d['kelas'] = $this->input->post('kelas');
-                    }elseif($this->input->post('kelas') == ""){
-                        $d['periode'] = $this->input->post('periode');
-                        $d['kelas'] = null;
-                    }else{
-                        $d['periode'] = $this->input->post('periode');
-                        $d['kelas'] = $this->input->post('kelas');
-                    }
-                }else{
-                    $d['periode'] = null;
-                    $d['kelas'] = null;
-                }
-
-                $kelombel   = $this->M_kelas->TampilkanSemua()->result();
-                $jadwal = $this->M_absensi->getAll($d['kelas'],$d['periode'])->result();
-                $jumlah = $this->M_absensi->getAll($d['kelas'],$d['periode'])->num_rows();
-                $absensi = $this->M_absensi->tampilKehadiran()->result();
-                $data = array( 
-                    'title'    => 'Data Absensi',
-                    'content'  => 'tabel/t_rekap_nilai',
-                    'judul' => 'Penilaian Siswa',
-                    'absensi' => $absensi,
-                    'kelombel'  => $kelombel,
-                    'jadwal'    => $jadwal,
-                    'jumlah'    => $jumlah,
+            $this->load->model('M_kelas');
+            if($this->session->userdata('akses') == 'Tentor'){
+                $data = array(
+                    'kelas'         => $this->M_kelas->tampilkanSemua()->result(),
+                    'judul'         => 'Nilai Siswa' ,
+                    'title'         => 'Nilai Siswa',
+                    'content'       => 'tabel/t_laporan_nilai'
                 );
-                
                 $this->load->view('layout', $data);
-            }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
-                echo"<script>history.go(-1);</script>";
+            }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
+                echo "<script>history.go(-1);</script>";
             }
+            // if($this->session->userdata('akses') == 'Administrator'){
+            //     $this->load->model('M_siswa');
+            //     $this->load->model('M_kelas');
+            //     $this->load->model('M_jadwal_les');
+            //     $this->load->model('M_absensi');
+
+            //     if ($this->input->post('submit')) {
+            //         if ($this->input->post('periode') == "") {
+            //             $d['periode'] = null;
+            //             $d['kelas'] = $this->input->post('kelas');
+            //         }elseif($this->input->post('kelas') == ""){
+            //             $d['periode'] = $this->input->post('periode');
+            //             $d['kelas'] = null;
+            //         }else{
+            //             $d['periode'] = $this->input->post('periode');
+            //             $d['kelas'] = $this->input->post('kelas');
+            //         }
+            //     }else{
+            //         $d['periode'] = null;
+            //         $d['kelas'] = null;
+            //     }
+
+            //     $kelombel   = $this->M_kelas->TampilkanSemua()->result();
+            //     $jadwal = $this->M_absensi->getAll($d['kelas'],$d['periode'])->result();
+            //     $jumlah = $this->M_absensi->getAll($d['kelas'],$d['periode'])->num_rows();
+            //     $absensi = $this->M_absensi->tampilKehadiran()->result();
+            //     $data = array( 
+            //         'title'    => 'Data Absensi',
+            //         'content'  => 'tabel/t_rekap_nilai',
+            //         'judul' => 'Penilaian Siswa',
+            //         'absensi' => $absensi,
+            //         'kelombel'  => $kelombel,
+            //         'jadwal'    => $jadwal,
+            //         'jumlah'    => $jumlah,
+            //     );
+                
+            //     $this->load->view('layout', $data);
+            // }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
+            //     echo"<script>history.go(-1);</script>";
+            // }
         }
 
 
@@ -81,8 +93,11 @@
                 $this->load->model('M_mapel');
                 $this->load->model('M_siswa');
                 $this->load->model('M_API');
+                $this->load->model('M_jenis_ujian');
 
                 $kelas   = $this->M_API->getAll('kelas')->result();
+                $matapel = $this->M_mapel->tampilkanSemua()->result();
+                $jenis = $this->M_jenis_ujian->tampilkanSemua()->result();
                 $siswa  = $this->M_siswa->tampilSiswaPerKelas(str_replace("%20"," ",$id))->result();
                 
                 $data = array(
@@ -91,7 +106,9 @@
                         'judul' => 'Input Nilai',
                         'siswa'   => $siswa,
                         'kelas' => $kelas,
-                        'id'    => $id
+                        'id'    => $id,
+                        'jenis' => $jenis,
+                        'matapel' => $matapel
                 );
                 $this->load->view('layout', $data);
             }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
@@ -115,20 +132,23 @@
             //     } else {    
                     //jika validasi berhasil
                     $kelas = $this->input->post('kelas');
+                    $ujian = $this->input->post('ujian');
                     $nilai = $this->input->post('nilai');
                     $noinduk = $this->input->post('noinduk');
+                    $mapel = $this->input->post('mapel');
+                    $topik = $this->input->post('topik');
                     date_default_timezone_set('Asia/Jakarta');
                         foreach ($noinduk as $key => $value) {
                             $data = array(
                                 'ID_NILAI'          => '',
                                 'ID_KELAS'          => str_replace("%20"," ",$kelas),
                                 'ID_PEGAWAI'        => $this->session->userdata('ses_id'),
-                                // 'ID_MAPEL'          => 'MPL001',
-                                'ID_JENIS_UJIAN'    => 'UJI002',
+                                'ID_MAPEL'          => $mapel,
+                                'ID_JENIS_UJIAN'    => $ujian,
                                 'NOINDUK'           => $value,
                                 'TGL_PENILAIAN'     => date("Y-m-d"),
                                 'JUMLAH_NILAI'      => $nilai[$key],
-                                // 'KETERANGAN_NILAI'    => $this->input->post('ket', TRUE)
+                                'TOPIK_UJIAN'       => $topik
 
                             );
                             $this->M_penilaian->tambah($data);

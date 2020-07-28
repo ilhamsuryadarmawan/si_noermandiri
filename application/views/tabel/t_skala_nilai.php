@@ -130,17 +130,18 @@
 
 <!-- MODAL EDIT -->
 
-<!-- <?php
-    foreach($sesi as $s):
-        $id = $s->ID_SESI;
-        $jam_mulai = $s->JAM_MULAI;
-        $jam_selesai = $s->JAM_SELESAI
+<?php
+    foreach($skala as $s):
+        $id = $s->ID_SKALA;
+        $bb = $s->BATAS_BAWAH;
+        $ba = $s->BATAS_ATAS;
+        $grade = $s->GRADE;
 ?>
 <div class="modal fade" id="modal_edit<?php echo $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
         <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLongTitle" align="center">Form Edit Tentor</h3>
+        <h3 class="modal-title" id="exampleModalLongTitle" align="center">Form Edit Skala Nilai</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -150,7 +151,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-4">
-                        <label>ID Sesi</label>
+                        <label>ID skala</label>
                     </div>
                     <div class="col-lg-7">
                         <input type="text" class="form-control" name="id_edit" id="id_edit" value="<?php echo $id?>" readonly/>
@@ -160,20 +161,30 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-4">
-                        <label>Jam Mulai</label>
+                        <label>batas bawah</label>
                     </div>
                     <div class="col-lg-7">
-                        <input type="time" class="form-control" name="jam_mulai_edit" id="jam_mulai_edit" value="<?php echo $jam_mulai?>" required/>
+                        <input type="text" class="form-control" name="jam_mulai_edit" id="jam_mulai_edit" value="<?php echo $bb?>" required/>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-4">
-                        <label>Jam Mulai</label>
+                        <label>batas atas</label>
                     </div>
                     <div class="col-lg-7">
-                        <input type="time" class="form-control" name="jam_selesai_edit" id="jam_selesai_edit" value="<?php echo $jam_selesai?>" required/>
+                        <input type="text" class="form-control" name="jam_selesai_edit" id="jam_selesai_edit" value="<?php echo $ba?>" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label>grade</label>
+                    </div>
+                    <div class="col-lg-7">
+                        <input type="text" class="form-control" name="jam_selesai_edit" id="jam_selesai_edit" value="<?php echo $grade?>" required/>
                     </div>
                 </div>
             </div>
@@ -191,4 +202,4 @@
     </div>
     </div>
 </div>
-<?php endforeach;?> -->
+<?php endforeach;?>

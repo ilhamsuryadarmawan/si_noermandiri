@@ -13,82 +13,6 @@
         <div class="page-inner mt--5">
             <div class="row mt--2">
             <?php if($this->session->userdata('akses')=='Administrator'):?>
-                <div class="col-sm-6 col-md-6">
-                    <div class="card card-stats card-round">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-icon">
-                                    <div class="icon-big text-center icon-success bubble-shadow-small">
-                                        <i class="flaticon-graph"></i>
-                                    </div>
-                                </div>
-                                <div class="col col-stats ml-3 ml-sm-0">
-                                    <div class="numbers">
-<!--                                         <p class="card-category">Total Pembayaran Daftar Siswa Baru </p>
-                                        <h4 class="card-title">Rp. <?php echo number_format($pembayaran->total,0,',','.')?></h4> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-6">
-                    <div class="card card-stats card-round">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-icon">
-                                    <div class="icon-big text-center icon-success bubble-shadow-small">
-                                        <i class="flaticon-graph"></i>
-                                    </div>
-                                </div>
-                                <div class="col col-stats ml-3 ml-sm-0">
-                                    <div class="numbers">
-<!--                                         <p class="card-category">Total Pembayaran Daftar Ulang</p>
-                                        <h4 class="card-title">Rp. <?php echo number_format($p_daftar_ulang->total,0,',','.')?></h4> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-6">
-                    <div class="card card-stats card-round">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-icon">
-                                    <div class="icon-big text-center icon-success bubble-shadow-small">
-                                        <i class="flaticon-graph"></i>
-                                    </div>
-                                </div>
-                                <div class="col col-stats ml-3 ml-sm-0">
-                                    <div class="numbers">
-<!--                                         <p class="card-category">Pendaftaran Siswa Saru yang Belum Melakukan Pembayaran</p>
-                                        <h4 class="card-title"><?php echo $pendaftaran ?></h4> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-6">
-                        <div class="card card-stats card-round">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-icon">
-                                        <div class="icon-big text-center icon-success bubble-shadow-small">
-                                            <i class="flaticon-graph"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col col-stats ml-3 ml-sm-0">
-                                        <div class="numbers">
-<!--                                             <p class="card-category">Daftar Ulang yang Belum Melakukan Pembayaran</p>
-                                            <h4 class="card-title"><?php echo $daftar_ulang ?></h4> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-sm-6 col-md-6">
                         <div class="card card-stats card-round">
                             <div class="card-body">
@@ -151,63 +75,7 @@
                         </div>
                     </div> -->
                     <?php elseif($this->session->userdata('akses')=='Pemilik'):?>
-                    <div class="col-sm-6 col-md-6">
-                        <div class="card card-stats card-round">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-icon">
-                                        <div class="icon-big text-center icon-success bubble-shadow-small">
-                                            <i class="flaticon-graph"></i>
-                                        </div>
-                                    </div>
-<!--                                     <div class="col col-stats ml-3 ml-sm-0">
-                                        <div class="numbers">
-                                            <p class="card-category">Total Pembayaran Daftar Siswa Baru </p>
-                                            <h4 class="card-title">Rp. <?php echo number_format($pembayaran->total,0,',','.')?></h4>
-                                        </div>
-                                    </div> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-6">
-                        <div class="card card-stats card-round">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-icon">
-                                        <div class="icon-big text-center icon-success bubble-shadow-small">
-                                            <i class="flaticon-graph"></i>
-                                        </div>
-                                    </div>
- <!--                                    <div class="col col-stats ml-3 ml-sm-0">
-                                        <div class="numbers">
-                                            <p class="card-category">Total Pembayaran Daftar Ulang</p>
-                                            <h4 class="card-title">Rp. <?php echo number_format($p_daftar_ulang->total,0,',','.')?></h4>
-                                        </div>
-                                    </div> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-6">
-                        <div class="card card-stats card-round">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-icon">
-                                        <div class="icon-big text-center icon-success bubble-shadow-small">
-                                            <i class="flaticon-users"></i>
-                                        </div>
-                                    </div>
-<!--                                     <div class="col col-stats ml-3 ml-sm-0">
-                                        <div class="numbers">
-                                            <p class="card-category">Tentor</p>
-                                            <h4 class="card-title"><?php echo $tentor?></h4>
-                                        </div>
-                                    </div> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="col-sm-6 col-md-6">
                         <div class="card card-stats card-round">
                             <div class="card-body">

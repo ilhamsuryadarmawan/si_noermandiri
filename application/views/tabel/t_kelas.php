@@ -30,7 +30,7 @@
                             <div class="card-header">
                                 <h4 class="card-title">Tambah Kelas</h4>
                             </div>
-                                                    <div class="row">
+                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="col-lg-12">
                                         <?php if (validation_errors()) : ?>

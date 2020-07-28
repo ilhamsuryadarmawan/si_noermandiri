@@ -67,13 +67,13 @@
                         $id = $this->session->userdata('ses_id');
                         if ($this->session->userdata('akses')=='Administrator' || $this->session->userdata('akses')=='Pemilik' || $this->session->userdata('akses')=='Tentor') {
                            $data = array(
-                                'PASSWORD_PEGAWAI' => MD5($this->input->post('password'))
+                                'PASSWORD_PEGAWAI' => MD5($this->input->post('pass_edit'))
                             );
                             $this->load->model('M_pegawai');
                             $this->M_pegawai->update_password($data,$id);
                         }else{
                             $data = array(
-                                'PASSWORD_SISWA' => MD5($this->input->post('password'))
+                                'PASSWORD_SISWA' => MD5($this->input->post('pass_edit'))
                             );
                             $this->load->model('M_siswa');
                             $this->M_siswa->update($data,$id);
@@ -86,7 +86,7 @@
         public function update_profil()
         {
             $id = $this->session->userdata('ses_id');
-            if ($this->session->userdata('akses')=='Administrator' || $this->session->userdata('akses')=='pemilik') {
+            if ($this->session->userdata('akses')=='Administrator' || $this->session->userdata('akses')=='Pemilik') {
                 $data = array(
                     'ALAMAT_PEGAWAI'    => $this->input->post('alamat_edit'),
                     'TGL_LAHIR_PEG'     => $this->input->post('tgl_lahir_edit'),

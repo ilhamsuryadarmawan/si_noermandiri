@@ -96,7 +96,20 @@
                                                 <button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $j->ID_JADWAL?>"><i class="fa fa-edit"></i></button>
                                                 <a href="<?php echo base_url('Jadwal/hapus/'.$j->ID_JADWAL)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a>
                                             </td> -->
-                                            <td><a href="<?php echo base_url('C_absensi/inputAbsen/'.$j->ID_JADWAL)?>"><button class="btn btn-primary btn-sm">Input Absen</button></a></td>  
+                                            <td>
+                                                <?php if($j->STATUS_JADWAL == 1){?>
+                                                    <center><p style="color: orange"><i class="fa fa-check-circle fa-2x mt-3"></i></p><p class="mt--2">Sudah input</p></center>
+                                                <?php } else {?>
+                                                    <center><p style="color: red"><i class="fa fa-times-circle fa-2x mt-3"></i></p><pclass="mt--2">Belum input</p></center>
+                                                <?php }?>
+                                            </td>
+                                            <td>
+                                                <?php if($j->STATUS_JADWAL == 1){?>
+                                                    <button type="button" class="btn btn-primary btn-sm" disabled>Input Absen</button>
+                                                <?php } else {?>
+                                                    <a href="<?php echo base_url('C_absensi/inputAbsen/'.$j->ID_JADWAL)?>"><button class="btn btn-primary btn-sm">Input Absen</button></a>
+                                                <?php }?>
+                                            </td>
                                         </tr>
                                         <?php
                                         }
@@ -313,7 +326,7 @@
         });
     }
 </script> -->
-<!-- <script >
+<script >
 	function getJadwal(){
         var kls = document.getElementById('kelas').value;
         var periode = document.getElementById('periode').value;
@@ -336,7 +349,7 @@
                                     '<td>'+data[i].NAMA_KELAS+'</td>'+
                                     '<td>'+data[i].NAMA_MAPEL+'</td>'+
                                     '<td>'+data[i].NAMA_RUANGAN+'</td>'+
-                                    '<td>'+data[i].NAMA_TENTOR+'</td>'+
+                                    '<td>'+data[i].NAMA_PEGAWAI+'</td>'+
                                     // '<td><a href=""><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-alt"></i></button></a></td>'+
                                     '</tr>';
                         }
@@ -349,4 +362,4 @@
             }
         });
     }	
-</script> -->
+</script>

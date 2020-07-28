@@ -163,5 +163,10 @@ class M_jadwal_les extends CI_Model {
         return $this->db->get();
     }
 
+        function update_status($data, $id){
+        $this->db->where('ID_JADWAL', $id);
+        $this->db->update('jadwal_les', $data);
+    }
+
 
 }

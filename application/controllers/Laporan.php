@@ -71,5 +71,29 @@
                 echo "<script>history.go(-1);</script>";
             }
         }
+
+        public function siswa(){
+            if($this->session->userdata('akses') == 'Pemilik'){
+                $this->load->model('M_kelas');
+                $kelas = $this->M_kelas->tampilkanSemua()->result();
+                    $data = array(
+                    'judul'         => 'Laporan Siswa',
+                    'title'         => 'Laporan Siswa',
+                    'content'       => 'tabel/t_laporan_siswa',
+                    'kelas'         => $kelas
+                );
+                $this->load->view('layout', $data);
+            }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
+                echo "<script>history.go(-1);</script>";
+            }
+        }
+
+        public function siswa_perkelas()
+        {
+            $kelas       = $this->input->post('kelas',TRUE);
+            $this->load->model('M_siswa');
+            $data = $this->M_siswa->getSiswaByKelas($kelas)->result();
+            echo json_encode($data);
+        }
     }
 ?>
