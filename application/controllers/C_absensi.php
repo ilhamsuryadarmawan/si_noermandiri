@@ -149,6 +149,26 @@ class C_absensi extends CI_Controller {
             redirect('jadwal');
     }
 
+        public function riwayat_absensi()
+        {
+            if($this->session->userdata('akses') == 'Siswa'){        
+            $this->load->model('M_absensi');
+            $noinduk = $this->session->userdata('ses_id');
+            $riwayat = $this->M_absensi->histori_absen($this->input->post('periode'),$noinduk)->result();
+            $jumlah = $this->M_absensi->getAll($d['periode'],$noinduk)->num_rows();
+            $data = array(
+                'judul'     => 'Riwayat Absensi',
+                'title'     => 'Riwayat Absensi',
+                'content'   => 'tabel/t_rekap_absensi',
+                'riwayat'   => $riwayat,
+                'jumlah'  => $jumlah
+            );
+            $this->load->view('layout', $data);
+            }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
+                echo "<script>history.go(-1);</script>";
+            }
+        }
+
     public function get_laporan()
     {
         $this->load->model('M_absensi');

@@ -17,8 +17,8 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md-3">
-                                   <!--  <a href="<?php echo base_url('Jadwal/tambah')?>"><button type="button" class="btn btn-primary btn-round" >Tambah data</button></a>
- -->                                </div>
+                                    <a href="<?php echo base_url('Jadwal/tambah')?>"><button type="button" class="btn btn-primary btn-round" >Tambah data</button></a>
+                                </div>
                                 <div class="col-md-9">
                                     <form action="<?php echo base_url('Jadwal/index')?>" method="POST">
                                     <div class="row">
@@ -81,8 +81,9 @@
                                 <tbody id="show_data">
                                     <?php if($jumlah > 0):?>
                                         <?php
+                                        $nourut = 1;
                                         foreach ($jadwal as $j) {
-                                                $nourut = 1;
+                                                
                                         ?>
                                         <tr>
                                             <td><?php echo $nourut++;?></td>

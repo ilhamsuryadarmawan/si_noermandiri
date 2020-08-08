@@ -402,7 +402,7 @@
 							</a>
                         </li>
                         <li class="nav-item">
-							<a data-toggle="collapse" href="#<?php echo base_url('C_Absensi')?>">
+							<a data-toggle="collapse" href="#<?php echo base_url('C_Absensi/riwayat_absensi')?>">
 								<i class="fas fa-history"></i>
 								<p>Histori Absensi</p>
 							</a>

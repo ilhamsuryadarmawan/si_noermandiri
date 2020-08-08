@@ -19,6 +19,12 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-12">
+                                                                            <?php if (validation_errors()) : ?>
+                                            <div class="alert alert-danger">
+                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                <?php echo validation_errors(); ?>
+                                            </div>
+                                        <?php endif; ?>
                                     <form action="<?php echo base_url('Jadwal/aksiTambah')?>" method="post">
                                         <div class="form-group">
                                             <div class="row">
@@ -28,7 +34,7 @@
                                                     <label>Tanggal</label>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <input type="date" class="form-control" name="tanggal" id="tanggal" onchange="getKelombel();" />
+                                                    <input type="date" class="form-control" name="tanggal" id="tanggal" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -41,7 +47,7 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-select-list">
-                                                        <select class="form-control" name="sesi" id="sesi" onchange="getPegawai(); getRuangan()">
+                                                        <select class="form-control" name="sesi" id="sesi" required>
                                                             <option value="">- Pilih Jam -</option>
                                                             <?php
                                                             foreach($sesi as $jam) { ?>
@@ -62,14 +68,14 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-select-list">
-                                                        <select class="form-control" name="kelas" id="kelas">
+                                                        <select class="form-control" name="kelas" id="kelas" required>
                                                             <option value="">- Pilih Kelas -</option>
-                                                            <!-- <?php
-                                                            foreach ($kelombel as $kelas) { ?>
-                                                                <option value="<?php echo $kelas->ID_KELAS;?>"><?php echo $kelas->NAMA_KELAS;?></option>
+                                                            <?php
+                                                            foreach ($kelas as $kls) { ?>
+                                                                <option value="<?php echo $kls->ID_KELAS;?>"><?php echo $kls->NAMA_KELAS;?></option>
                                                             <?php
                                                             }
-                                                            ?> -->
+                                                            ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -84,7 +90,7 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-select-list">
-                                                        <select class="form-control" name="mapel" id="mapel" >
+                                                        <select class="form-control" name="mapel" id="mapel" required>
                                                             <option value="">- Pilih Mata Pelajaran -</option>
                                                             <?php
                                                             foreach ($mata_ajar as $mapel) { ?>
@@ -93,7 +99,7 @@
                                                             }
                                                             ?>
                                                         </select>
-                                                        <span class="focus-input100" data-placeholder="&#xf207;"></span>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -107,11 +113,11 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-select-list">
-                                                        <select class="form-control" name="tentor" id="tentor" >
+                                                        <select class="form-control" name="tentor" id="tentor" required>
                                                             <option value="">- Pilih Tentor -</option>
                                                             <?php
                                                             foreach($pengajar as $tentor) { ?>
-                                                            <option value="<?php echo $tentor->ID_PEGAWAI;?>"><?php echo $tentor->NAMA_PEGAWAI;?> - <?php echo $tentor->NAMA_MAPEL;?></option>
+                                                            <option value="<?php echo $tentor->ID_PEGAWAI;?>"><?php echo $tentor->NAMA_PEGAWAI;?></option>
                                                             <?php
                                                             } ?>
                                                         </select>
@@ -128,13 +134,13 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-select-list">
-                                                        <select class="form-control" name="ruangan" id="ruangan">
+                                                        <select class="form-control" name="ruangan" id="ruangan" required>
                                                             <option value="">- Pilih Ruangan -</option>
-<!--                                                             <?php
+                                                            <?php
                                                             foreach($ruangan as $room) { ?>
                                                             <option value="<?php echo $room->ID_RUANGAN;?>"><?php echo $room->NAMA_RUANGAN; ?></option>
                                                             <?php
-                                                            } ?> -->
+                                                            } ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -161,7 +167,7 @@
         </div>
     </div>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
 
     function getPegawai(){
@@ -228,5 +234,5 @@
             }
         });
     }
-</script>
+</script> -->
 

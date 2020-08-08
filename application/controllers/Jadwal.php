@@ -82,9 +82,15 @@
             $this->load->model('M_API');
             $mata_ajar  = $this->M_API->getAll('mata_pelajaran')->result();
             $sesi       = $this->M_API->getAll('sesi')->result();
+            $kelas       = $this->M_API->getAll('kelas')->result();
+            $pengajar       = $this->M_API->getAll('pegawai')->result();
+            $ruangan       = $this->M_API->getAll('ruangan')->result();
             $data = array(
                 'sesi'     => $sesi,
                 'mata_ajar' => $mata_ajar,
+                'kelas' => $kelas,
+                'pengajar' => $pengajar,
+                'ruangan' => $ruangan,
                 'judul'     => 'Form Tambah Jadwal Les',
                 'title'     => 'Input Jadwal Les',
                 'content'   => 'form/f_jadwal',
@@ -98,35 +104,37 @@
         public function aksiTambah(){
             if($this->session->userdata('akses') == 'Administrator'){
             //load library form validation
-             $this->load->library('form_validation');
+            $this->load->library('form_validation');
             $this->form_validation->set_error_delimiters('<div style="margin-bottom:-10px"><span style="color:red;font-size:12px">', '</span></div>');
 
             //rules validasi
+            $this->form_validation->set_rules('tanggal', 'TANGGAL', 'required',['required' => 'Tanggal tidak boleh kosong']);
+            $this->form_validation->set_rules('sesi', 'ID_SESI', 'required',['required' => 'Jam tidak boleh kosong']);
             $this->form_validation->set_rules('kelas', 'ID_KELAS', 'required',['required' => 'Kelas tidak boleh kosong']);
             $this->form_validation->set_rules('mapel', 'ID_MAPEL', 'required',['required' => 'Mapel tidak boleh kosong']);
-            $this->form_validation->set_rules('pegawai','ID_PEGAWAI', 'required',['required' => 'Tentor tidak boleh kosong']);
+            $this->form_validation->set_rules('tentor','ID_PEGAWAI', 'required',['required' => 'Tentor tidak boleh kosong']);
             $this->form_validation->set_rules('ruangan', 'ID_RUANGAN', 'required',['required' => 'Ruangan tidak boleh kosong']);
-            $this->form_validation->set_rules('sesi', 'ID_SESI', 'required',['required' => 'Jam tidak boleh kosong']);
-            $this->form_validation->set_rules('tanggal', 'TANGGAL', 'required',['required' => 'Tanggal tidak boleh kosong']);
-
+            
                 if ($this->form_validation->run() == FALSE) {
                     //jika validasi gagal maka akan kembali ke form tambah jadwal
                     $this->tambah();
                     } else {    
                     //jika validasi berhasil
-                        $tanggal = $this->input->post('tanggal');
-                        $tahun = date("y",strtotime($tanggal));
-                        $bulan = date("m",strtotime($tanggal));
-                        $tgl = date("d",strtotime($tanggal));
-                        $id = $tgl.$bulan.$tahun;
+                        // $tanggal = $this->input->post('tanggal');
+                        // $tahun = date("y",strtotime($tanggal));
+                        // $bulan = date("m",strtotime($tanggal));
+                        // $tgl = date("d",strtotime($tanggal));
+                        // $id = $tgl.$bulan.$tahun;
                         $data = array(
-                            'ID_JADWAL'   => 'J'.$this->input->post('kelas').$id,
-                            'ID_PEGAWAI'   => $this->input->post('pegawai', TRUE),
+                            'ID_JADWAL'   => '',
+                            'ID_PEGAWAI'   => $this->input->post('tentor', TRUE),
                             'ID_MAPEL'    => $this->input->post('mapel', TRUE),
                             'ID_KELAS'    => $this->input->post('kelas', TRUE),
                             'ID_RUANGAN'  => $this->input->post('ruangan', TRUE),
                             'ID_SESI'     => $this->input->post('sesi', TRUE),
                             'TANGGAL'     => $this->input->post('tanggal', TRUE),
+                            'STATUS_JADWAL'     => '0'
+
                         );
 
                         $this->load->model('M_jadwal_les');
