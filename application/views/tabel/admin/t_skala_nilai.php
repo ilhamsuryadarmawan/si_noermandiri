@@ -40,36 +40,19 @@
                                             </div>
                                         <?php endif; ?>
                                         <form action="<?php echo base_url('tambahskala')?>" method="POST">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-lg-3">
-                                                    <label>Batas Atas</label>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="batas_atas" name="batas_atas"/>
-                                                </div>
+                                        <br>
+                                            <div class="form-group form-floating-label">
+                                                <input id="inputFloatingLabel" type="text" class="form-control input-border-bottom" id="batas_atas" name="batas_atas" required>
+                                                <label for="inputFloatingLabel" class="placeholder">Batas Atas</label>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-lg-3">
-                                                    <label>Batas Bawah</label>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="batas_bawah" name="batas_bawah"/>
-                                                </div>
+                                            <div class="form-group form-floating-label">
+                                                <input id="inputFloatingLabel" type="text" class="form-control input-border-bottom" id="batas_bawah" name="batas_bawah" required>
+                                                <label for="inputFloatingLabel" class="placeholder">Batas Bawah</label>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-lg-3">
-                                                    <label>Grade</label>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="grade" name="grade"/>
-                                                </div>
+                                            <div class="form-group form-floating-label">
+                                                <input id="inputFloatingLabel" type="text" class="form-control input-border-bottom" id="grade" name="grade" required>
+                                                <label for="inputFloatingLabel" class="placeholder">Grade</label>
                                             </div>
-                                        </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-lg-3"></div>
@@ -99,6 +82,7 @@
                                                 <th>ID Skala</th>
                                                 <th>Nilai</th>
                                                 <th>Grade</th>
+                                                <th><center>Status</center></th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -113,7 +97,15 @@
                                                 <td><?php echo $sk->ID_SKALA; ?></td>
                                                 <td><?php echo ($sk->BATAS_BAWAH);?> - <?php echo ($sk->BATAS_ATAS);?></td>
                                                 <td><?php echo $sk->GRADE; ?></td>
-                                                <td><button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-edit"></i></button><a href="<?php echo base_url('c_skala/hapus/'.$id)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a></td>
+                                                <td><?php if($sk->STATUS_SKALA == 1){?>
+                                                    <br><center><p style="color: green"><i class="fa fa-check-circle fa-2x"> Aktif</i></p></center>
+                                                    <?php } else {?>
+                                                    <br><center><p style="color: red"><i class="fa fa-times-circle fa-2x"> Nonaktif</i></p></center>
+                                                    <?php }?>
+                                                </td>
+                                                <td><button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-edit"></i></button>
+                                                <!--     <a href="<?php echo base_url('c_skala/hapus/'.$id)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a> -->
+                                                </td>
                                             </tr>
                                             <?php
                                             }

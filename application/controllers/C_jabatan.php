@@ -17,7 +17,7 @@
                 $data = array(
                         'jabatan'    => $row, 
         	            'title'    => 'Data Jabatan',
-        	            'content'  => 'tabel/t_jabatan',
+        	            'content'  => 'tabel/admin/t_jabatan',
         	            'judul' => 'Data Jabatan',
         	        );
         	        $this->load->view('layout', $data);
@@ -45,6 +45,7 @@
                     //jika validasi berhasil
                         $data = array(
                             'JABATAN'    => $this->input->post('nama', TRUE),
+                            'STATUS_JABATAN'    => '1'
                         );
                         $this->load->model('M_jabatan');
                         $this->M_jabatan->tambah($data);
@@ -62,7 +63,9 @@
             if($this->session->userdata('akses') == 'Administrator'){
                 $id = $this->input->post('id_edit', TRUE);
                 $data = array(
-                    'JABATAN'     => $this->input->post('nama_edit', TRUE)
+                    'JABATAN'     => $this->input->post('nama_edit', TRUE),
+                    'STATUS_JABATAN'     => $this->input->post('status_edit', TRUE)
+
                 );
                 $this->load->model('M_jabatan');
                 $this->M_jabatan->update($data, $id);
@@ -75,11 +78,11 @@
             }
         }
 
-        public function hapus($id)
-        {
-            $this->load->model('M_jabatan');
-            $this->M_jabatan->hapus($id);
-            $this->session->set_flashdata('flash','Dihapus');
-            redirect(site_url('C_jabatan'));
-        }
+        // public function hapus($id)
+        // {
+        //     $this->load->model('M_jabatan');
+        //     $this->M_jabatan->hapus($id);
+        //     $this->session->set_flashdata('flash','Dihapus');
+        //     redirect(site_url('C_jabatan'));
+        // }
     }

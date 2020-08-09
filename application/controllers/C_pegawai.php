@@ -17,7 +17,7 @@
                 $data = array(
                         'pegawai'          => $rows,
         	            'title'        => 'Data Pegawai',
-        	            'content'      => 'tabel/t_pegawai',
+        	            'content'      => 'tabel/admin/t_pegawai',
         	            'judul'        => 'Data Pegawai',
         	        );
         	        $this->load->view('layout', $data);

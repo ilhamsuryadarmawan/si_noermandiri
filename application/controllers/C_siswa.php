@@ -13,13 +13,26 @@
             //jika sebagai Administrator
             if($this->session->userdata('akses') == 'Administrator'){
                 $this->load->model('M_siswa');
+                $this->load->model('M_kelas');
 
-                $row = $this->M_siswa->tampilkanSemua()->result();
+                if ($this->input->post('submit')) {
+                    $d['kelas'] = $this->input->post('kelas');
+                }else{
+                    $d['kelas'] = null;
+                }
+
+                
+            $kelombel   = $this->M_kelas->TampilkanSemua()->result();
+            $siswa = $this->M_siswa->TampilkanSemua($d['kelas'])->result();
+            $jumlah = $this->M_siswa->TampilkanSemua($d['kelas'])->num_rows();
+
                 $data = array(
-                        'murid'    => $row, 
+                        'murid'    => $siswa, 
         	            'title'    => 'Data Siswa',
         	            'content'  => 'tabel/t_siswa',
         	            'judul'    => 'Data Siswa',
+                        'kelombel' => $kelombel,
+                        'jumlah' => $jumlah
         	        );
         	        $this->load->view('layout', $data);
             }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang

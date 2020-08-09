@@ -71,8 +71,8 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <!-- <th>ID Ruangan</th> -->
                                                 <th>Nama Ruangan</th>
+                                                <th><center>Status</center></th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -86,7 +86,15 @@
                                                 <td><?php echo $nourut++?></td>
                                                 <!-- <td><?php echo $rk->ID_RUANGAN; ?></td> -->
                                                 <td><?php echo $rk->NAMA_RUANGAN; ?></td>
-                                                <td><button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-edit"></i></button><a href="<?php echo base_url('C_ruangan/hapus/'.$id)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a></td>
+                                                <td><?php if($rk->STATUS_RUANGAN == 1){?>
+                                                    <br><center><p style="color: green"><i class="fa fa-check-circle fa-2x"> Aktif</i></p></center>
+                                                    <?php } else {?>
+                                                    <br><center><p style="color: red"><i class="fa fa-times-circle fa-2x"> Nonaktif</i></p></center>
+                                                    <?php }?>
+                                                </td>
+                                                <td><button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-edit"></i></button>
+                                                <!--     <a href="<?php echo base_url('C_ruangan/hapus/'.$id)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a> -->
+                                                </td>
                                             </tr>
                                             <?php
                                             }
@@ -106,6 +114,7 @@
     foreach($ruangan as $r):
     $id = $r->ID_RUANGAN;
     $nama = $r->NAMA_RUANGAN;
+    $status = $r->STATUS_RUANGAN;
 ?>
 
 <div class="modal fade" id="modal_edit<?php echo $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -119,24 +128,30 @@
             </div>
             <div class="modal-body">
                 <form action="<?php echo base_url('updateruangan')?>" method="POST">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <label>ID Ruangan</label>
-                            </div>
-                            <div class="col-lg-7">
-                                <input type="text" class="form-control" name="id_edit" id="id_edit" value="<?php echo $id?>" readonly/>
-                            </div>
+                    <div class="form-group form-inline">
+                        <label for="inlineinput" class="col-md-3 col-form-label">ID Ruangan</label>
+                        <div class="col-md-9 p-0">
+                            <input type="text" class="form-control input-full" placeholder="Enter Input" name="id_edit" id="id_edit" value="<?php echo $id?>" readonly>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <label>Nama Ruangan</label>
-                            </div>
-                            <div class="col-lg-7">
-                                <input type="text" class="form-control" name="nama_edit" id="nama_edit" value="<?php echo $nama?>" required/>
-                            </div>
+                    <div class="form-group form-inline">
+                        <label for="inlineinput" class="col-md-3 col-form-label">Nama Ruangan</label>
+                        <div class="col-md-9 p-0">
+                            <input type="text" class="form-control input-full" placeholder="Enter Input" name="nama_edit" id="nama_edit" value="<?php echo $nama?>" required>
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <label for="inlineinput" class="col-md-3 col-form-label">Status Ruangan</label>
+                        <div class="col-md-9 p-0">
+                                <select class="form-control" name="status_edit" id="status_edit" value="<?php echo $status?>">
+                                    <?php if($status == 1){?>
+                                        <option value="0">Nonaktif</option>
+                                        <option value="1" selected>Aktif</option>
+                                    <?php }else{ ?>
+                                        <option value="0" selected>Nonaktif</option>
+                                        <option value="1" >Aktif</option>
+                                    <?php } ?>
+                                </select>
                         </div>
                     </div>
                     <div class="form-group">

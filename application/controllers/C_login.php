@@ -31,13 +31,13 @@ class C_login extends CI_Controller {
                 $this->session->set_userdata('ses_id',$data['ID_PEGAWAI']);
                 $this->session->set_userdata('ses_nama',$data['NAMA_PEGAWAI']);
                 redirect(site_url('C_home'));
-            }elseif($data['LEVEL']=='2'){ //akses login utk pemilik
-                $this->session->set_userdata('akses','Pemilik');
+            }elseif($data['LEVEL']=='2'){ //akses login utk Tentor
+                $this->session->set_userdata('akses','Tentor');
                 $this->session->set_userdata('ses_id',$data['ID_PEGAWAI']);
                 $this->session->set_userdata('ses_nama',$data['NAMA_PEGAWAI']);
                 redirect(site_url('C_home'));
-            }elseif($data['LEVEL']=='3'){ //akses login utk tentor
-                $this->session->set_userdata('akses','Tentor');
+            }elseif($data['LEVEL']=='3'){ //akses login utk Pemilik
+                $this->session->set_userdata('akses','Pemilik');
                 $this->session->set_userdata('ses_id',$data['ID_PEGAWAI']);
                 $this->session->set_userdata('ses_nama',$data['NAMA_PEGAWAI']);
                 redirect(site_url('C_home'));

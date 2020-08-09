@@ -135,6 +135,26 @@
 							<div class="collapse" id="base">
 								<ul class="nav nav-collapse">
 									<li>
+										<a href="<?php echo base_url('C_jabatan')?>">
+											<span class="sub-item">Jabatan</span>
+										</a>
+									</li>
+									<li>
+										<a href="<?php echo base_url('C_jenis_ujian')?>">
+											<span class="sub-item">Jenis Ujian</span>
+										</a>
+									</li>
+									<li>
+										<a href="<?php echo base_url('C_jenjang_kelas')?>">
+											<span class="sub-item">Jenjang Kelas</span>
+										</a>
+									</li>
+									<li>
+										<a href="<?php echo base_url('C_kelas')?>">
+											<span class="sub-item">Kelas</span>
+										</a>
+									</li>
+									<li>
 										<a href="<?php echo base_url('C_mapel')?>">
 											<span class="sub-item">Mata Pelajaran</span>
 										</a>
@@ -145,21 +165,6 @@
 										</a>
                                     </li>
 									<li>
-										<a href="<?php echo base_url('C_kelas')?>">
-											<span class="sub-item">Kelas</span>
-										</a>
-									</li>
-									<li>
-										<a href="<?php echo base_url('C_jenjang_kelas')?>">
-											<span class="sub-item">Jenjang Kelas</span>
-										</a>
-									</li>
-									<li>
-										<a href="<?php echo base_url('C_jabatan')?>">
-											<span class="sub-item">Jabatan</span>
-										</a>
-									</li>
-									<li>
 										<a href="<?php echo base_url('C_sesi')?>">
 											<span class="sub-item">Sesi Les</span>
 										</a>
@@ -169,11 +174,7 @@
 											<span class="sub-item">Skala Nilai</span>
 										</a>
 									</li>
-									<li>
-										<a href="<?php echo base_url('C_jenis_ujian')?>">
-											<span class="sub-item">Jenis Ujian</span>
-										</a>
-									</li>
+
 								</ul>
 							</div>
 						</li>
@@ -231,11 +232,11 @@
 							</a>
 							<div class="collapse" id="nilai">
 								<ul class="nav nav-collapse">
-									<li>
+<!-- 									<li>
 										<a href="<?php echo base_url('C_penilaian/tampilKelas')?>">
 											<span class="sub-item">Tambah Data Nilai</span>
 										</a>
-									</li>
+									</li> -->
 <!-- 									<li>
 										<a href="#">
 											<span class="sub-item">Ubah Data Nilai</span>
@@ -257,11 +258,11 @@
 							</a>
 							<div class="collapse" id="absensi">
 								<ul class="nav nav-collapse">
-									<li>
+<!-- 									<li>
 										<a href="<?php echo base_url('Jadwal')?>">
 											<span class="sub-item">Tambah Data Absensi</span>
 										</a>
-									</li>
+									</li> -->
 									<li>
 										<a href="<?php echo base_url('C_Absensi')?>">
 											<span class="sub-item">Laporan Kumulatif Absensi</span> 
@@ -389,12 +390,6 @@
 								<p>Dashboard</p>
 							</a>
 						</li>
-						<li class="nav-item">
-							<a data-toggle="collapse" href="<?php echo base_url('Jadwal')?>">
-								<i class="fas fa-calendar-alt"></i>
-								<p>Jadwal Les</p>
-							</a>
-                        </li>
                         <li class="nav-item">
 							<a data-toggle="collapse" href="#<?php echo base_url('C_penilaian')?>">
 								<i class="fas fa-history"></i>

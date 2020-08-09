@@ -17,7 +17,7 @@
                 $data = array(
                         'jenis_ujian'    => $rows,
         	            'title'        => 'Data Jenis Ujan',
-        	            'content'      => 'tabel/t_jenis_ujian',
+        	            'content'      => 'tabel/admin/t_jenis_ujian',
         	            'judul'        => 'Data Jenis Ujian',
         	        );
         	        $this->load->view('layout', $data);
@@ -45,6 +45,7 @@
                     //jika validasi berhasil
                         $data = array(
                             'NAMA_JENIS_UJIAN'    => $this->input->post('nama', TRUE),
+                            'STATUS_JENIS_UJIAN'    => '1'
                         );
                         $this->load->model('M_JENIS_UJIAN');
                         $this->M_JENIS_UJIAN->tambah($data);
@@ -62,7 +63,8 @@
             if($this->session->userdata('akses') == 'Administrator'){
                 $id = $this->input->post('id_edit', TRUE);
                 $data = array(
-                    'NAMA_JENIS_UJIAN'     => $this->input->post('nama_edit', TRUE)
+                    'NAMA_JENIS_UJIAN'     => $this->input->post('nama_edit', TRUE),
+                    'STATUS_JENIS_UJIAN'     => $this->input->post('status_edit', TRUE)
                 );
                 $this->load->model('M_JENIS_UJIAN');
                 $this->M_JENIS_UJIAN->update($data, $id);
@@ -75,12 +77,12 @@
             }
         }
 
-        public function hapus($id)
-        {
-            $this->load->model('M_jenis_ujian');
-            $this->M_jenis_ujian->hapus($id);
-            $this->session->set_flashdata('flash','Dihapus');
-            redirect(site_url('C_jenis_ujian'));
-        }
+        // public function hapus($id)
+        // {
+        //     $this->load->model('M_jenis_ujian');
+        //     $this->M_jenis_ujian->hapus($id);
+        //     $this->session->set_flashdata('flash','Dihapus');
+        //     redirect(site_url('C_jenis_ujian'));
+        // }
     }
 ?>

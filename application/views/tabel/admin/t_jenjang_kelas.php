@@ -80,6 +80,7 @@
                                                 <th>No</th>
                                                 <th>Jenjang Kelas</th>
                                                 <th>Biaya</th>
+                                                <th><center>Status</center></th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -93,7 +94,15 @@
                                                 <td><?php echo $nourut++?></td>
                                                 <td><?php echo $jk->NAMA_JENJANG; ?></td>
                                                 <td><?php echo $jk->BIAYA; ?></td>
-                                                <td><button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-edit"></i></button><a href="<?php echo base_url('C_jenjang_kelas/hapus/'.$id)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a></td>
+                                                <td><?php if($jk->STATUS_JENJANG == 1){?>
+                                                    <br><center><p style="color: green"><i class="fa fa-check-circle fa-2x"> Aktif</i></p></center>
+                                                    <?php } else {?>
+                                                    <br><center><p style="color: red"><i class="fa fa-times-circle fa-2x"> Nonaktif</i></p></center>
+                                                    <?php }?>
+                                                </td>
+                                                <td><button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-edit"></i></button>
+                                                 <!--    <a href="<?php echo base_url('C_jenjang_kelas/hapus/'.$id)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a> -->
+                                                </td>
                                             </tr>
                                             <?php
                                             }
@@ -114,6 +123,7 @@
     $id = $jnj->ID_JENJANG;
     $nama = $jnj->NAMA_JENJANG;
     $biaya = $jnj->BIAYA;
+    $status = $jnj->STATUS_JENJANG;
 ?>
 
 <div class="modal fade" id="modal_edit<?php echo $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -127,34 +137,36 @@
             </div>
             <div class="modal-body">
                 <form action="<?php echo base_url('updatejenjang')?>" method="POST">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <label>ID Jenjang Kelas</label>
-                            </div>
-                            <div class="col-lg-7">
-                                <input type="text" class="form-control" name="id_edit" id="id_edit" value="<?php echo $id?>" readonly/>
-                            </div>
+                    <div class="form-group form-inline">
+                        <label for="inlineinput" class="col-md-4 col-form-label">ID Jenjang Kelas</label>
+                        <div class="col-md-8 p-0">
+                            <input type="text" class="form-control input-full" placeholder="Enter Input" name="id_edit" id="id_edit" value="<?php echo $id?>" readonly>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <label>Nama Jenjang Kelas</label>
-                            </div>
-                            <div class="col-lg-7">
-                                <input type="text" class="form-control" name="nama_edit" id="nama_edit" value="<?php echo $nama?>" required/>
-                            </div>
+                    <div class="form-group form-inline">
+                        <label for="inlineinput" class="col-md-4 col-form-label">Nama Jenjang Kelas</label>
+                        <div class="col-md-8 p-0">
+                            <input type="text" class="form-control input-full" placeholder="Enter Input" name="nama_edit" id="nama_edit" value="<?php echo $nama?>" required>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <label>Biaya</label>
-                            </div>
-                            <div class="col-lg-7">
-                                <input type="text" class="form-control" name="biaya_edit" id="biaya_edit" value="<?php echo $biaya?>" required/>
-                            </div>
+                    <div class="form-group form-inline">
+                        <label for="inlineinput" class="col-md-4 col-form-label">Biaya</label>
+                        <div class="col-md-8 p-0">
+                            <input type="text" class="form-control input-full" placeholder="Enter Input" name="biaya_edit" id="biaya_edit" value="<?php echo $biaya?>" required>
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <label for="inlineinput" class="col-md-4 col-form-label">Status Jenjang Kelas</label>
+                        <div class="col-md-8 p-0">
+                                <select class="form-control" name="status_edit" id="status_edit" value="<?php echo $status?>">
+                                    <?php if($status == 1){?>
+                                        <option value="0">Nonaktif</option>
+                                        <option value="1" selected>Aktif</option>
+                                    <?php }else{ ?>
+                                        <option value="0" selected>Nonaktif</option>
+                                        <option value="1" >Aktif</option>
+                                    <?php } ?>
+                                </select>
                         </div>
                     </div>
                     <div class="form-group">

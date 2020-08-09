@@ -14,13 +14,15 @@
             //jika sebagai Administrator
             if($this->session->userdata('akses') == 'Administrator'){
                 $this->load->model('M_mapel');
-
+                $this->load->model('M_pegawai');
                 $rows = $this->M_mapel->tampilkanSemua()->result();
+                $pegawai = $this->M_pegawai->tampilkanSemua()->result();
                 $data = array(
                         'mapel'        => $rows,
         	            'title'        => 'Data Mata Pelajaran',
-        	            'content'      => 'tabel/t_mata_pelajaran',
+        	            'content'      => 'tabel/admin/t_mata_pelajaran',
         	            'judul'        => 'Data Mata Pelajaran',
+                        'pegawai'      => $pegawai
         	        );
         	        $this->load->view('layout', $data);
             }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
@@ -53,7 +55,9 @@
                     } else {    
                     //jika validasi berhasil
                         $data = array(
+                            'ID_PEGAWAI'  => $this->input->post('pegawai', TRUE),
                             'NAMA_MAPEL'  => $this->input->post('nama_mapel', TRUE),
+                            'STATUS_MAPEL'  => '1'
                         );
 
                         $this->load->model('M_mapel');
@@ -72,7 +76,8 @@
             if($this->session->userdata('akses') == 'Administrator'){
                 $id = $this->input->post('id_edit', TRUE);
                 $data = array(
-                    'NAMA_MAPEL'     => $this->input->post('nama_edit', TRUE)
+                    'NAMA_MAPEL'     => $this->input->post('nama_edit', TRUE),
+                    'STATUS_MAPEL'     => $this->input->post('status_edit', TRUE)
                 );
                 $this->load->model('M_mapel');
                 $this->M_mapel->update($data, $id);
@@ -85,12 +90,12 @@
             }
         }
 
-        public function hapus($id)
-        {
-            $this->load->model('M_mapel');
-            $this->M_mapel->hapus($id);
-            $this->session->set_flashdata('flash','Dihapus');
-            redirect(site_url('C_mapel'));
-        }
+        // public function hapus($id)
+        // {
+        //     $this->load->model('M_mapel');
+        //     $this->M_mapel->hapus($id);
+        //     $this->session->set_flashdata('flash','Dihapus');
+        //     redirect(site_url('C_mapel'));
+        // }
     }
 ?>

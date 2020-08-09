@@ -45,6 +45,19 @@
                                                     <input id="inputFloatingLabel" type="text" class="form-control input-border-bottom" name="nama_mapel" id="nama_mapel" required>
                                                     <label for="inputFloatingLabel" class="placeholder">Nama Mata Pelajaran</label>
                                                 </div>
+                                            <br>
+                                                <div class="form-group form-floating-label">
+                                                    <select class="form-control input-border-bottom" name="pegawai" id="pegawai" required>
+                                                        <option value="">&nbsp;</option>
+                                                        <?php
+                                                        foreach ($pegawai as $peg) { ?>
+                                                            <option value="<?php echo $peg->ID_PEGAWAI;?>"><?php echo $peg->NAMA_PEGAWAI;?></option>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                    <label for="selectFloatingLabel" class="placeholder">Tentor</label>
+                                                </div>
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-lg-3"></div>
@@ -72,9 +85,10 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Mata Pelajaran</th>
+                                                <th><center>Status</center></th>
                                                 <th>Aksi</th>
                                             </tr>
-                                        </thead>
+                                        </thead> 
                                         <tbody>
                                             <?php
                                             $nourut = 1;
@@ -84,7 +98,15 @@
                                             <tr>
                                                 <td><?php echo $nourut++;?></td>
                                                 <td><?php echo $mpl->NAMA_MAPEL; ?></td>
-                                                <td><button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-edit"></i></button><a href="<?php echo base_url('C_mapel/hapus/'.$id)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a></td>
+                                                <td><?php if($mpl->STATUS_MAPEL == 1){?>
+                                                    <br><center><p style="color: green"><i class="fa fa-check-circle fa-2x"> Aktif</i></p></center>
+                                                    <?php } else {?>
+                                                    <br><center><p style="color: red"><i class="fa fa-times-circle fa-2x"> Nonaktif</i></p></center>
+                                                    <?php }?>
+                                                </td>
+                                                <td><button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-edit"></i></button>
+                                                <!--     <a href="<?php echo base_url('C_mapel/hapus/'.$id)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a> -->
+                                                </td>
                                             </tr>
                                             <?php
                                             }
@@ -104,7 +126,10 @@
 <?php
     foreach($mapel as $mp):
     $id = $mp->ID_MAPEL;
+    $peg = $mp->ID_PEGAWAI;
     $nama = $mp->NAMA_MAPEL;
+    $status = $mp->STATUS_MAPEL;
+
 ?>
 
 <div class="modal fade" id="modal_edit<?php echo $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -119,15 +144,35 @@
             <div class="modal-body">
                 <form action="<?php echo base_url('updatemapel')?>" method="POST">
                     <div class="form-group form-inline">
-                        <label for="inlineinput" class="col-md-3 col-form-label">ID MAPEL</label>
-                        <div class="col-md-9 p-0">
+                        <label for="inlineinput" class="col-md-4 col-form-label">ID Mata Pelajaran</label>
+                        <div class="col-md-8 p-0">
                             <input type="text" class="form-control input-full" placeholder="Enter Input" name="id_edit" id="id_edit" value="<?php echo $id?>" readonly>
                         </div>
                     </div>
                     <div class="form-group form-inline">
-                        <label for="inlineinput" class="col-md-3 col-form-label">NAMA MAPEL</label>
-                        <div class="col-md-9 p-0">
+                        <label for="inlineinput" class="col-md-4 col-form-label">ID Pegawai</label>
+                        <div class="col-md-8 p-0">
+                            <input type="text" class="form-control input-full" placeholder="Enter Input" name="pegawai_edit" id="pegawai_edit" value="<?php echo $peg?>" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <label for="inlineinput" class="col-md-4 col-form-label">Nama Mata Pelajaran</label>
+                        <div class="col-md-8 p-0">
                             <input type="text" class="form-control input-full" placeholder="Enter Input" name="nama_edit" id="nama_edit" value="<?php echo $nama?>" required>
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <label for="inlineinput" class="col-md-4 col-form-label">Status Mapel</label>
+                        <div class="col-md-8 p-0">
+                                <select class="form-control" name="status_edit" id="status_edit" value="<?php echo $status?>">
+                                    <?php if($status == 1){?>
+                                        <option value="0">Nonaktif</option>
+                                        <option value="1" selected>Aktif</option>
+                                    <?php }else{ ?>
+                                        <option value="0" selected>Nonaktif</option>
+                                        <option value="1" >Aktif</option>
+                                    <?php } ?>
+                                </select>
                         </div>
                     </div>
                     <div class="form-group">

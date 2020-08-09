@@ -6,10 +6,13 @@ class M_siswa extends CI_Model {
     private $pk = 'NOINDUK';
 
 	//tampilkan semua data
-    public function tampilkanSemua() {
-        // if ($keyword) {
-        //     $this->db->like('NAMA_SISWA',$keyword);
-        // }
+    public function tampilkanSemua($kelas=null) {
+        if ($kelas) {
+            $this->db->where('k.ID_KELAS',$kelas);
+        }elseif (strlen($kelas)>0) {
+            $this->db->where('k.ID_KELAS',$kelas);
+        }
+
         $this->db->SELECT('*');
         $this->db->FROM('siswa s');
         $this->db->join('kelas k','s.ID_KELAS = k.ID_KELAS');

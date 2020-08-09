@@ -17,7 +17,7 @@
                 $data = array(
                         'ruangan'    => $rows,
         	            'title'        => 'Data Ruang Kelas',
-        	            'content'      => 'tabel/t_ruangan',
+        	            'content'      => 'tabel/admin/t_ruangan',
         	            'judul'        => 'Data Ruang Kelas',
         	        );
         	        $this->load->view('layout', $data);
@@ -45,6 +45,7 @@
                     //jika validasi berhasil
                         $data = array(
                             'NAMA_RUANGAN'    => $this->input->post('nama', TRUE),
+                            'STATUS_RUANGAN'    => $this->input->post('status', TRUE)
                         );
                         $this->load->model('M_ruangan');
                         $this->M_ruangan->tambah($data);
@@ -62,7 +63,8 @@
             if($this->session->userdata('akses') == 'Administrator'){
                 $id = $this->input->post('id_edit', TRUE);
                 $data = array(
-                    'NAMA_RUANGAN'     => $this->input->post('nama_edit', TRUE)
+                    'NAMA_RUANGAN'     => $this->input->post('nama_edit', TRUE),
+                    'STATUS_RUANGAN'     => $this->input->post('status_edit', TRUE)
                 );
                 $this->load->model('M_ruangan');
                 $this->M_ruangan->update($data, $id);
@@ -75,12 +77,12 @@
             }
         }
 
-        public function hapus($id)
-        {
-            $this->load->model('M_ruangan');
-            $this->M_ruangan->hapus($id);
-            $this->session->set_flashdata('flash','Dihapus');
-            redirect(site_url('C_ruangan'));
-        }
+        // public function hapus($id)
+        // {
+        //     $this->load->model('M_ruangan');
+        //     $this->M_ruangan->hapus($id);
+        //     $this->session->set_flashdata('flash','Dihapus');
+        //     redirect(site_url('C_ruangan'));
+        // }
     }
 ?>

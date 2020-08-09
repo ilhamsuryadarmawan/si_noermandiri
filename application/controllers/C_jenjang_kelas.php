@@ -16,10 +16,10 @@
                 $this->load->model('M_jenjang_kelas');
                 $row = $this->M_jenjang_kelas->tampilkanSemua()->result();
                 $data = array(
-                        'jenjang'    => $row, 
-        	            'title'    => 'Data Jenjang Kelas',
-        	            'content'  => 'tabel/t_jenjang_kelas',
-        	            'judul' => 'Data Jenjang Kelas',
+                        'jenjang'      => $row, 
+        	            'title'        => 'Data Jenjang Kelas',
+        	            'content'      => 'tabel/admin/t_jenjang_kelas',
+        	            'judul'        => 'Data Jenjang Kelas',
         	        );
         	        $this->load->view('layout', $data);
             }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
@@ -51,6 +51,7 @@
                             'ID_JENJANG'      =>  '',
                             'NAMA_JENJANG'    => $this->input->post('nama', TRUE),
                             'BIAYA'           => $this->input->post('biaya', TRUE),
+                            'STATUS_JENJANG'  =>  '1',
                         );
                         $this->load->model('M_jenjang_kelas');
                         $this->M_jenjang_kelas->tambah($data);
@@ -68,8 +69,9 @@
             if($this->session->userdata('akses') == 'Administrator'){
                 $id = $this->input->post('id_edit', TRUE);
                 $data = array(
-                    'NAMA_JENJANG'     => $this->input->post('nama_edit', TRUE),
-                    'BIAYA'     => $this->input->post('biaya_edit', TRUE)
+                    'NAMA_JENJANG'      => $this->input->post('nama_edit', TRUE),
+                    'BIAYA'             => $this->input->post('biaya_edit', TRUE),
+                    'STATUS_JENJANG'    => $this->input->post('status_edit', TRUE),
                 );
                 $this->load->model('M_jenjang_kelas');
                 $this->M_jenjang_kelas->update($data, $id);
@@ -82,11 +84,11 @@
             }
         }
 
-        public function hapus($id)
-        {
-            $this->load->model('M_jenjang_kelas');
-            $this->M_jenjang_kelas->hapus($id);
-            $this->session->set_flashdata('flash','Dihapus');
-            redirect(site_url('C_jenjang_kelas'));
-        }
+        // public function hapus($id)
+        // {
+        //     $this->load->model('M_jenjang_kelas');
+        //     $this->M_jenjang_kelas->hapus($id);
+        //     $this->session->set_flashdata('flash','Dihapus');
+        //     redirect(site_url('C_jenjang_kelas'));
+        // }
     }

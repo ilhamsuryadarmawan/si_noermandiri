@@ -28,7 +28,36 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Basic</h4>
+                                    
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <a href="<?php echo base_url('jadwal')?>"><button type="button" class="btn btn-primary btn-round" >Tambah data</button></a>
+                                </div>
+                                <div class="col-md-8">
+                                    <form action="<?php echo base_url('C_siswa/index')?>" method="POST">
+                                    <div class="row">
+                                    <div class="col-md-2"></div>
+                                        <div class="col-md-4 mt-2">
+                                        </div>
+                                        <div class="col-md-4 mt-2">
+                                            <select class="form-control" name="kelas" id="kelas">
+                                                <option value="">-Pilih Kelas-</option>
+                                                <?php
+                                                foreach ($kelombel as $kelas) { ?>
+                                                    <option value="<?php echo $kelas->ID_KELAS;?>"><?php echo $kelas->NAMA_KELAS;?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2 mt-2">
+                                            <input type="submit" class="btn btn-primary" name="submit"/>
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">

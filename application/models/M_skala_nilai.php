@@ -12,6 +12,11 @@ class M_skala_nilai extends CI_Model {
         return $q;
     }
 
+    public function tambah($data){
+        $this->db->insert($this->table, $data);
+    }
+
+
     function update($data , $id){
         $this->db->where('ID_SKALA', $id);
         $this->db->update($this->table, $data);

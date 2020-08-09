@@ -12,6 +12,10 @@ class M_sesi extends CI_Model {
         return $q;
     }
 
+    public function tambah($data){
+        $this->db->insert($this->table, $data);
+    }
+    
     function update($data , $id){
         $this->db->where('ID_SESI', $id);
         $this->db->update($this->table, $data);

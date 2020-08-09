@@ -1,7 +1,7 @@
 <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash')?>">
-<div class="main-panel">
-    <div class="content">
-             <div class="page-inner">
+    <div class="main-panel">
+        <div class="content">
+            <div class="page-inner">
                 <div class="page-header">
                     <h4 class="page-title">Noermandiri</h4>
                     <ul class="breadcrumbs">
@@ -20,7 +20,7 @@
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="#">Jabatan</a>
+                            <a href="#">Jenis Ujian</a>
                         </li>
                     </ul>
                 </div>
@@ -28,7 +28,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Tambah Jabatan</h4>
+                                <h4 class="card-title">Tambah Jenis Ujian</h4>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
@@ -39,11 +39,11 @@
                                                 <?php echo validation_errors(); ?>
                                             </div>
                                         <?php endif; ?>
-                                        <form action="<?php echo base_url('C_jabatan/aksiTambah')?>" method="POST">
+                                        <form action="<?php echo base_url('tambahjenisujian')?>" method="POST">
                                         <br>
                                             <div class="form-group form-floating-label">
                                                 <input id="inputFloatingLabel" type="text" class="form-control input-border-bottom" id="nama" name="nama" required>
-                                                <label for="inputFloatingLabel" class="placeholder">Nama Jabatan</label>
+                                                <label for="inputFloatingLabel" class="placeholder">Nama Jenis Ujian</label>
                                             </div>
                                         <div class="form-group">
                                             <div class="row">
@@ -63,68 +63,94 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Jabatan</h4>
+                                <h4 class="card-title"><?php echo $judul; ?></h4>
                             </div>
-                        <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="multi-filter-select" class="display table table-striped table-hover" >
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Jabatan</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $nourut = 1;
-                                foreach ($jabatan as $jab) {
-                                    $id = $jab->ID_JABATAN;
-                                ?>
-                                <tr>
-                                    <td><?php echo $nourut++;?></td>
-                                    <td><?php echo $jab->JABATAN; ?></td>
-                                    <td><button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-edit"></i></button><a href="<?php echo base_url('C_jabatan/hapus/'.$id)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a></td>
-                                </tr>
-                                <?php
-                                }
-                                ?>
-                            </tbody>
-                            </table>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="multi-filter-select" class="display table table-striped table-hover" >
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama Jenis Ujian</th>
+                                                <th><center>Status</center></th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $nourut = 1;
+                                            foreach ($jenis_ujian as $ju) {
+                                                $id = $ju->ID_JENIS_UJIAN;
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $nourut++?></td>
+                                                <td><?php echo $ju->NAMA_JENIS_UJIAN; ?></td>
+                                                <td><?php if($ju->STATUS_JENIS_UJIAN == 1){?>
+                                                    <br><center><p style="color: green"><i class="fa fa-check-circle fa-2x"> Aktif</i></p></center>
+                                                    <?php } else {?>
+                                                    <br><center><p style="color: red"><i class="fa fa-times-circle fa-2x"> Nonaktif</i></p></center>
+                                                    <?php }?>
+                                                </td>
+                                                <td><button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $id?>"><i class="fa fa-edit"></i></button>
+                                                <!--     <a href="<?php echo base_url('C_jenis_ujian/hapus/'.$id)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a> -->
+                                                </td>
+                                            </tr>
+                                            <?php
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        
 
 <?php
-    foreach($jabatan as $jb):
-    $id = $jb->ID_JABATAN;
-    $nama = $jb->JABATAN;
+    foreach($jenis_ujian as $r):
+    $id = $r->ID_JENIS_UJIAN;
+    $nama = $r->NAMA_JENIS_UJIAN;
+    $status = $r->STATUS_JENIS_UJIAN;
 ?>
 
 <div class="modal fade" id="modal_edit<?php echo $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLongTitle" align="center">Form Edit Data Jabatan</h3>
+                <h3 class="modal-title" id="exampleModalLongTitle" align="center">Form Edit Data Jenis Ujian</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="<?php echo base_url('updatejabatan')?>" method="POST">
+                <form action="<?php echo base_url('updatejenisujian')?>" method="POST">
                     <div class="form-group form-inline">
-                        <label for="inlineinput" class="col-md-3 col-form-label">ID Jabatan</label>
-                        <div class="col-md-9 p-0">
+                        <label for="inlineinput" class="col-md-4 col-form-label">ID Jenis Ujian</label>
+                        <div class="col-md-8 p-0">
                             <input type="text" class="form-control input-full" placeholder="Enter Input" name="id_edit" id="id_edit" value="<?php echo $id?>" readonly>
                         </div>
                     </div>
                     <div class="form-group form-inline">
-                        <label for="inlineinput" class="col-md-3 col-form-label">Nama Jabatan</label>
-                        <div class="col-md-9 p-0">
+                        <label for="inlineinput" class="col-md-4 col-form-label">Nama Jenis Ujian</label>
+                        <div class="col-md-8 p-0">
                             <input type="text" class="form-control input-full" placeholder="Enter Input" name="nama_edit" id="nama_edit" value="<?php echo $nama?>" required>
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <label for="inlineinput" class="col-md-4 col-form-label">Status Jenis Ujian</label>
+                        <div class="col-md-8 p-0">
+                                <select class="form-control" name="status_edit" id="status_edit" value="<?php echo $status?>">
+                                    <?php if($status == 1){?>
+                                        <option value="0">Nonaktif</option>
+                                        <option value="1" selected>Aktif</option>
+                                    <?php }else{ ?>
+                                        <option value="0" selected>Nonaktif</option>
+                                        <option value="1" >Aktif</option>
+                                    <?php } ?>
+                                </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -144,4 +170,3 @@
     </div>
 </div>
 <?php endforeach;?>
-   

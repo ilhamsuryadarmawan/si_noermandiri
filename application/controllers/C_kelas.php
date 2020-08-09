@@ -19,7 +19,7 @@
                 $data = array(
                         'kelas'     => $rows,
         	            'title'     => 'Data Kelas',
-        	            'content'   => 'tabel/t_kelas',
+        	            'content'   => 'tabel/admin/t_kelas',
         	            'judul'     => 'Data Kelas',
                         'jenjang'   => $jenjang
         	        );
@@ -51,6 +51,7 @@
                             'ID_KELAS'      =>  str_replace(' ', '', $this->input->post('nama_kelas', TRUE)),
                             'ID_JENJANG'    => $this->input->post('jenjang', TRUE),
                             'NAMA_KELAS'    => $this->input->post('nama_kelas', TRUE),
+                            'STATUS_KELAS'    => '1'
                         );
                         $this->load->model('M_kelas');
                         $this->M_kelas->tambah($data);
@@ -68,7 +69,9 @@
             if($this->session->userdata('akses') == 'Administrator'){
                 $id = $this->input->post('id_edit', TRUE);
                 $data = array(
-                    'NAMA_KELAS'     => $this->input->post('nama_edit', TRUE)
+                    'ID_JENJANG'     => $this->input->post('jenjang_edit', TRUE),
+                    'NAMA_KELAS'     => $this->input->post('nama_edit', TRUE),
+                    'STATUS_KELAS'     => $this->input->post('status_edit', TRUE)
                 );
                 $this->load->model('M_kelas');
                 $this->M_kelas->update($data, $id);
@@ -81,14 +84,6 @@
             }
         }
 
-        public function hapus($id)
-        {
-            $this->load->model('M_kelas');
-            $this->M_kelas->hapus($id);
-            $this->session->set_flashdata('flash','Dihapus');
-            redirect(site_url('C_kelas'));
-        }
-
         public function tampilKelas()
         {
             $jenjang = $this->input->post('jenjang',TRUE);
@@ -96,5 +91,15 @@
             $data    = $this->M_kelas->getKelas($jenjang)->result();
             echo json_encode($data);
         }
+
+        // public function hapus($id)
+        // {
+        //     $this->load->model('M_kelas');
+        //     $this->M_kelas->hapus($id);
+        //     $this->session->set_flashdata('flash','Dihapus');
+        //     redirect(site_url('C_kelas'));
+        // }
+
+
     }
 ?>

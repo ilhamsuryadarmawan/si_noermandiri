@@ -17,22 +17,13 @@
                 $data = array(
                         'skala'       => $skala,
                         'title'      => 'Data Skala Nilai',
-                        'content'    => 'tabel/t_skala_nilai',
+                        'content'    => 'tabel/admin/t_skala_nilai',
                         'judul'      => 'Data Skala Nilai',
                     );
                     $this->load->view('layout', $data);
             }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
                 echo"<script>history.go(-1);</script>";
             }
-        }
-
-
-        public function hapus($id)
-        {
-            $this->load->model('M_skala_nilai');
-            $this->M_sesi->hapus($id);
-            $this->session->set_flashdata('flash','Dihapus');
-            redirect(site_url('Sesi'));
         }
 
         public function tambah()
@@ -43,6 +34,7 @@
                     'BATAS_ATAS'       => $this->input->post('batas_atas', TRUE),
                     'BATAS_BAWAH'      => $this->input->post('batas_bawah', TRUE),
                     'GRADE'            => $this->input->post('grade', TRUE),
+                    'STATUS_SKALA'     => '1'
                 );
                 $this->load->model('M_API');
                 $this->M_API->saveData('skala_nilai',$data);
@@ -58,8 +50,10 @@
             if($this->session->userdata('akses') == 'Administrator'){
                 $id = $this->input->post('id_edit', TRUE);
                 $data = array(
+                    'GRADE'     => $this->input->post('grade_edit', TRUE),
                     'JAM_MULAI'     => $this->input->post('jam_mulai_edit', TRUE),
                     'JAM_SELESAI'   => $this->input->post('jam_selesai_edit', TRUE),
+                    'STATUS_SKALA'     => $this->input->post('status_edit', TRUE)
                 );
                 $this->load->model('M_sesi');
                 $this->M_sesi->update($data, $id);
@@ -71,4 +65,12 @@
                 echo "<script>history.go(-1);</script>";
             }
         }
+
+        // public function hapus($id)
+        // {
+        //     $this->load->model('M_skala_nilai');
+        //     $this->M_sesi->hapus($id);
+        //     $this->session->set_flashdata('flash','Dihapus');
+        //     redirect(site_url('Sesi'));
+        // }
     }
