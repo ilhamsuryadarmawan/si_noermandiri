@@ -350,7 +350,7 @@
 									</li> -->
 									<li>
 										<a href="<?php echo base_url('C_penilaian')?>">
-											<span class="sub-item">Laporan Kumulatif Nilai</span>
+											<span class="sub-item">Laporan Rekap Nilai</span>
 										</a>
 									</li>
 								</ul>
@@ -376,7 +376,7 @@
 									</li> -->
 									<li>
 										<a href="<?php echo base_url('C_Absensi')?>">
-											<span class="sub-item">Laporan Kumulatif Absensi</span> 
+											<span class="sub-item">Laporan Rekap Absensi</span> 
 										</a>
 									</li>
 								</ul>
@@ -391,13 +391,13 @@
 							</a>
 						</li>
                         <li class="nav-item">
-							<a data-toggle="collapse" href="#<?php echo base_url('C_penilaian')?>">
+							<a href="<?php echo base_url('C_penilaian')?>">
 								<i class="fas fa-history"></i>
 								<p>Histori Nilai</p>
 							</a>
                         </li>
                         <li class="nav-item">
-							<a data-toggle="collapse" href="#<?php echo base_url('C_Absensi/riwayat_absensi')?>">
+							<a href="<?php echo base_url('C_Absensi')?>">
 								<i class="fas fa-history"></i>
 								<p>Histori Absensi</p>
 							</a>

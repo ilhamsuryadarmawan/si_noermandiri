@@ -16,54 +16,39 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
+                                    <a href="<?php echo base_url('C_penilaian/tampilKelas')?>"><button type="button" class="btn btn-primary btn-round" >Tambah data</button></a>
+                                </div>
+                                <div class="col-md-8">
                                     <form action="<?php echo base_url('C_penilaian/index')?>" method="POST">
                                     <div class="row">
-                                        <div class="col-md-2"></div>
-                                        <div class="col-md-4 mt-2">
-                                            <select class="form-control" name="kelas" id="kelas">
-                                                <option value="">-Pilih Kelas-</option>
+                                        <div class="col-md-3 mt-2">
+                                            <select class="form-control" name="mapel" id="mapel">
+                                                <option value="">-Pilih Mapel-</option>
                                                 <?php
-                                                foreach ($kelombel as $kelas) { ?>
-                                                    <option value="<?php echo $kelas->ID_KELAS;?>"><?php echo $kelas->NAMA_KELAS;?></option>
+                                                foreach ($matapel as $mapel) { ?>
+                                                    <option value="<?php echo $mapel->ID_MAPEL;?>"><?php echo $mapel->NAMA_MAPEL;?></option>
                                                 <?php
                                                 }
                                                 ?>
                                             </select>
                                         </div>
-                                        <div class="col-md-4 mt-2">
-                                            <select class="form-control" name="mapel" id="mapel">
-                                                <option value="">-Pilih Mata Pelajaran-</option>
+                                        <div class="col-md-3 mt-2">
+                                            <select class="form-control" name="ujian" id="ujian">
+                                                <option value="">-Pilih Jenis Ujian-</option>
                                                 <?php
-                                                foreach ($mapel as $mp) { ?>
-                                                    <option value="<?php echo $mp->ID_KELAS;?>"><?php echo $mp->NAMA_KELAS;?></option>
+                                                foreach ($ujian as $ju) { ?>
+                                                    <option value="<?php echo $ju->ID_JENIS_UJIAN;?>"><?php echo $ju->NAMA_JENIS_UJIAN;?></option>
                                                 <?php
                                                 }
                                                 ?>
                                             </select>
                                         </div>
                                         <div class="col-md-2 mt-2">
-                                            <input type="submit" class="btn btn-primary" name="submit"/> 
+                                            <input type="submit" class="btn btn-primary" name="submit"/>
                                         </div>
                                     </div>
                                     </form>
-                                </div>
-<!--                                 <div class="col-md-2 mt-3">
-                                    <a href="#" class="btn btn-info btn-border btn-round btn-sm mr-2">
-                                        <span class="btn-label">
-                                            <i class="fa fa-pencil"></i>
-                                        </span>
-                                        Export
-                                    </a>
-                                    <a href="#" class="btn btn-info btn-border btn-round btn-sm">
-                                        <span class="btn-label">
-                                            <i class="fa fa-print"></i>
-                                        </span>
-                                        Print
-                                    </a>
-                                </div> -->
-                                <div class="col-md-2 mt-2">
-                                    <a href="<?php echo base_url('laporan_penilaian')?>"><button type="button" class="btn btn-info btn-border btn-round fas fa-file-export" > Export PDF</button></a>
                                 </div>
                             </div>
                         </div>
@@ -74,32 +59,36 @@
                                     <tr>
                                         <th data-field="no">No</th>
                                         <th data-field="noinduk">NIS</th>
-                                        <th data-field="kelas">Nama Siswa</th>
+                                        <th data-field="nama">Nama Siswa</th>
+                                        <th data-field="kelas">Kelas</th>
+                                        <th data-field="mapel">Mapel</th>
+                                        <th data-field="ujian">Jenis Ujian</th>                                        
+                                        <th data-field="topik">Topik</th>
                                         <th data-field="nilai">Nilai</th>
-                                        <th data-field="skala">Skala Nilai</th>
-                                        
                                     </tr>
                                 </thead>           
                                 <tbody id="show_data">
-                                <?php if($jumlah > 0):?>
+                                <?php if($nilai > 0):?>
                                     <?php
                                     $nourut = 1;
-                                    foreach ($absensi as $absen) {
+                                    foreach ($nilai as $nil) {
                                     ?>
                                     <tr>
                                         <td><?php echo $nourut++;?></td>
-                                        <td><?php echo $absen->NOINDUK; ?></td>
-                                        <td><?php echo $absen->NAMA_SISWA; ?></td>
-                                        <td><?php echo $absen->kehadiran; ?></td>
-                                        <td><?php echo $absen->alfa; ?></td>
-                                        <td><?php echo $absen->pertemuan; ?></td>
+                                        <td><?php echo $nil->NOINDUK; ?></td>
+                                        <td><?php echo $nil->NAMA_SISWA; ?></td>
+                                        <td><?php echo $nil->NAMA_KELAS;?></td>
+                                        <td><?php echo $nil->NAMA_MAPEL;?></td>
+                                        <td><?php echo $nil->NAMA_JENIS_UJIAN; ?></td>
+                                        <td><?php echo $nil->TOPIK_UJIAN; ?></td>
+                                        <td><?php echo $nil->JUMLAH_NILAI; ?></td>
                                     </tr>
                                     <?php
                                     }
                                     ?>
                                     <?php else:?>
                                         <tr>
-                                            <td colspan="8"><center>Absensi Belum Tersedia</center></td>
+                                            <td colspan="8"><center>Nilai Belum Tersedia</center></td>
                                         </tr>
                                     <?php endif;?>
                                 </tbody>

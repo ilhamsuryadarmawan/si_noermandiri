@@ -11,58 +11,96 @@
         }
 
         function index(){
-            $this->load->model('M_kelas');
             if($this->session->userdata('akses') == 'Tentor'){
+                $this->load->model('M_siswa');
+                $this->load->model('M_kelas');
+                $this->load->model('M_absensi');
+                $this->load->model('M_penilaian');
+                $this->load->model('M_mapel');
+                $this->load->model('M_jenis_ujian');
+
+                if ($this->input->post('submit')) {
+                    if ($this->input->post('mapel') == "") {
+                        $d['mapel'] = null;                       
+                        $d['kelas'] = $this->input->post('kelas');
+                        $d['ujian'] = $this->input->post('ujian');
+                    }elseif($this->input->post('kelas') == ""){
+                        $d['mapel'] = $this->input->post('mapel');
+                        $d['kelas'] = null;
+                        $d['ujian'] = $this->input->post('ujian');
+                    }elseif ($this->input->post('ujian') == ""){
+                        $d['mapel'] = $this->input->post('mapel');
+                        $d['kelas'] = $this->input->post('kelas');
+                        $d['ujian'] = null;
+                    }elseif ($this->input->post('mapel') == "" && $this->input->post('kelas') == "") {
+                        $d['mapel'] = null;                       
+                        $d['kelas'] = null;
+                        $d['ujian'] = $this->input->post('ujian');
+                    }elseif ($this->input->post('mapel') == "" && $this->input->post('ujian') == "") {
+                        $d['mapel'] = null;                       
+                        $d['kelas'] = $this->input->post('kelas');
+                        $d['ujian'] = null;
+                    }elseif ($this->input->post('kelas') == "" && $this->input->post('ujian') == "") {
+                        $d['mapel'] = $this->input->post('mapel');                       
+                        $d['kelas'] = null;
+                        $d['ujian'] = null;
+                    }
+                    else{
+                        $d['mapel'] = $this->input->post('mapel');
+                        $d['kelas'] = $this->input->post('kelas');
+                        $d['ujian'] = $this->input->post('ujian');
+                    }
+                }else{
+                    $d['mapel'] = null;
+                    $d['kelas'] = null;
+                    $d['ujian'] = null;
+                }
+
+                $nilai = $this->M_penilaian->getAll($d['kelas'],$d['mapel'],$d['ujian'])->result();
+                $jumlah = $this->M_penilaian->getAll($d['kelas'],$d['mapel'],$d['ujian'])->num_rows();
                 $data = array(
                     'kelas'         => $this->M_kelas->tampilkanSemua()->result(),
                     'judul'         => 'Nilai Siswa' ,
                     'title'         => 'Nilai Siswa',
-                    'content'       => 'tabel/t_laporan_nilai'
+                    'content'       => 'tabel/t_rekap_nilai',
+                    'matapel'       => $this->M_mapel->tampilkanSemua()->result(),
+                    'ujian'         => $this->M_jenis_ujian->tampilkanSemua()->result(),
+                    'nilai'         => $nilai,
+                    'jumlah'        => $jumlah
                 );
+                $this->load->view('layout', $data);
+                
+            }elseif ($this->session->userdata('akses') == 'Siswa'){
+                $this->load->model('M_penilaian');
+                if ($this->input->post('submit')) {
+                    if ($this->input->post('periode') == "") {
+                        $d['periode'] = null;
+                        $d['kelas'] = $this->input->post('kelas');
+                    }elseif($this->input->post('kelas') == ""){
+                        $d['periode'] = $this->input->post('periode');
+                        $d['kelas'] = null;
+                    }else{
+                        $d['periode'] = $this->input->post('periode');
+                        $d['kelas'] = $this->input->post('kelas');
+                    }
+                }else{
+                        $d['periode'] = null;
+                        $d['kelas'] = null;
+                }
+
+                $nilai = $this->M_penilaian->histori_nilai($this->input->post('periode'),$this->session->userdata('ses_id'))->result();
+                $data = array(
+                    'judul'     => 'Histori Nilai',
+                    'title'     => 'Histori Nilai',
+                    'content'   => 'tabel/t_histori_nilai',
+                    'nilai'     => $nilai
+                );
+                echo json_encode($data);
                 $this->load->view('layout', $data);
             }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
                 echo "<script>history.go(-1);</script>";
             }
-            // if($this->session->userdata('akses') == 'Administrator'){
-            //     $this->load->model('M_siswa');
-            //     $this->load->model('M_kelas');
-            //     $this->load->model('M_jadwal_les');
-            //     $this->load->model('M_absensi');
 
-            //     if ($this->input->post('submit')) {
-            //         if ($this->input->post('periode') == "") {
-            //             $d['periode'] = null;
-            //             $d['kelas'] = $this->input->post('kelas');
-            //         }elseif($this->input->post('kelas') == ""){
-            //             $d['periode'] = $this->input->post('periode');
-            //             $d['kelas'] = null;
-            //         }else{
-            //             $d['periode'] = $this->input->post('periode');
-            //             $d['kelas'] = $this->input->post('kelas');
-            //         }
-            //     }else{
-            //         $d['periode'] = null;
-            //         $d['kelas'] = null;
-            //     }
-
-            //     $kelombel   = $this->M_kelas->TampilkanSemua()->result();
-            //     $jadwal = $this->M_absensi->getAll($d['kelas'],$d['periode'])->result();
-            //     $jumlah = $this->M_absensi->getAll($d['kelas'],$d['periode'])->num_rows();
-            //     $absensi = $this->M_absensi->tampilKehadiran()->result();
-            //     $data = array( 
-            //         'title'    => 'Data Absensi',
-            //         'content'  => 'tabel/t_rekap_nilai',
-            //         'judul' => 'Penilaian Siswa',
-            //         'absensi' => $absensi,
-            //         'kelombel'  => $kelombel,
-            //         'jadwal'    => $jadwal,
-            //         'jumlah'    => $jumlah,
-            //     );
-                
-            //     $this->load->view('layout', $data);
-            // }else{ //jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
-            //     echo"<script>history.go(-1);</script>";
-            // }
         }
 
 

@@ -19,11 +19,11 @@
                                 <div class="col-md-4">
                                     <a href="<?php echo base_url('jadwal')?>"><button type="button" class="btn btn-primary btn-round" >Tambah data</button></a>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <form action="<?php echo base_url('C_absensi/index')?>" method="POST">
                                     <div class="row">
                                         <div class="col-md-2"></div>
-<!--                                         <div class="col-md-4 mt-2">
+                                        <div class="col-md-4 mt-2">
                                             <select class="form-control" name="kelas" id="kelas">
                                                 <option value="">-Pilih Kelas-</option>
                                                 <?php
@@ -33,7 +33,7 @@
                                                 }
                                                 ?>
                                             </select>
-                                        </div> -->
+                                        </div>
                                         <div class="col-md-4 mt-2">
                                             <select class="form-control" name="periode" id="periode">
                                                 <?php
@@ -61,23 +61,9 @@
                                     </div>
                                     </form>
                                 </div>
-<!--                                 <div class="col-md-2 mt-3">
-                                    <a href="#" class="btn btn-info btn-border btn-round btn-sm mr-2">
-                                        <span class="btn-label">
-                                            <i class="fa fa-pencil"></i>
-                                        </span>
-                                        Export
-                                    </a>
-                                    <a href="#" class="btn btn-info btn-border btn-round btn-sm">
-                                        <span class="btn-label">
-                                            <i class="fa fa-print"></i>
-                                        </span>
-                                        Print
-                                    </a>
-                                </div> -->
-                                <div class="col-md-2 mt-2">
+<!--                                 <div class="col-md-2 mt-2">
                                     <a href="<?php echo base_url('laporan_absensi')?>"><button type="button" class="btn btn-info btn-border btn-round fas fa-file-export" > Export PDF</button></a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="card-body">
@@ -87,7 +73,8 @@
                                     <tr>
                                         <th data-field="no">No</th>
                                         <th data-field="noinduk">NIS</th>
-                                        <th data-field="kelas">Nama Siswa</th>
+                                        <th data-field="nama">Nama Siswa</th>
+                                        <th data-field="kelas">Kelas</th>
                                         <th data-field="hadir">Jumlah Kehadiran</th>
                                         <th data-field="absen">Jumlah Tidak Hadir</th>
                                         <th data-field="pertemuan">Jumlah Pertemuan</th>
@@ -103,6 +90,7 @@
                                         <td><?php echo $nourut++;?></td>
                                         <td><?php echo $absen->NOINDUK; ?></td>
                                         <td><?php echo $absen->NAMA_SISWA; ?></td>
+                                        <td><?php echo $absen->NAMA_KELAS; ?></td>
                                         <td><?php echo $absen->kehadiran; ?></td>
                                         <td><?php echo $absen->alfa; ?></td>
                                         <td><?php echo $absen->pertemuan; ?></td>

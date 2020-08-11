@@ -94,6 +94,8 @@ $route['updatejenisujian'] = 'C_jenis_ujian/update';
 //data absen
 $route['simpanabsen'] = 'C_absensi/simpan';
 
+$route['tambahnilai'] = 'C_penilaian/tambah';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 

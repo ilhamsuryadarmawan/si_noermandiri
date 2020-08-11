@@ -62,9 +62,11 @@ class M_absensi extends CI_Model {
 
     function tampilKehadiran(){
         $query=$this->db->query("
-                            SELECT a.NOINDUK, s.NAMA_SISWA, SUM(case when STATUS_ABSEN = 'H' then 1 ELSE 0 end) as kehadiran, SUM(CASE WHEN STATUS_ABSEN = 'A' then 1 else 0 end) as alfa, SUM(CASE WHEN STATUS_ABSEN = 'H' then 1 when STATUS_ABSEN = 'A' THEN 1 else 0 END) as pertemuan 
+                            SELECT a.NOINDUK, s.NAMA_SISWA, k.NAMA_KELAS, SUM(case when STATUS_ABSEN = 'H' then 1 ELSE 0 end) as kehadiran, SUM(CASE WHEN STATUS_ABSEN = 'A' then 1 else 0 end) as alfa, SUM(CASE WHEN STATUS_ABSEN = 'H' then 1 when STATUS_ABSEN = 'A' THEN 1 else 0 END) as pertemuan 
                             FROM absensi_siswa a
                             LEFT JOIN siswa s ON s.NOINDUK = a.NOINDUK
+                            LEFT join jadwal_les j ON j.ID_JADWAL = a.ID_JADWAL
+                            LEFT JOIN kelas k ON k.ID_KELAS = j.ID_KELAS
                             GROUP BY NOINDUK
                             ");
         return $query;

@@ -17,23 +17,27 @@ class M_penilaian extends CI_Model {
         $this->db->select('*');
         $this->db->from('nilai_siswa ns');
         $this->db->join('kelas k','ns.ID_KELAS = k.ID_KELAS');
-        // $this->db->join('mata_pelajaran mp','ns.ID_MAPEL = mp.ID_MAPEL');
+        $this->db->join('mata_pelajaran mp','ns.ID_MAPEL = mp.ID_MAPEL');
         $this->db->join('pegawai t','ns.ID_PEGAWAI = t.ID_PEGAWAI');
         $this->db->where('ns.ID_NILAI',$id);
         return $this->db->get();
     }
 
-    public function getAll($kelas=null,$periode=null) {
+    public function getAll($kelas=null,$mapel=null,$ujian=null) {
 
-        if ($kelas && $periode) {
+        if ($kelas && $mapel && $ujian) {
             $this->db->where('nil.ID_KELAS',$kelas);
-            // $this->db->where('date_format(j.TANGGAL,"%m-%Y")',$periode);
+            $this->db->where('nil.ID_MAPEL',$mapel);
+            $this->db->where('nil.ID_MAPEL',$ujian);
         }elseif (strlen($kelas)>0) {
             $this->db->where('nil.ID_KELAS',$kelas);
         }
-        // elseif (strlen($periode)>0) {
-        //     $this->db->where('date_format(j.TANGGAL,"%m-%Y")',$periode);
-        // }
+        elseif (strlen($mapel)>0) {
+            $this->db->where('nil.ID_MAPEL',$mapel);
+        }
+        elseif (strlen($ujian)>0) {
+            $this->db->where('nil.ID_JENIS_UJIAN',$ujian);
+        }
 
         $this->db->select('*');
         $this->db->from('nilai_siswa nil');
