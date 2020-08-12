@@ -374,11 +374,6 @@
 											<span class="sub-item">Tambah Data Absensi</span>
 										</a>
 									</li>
-<!-- 									<li>
-										<a href="#">
-											<span class="sub-item">Ubah Data Absensi</span>
-										</a>
-									</li> -->
 									<li>
 										<a href="<?php echo base_url('C_Absensi')?>">
 											<span class="sub-item">Laporan Rekap Absensi</span> 
@@ -389,19 +384,19 @@
 						</li>
                         
                        	<?php elseif($this->session->userdata('akses')=='Siswa'):?>
-                        <li class="nav-item active">
-							<a href="<?php echo base_url('Home')?>" class="collapsed" aria-expanded="false">
+                        <li <?=$this->uri->segment(1) == 'C_Home' ? 'class="nav-item active submenu"' : 'class="nav-item"'?>>
+							<a href="<?php echo base_url('C_Home')?>" class="collapsed" aria-expanded="false">
 								<i class="fas fa-home"></i>
 								<p>Dashboard</p>
 							</a>
 						</li>
-                        <li class="nav-item">
+						<li <?=$this->uri->segment(1) == 'C_penilaian' ? 'class="nav-item active submenu"' : 'class="nav-item"'?>>
 							<a href="<?php echo base_url('C_penilaian')?>">
 								<i class="fas fa-history"></i>
 								<p>Histori Nilai</p>
 							</a>
                         </li>
-                        <li class="nav-item">
+                        <li <?=$this->uri->segment(1) == 'C_Absensi' ? 'class="nav-item active submenu"' : 'class="nav-item"'?>>
 							<a href="<?php echo base_url('C_Absensi')?>">
 								<i class="fas fa-history"></i>
 								<p>Histori Absensi</p>

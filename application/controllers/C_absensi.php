@@ -60,7 +60,7 @@ class C_absensi extends CI_Controller {
                 'content'   => 'tabel/t_histori_absen',
                 'riwayat'   => $riwayat,
             );
-            echo json_encode($data);
+            
             $this->load->view('layout', $data);
         }else{ //jika selain admin dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
                 echo "<script>history.go(-1);</script>";

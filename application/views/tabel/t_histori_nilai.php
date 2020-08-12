@@ -16,9 +16,6 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <a href="<?php echo base_url('C_penilaian/tampilKelas')?>"><button type="button" class="btn btn-primary btn-round" >Tambah data</button></a>
-                                </div>
                                 <div class="col-md-8">
                                     <form action="<?php echo base_url('C_penilaian/index')?>" method="POST">
                                     <div class="row">
@@ -52,17 +49,62 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="card-header">
+                            <div class="row row-card-no-pd mt--2">
+                            <div class="col-sm-6 col-md-3">
+                                <div class="card card-stats card-round">
+                                    <div class="card-body ">
+                                        <div class="row">
+                                            <div class="col-7 col-stats">
+                                                <div class="numbers">
+                                                    <p class="card-category">Siswa</p>
+                                                    <h4 class="card-title"><?php echo $this->session->userdata('ses_nama'); ?></h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <div class="card card-stats card-round">
+                                    <div class="card-body ">
+                                        <div class="row">
+                                            <div class="col-7 col-stats">
+                                                <div class="numbers">
+                                                    <p class="card-category">Kelas</p>
+                                                    <h4 class="card-title"><?php echo $this->session->userdata('ses_kelas'); ?></h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <div class="card card-stats card-round">
+                                    <div class="card-body ">
+                                        <div class="row">
+                                            <div class="col-7 col-stats">
+                                                <div class="numbers">
+                                                    <p class="card-category">Jenis Ujian</p>
+                                                    <h4 class="card-title"><?php echo $this->input->post('ujian'); ?></h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div> 
                         <div class="card-body">
                         <div class="table-responsive">
                             <table class="display table table-striped table-hover" id="multi-filter-select">
                                 <thead>
                                     <tr>
                                         <th data-field="no">No</th>
-                                        <th data-field="kelas">Kelas</th>
-                                        <th data-field="mapel">Mapel</th>
-                                        <th data-field="ujian">Jenis Ujian</th>                                        
+                                        <th data-field="mapel">Mapel</th>                                       
                                         <th data-field="topik">Topik</th>
                                         <th data-field="nilai">Nilai</th>
+                                        <th data-field="nilai">Rata-rata</th>
                                     </tr>
                                 </thead>           
                                 <tbody id="show_data">
@@ -73,11 +115,10 @@
                                     ?>
                                     <tr>
                                         <td><?php echo $nourut++;?></td>
-                                        <td><?php echo $nil->NAMA_KELAS;?></td>
                                         <td><?php echo $nil->NAMA_MAPEL;?></td>
-                                        <td><?php echo $nil->NAMA_JENIS_UJIAN; ?></td>
                                         <td><?php echo $nil->TOPIK_UJIAN; ?></td>
                                         <td><?php echo $nil->JUMLAH_NILAI; ?></td>
+                                        <td></td>
                                     </tr>
                                     <?php
                                     }

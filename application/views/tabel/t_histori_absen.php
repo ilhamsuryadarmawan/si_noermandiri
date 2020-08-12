@@ -17,7 +17,7 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <form action="<?php echo base_url('C_absensi/histori_absensi')?>" method="POST">
+                                    <form action="<?php echo base_url('C_absensi')?>" method="POST">
                                     <div class="row">
                                         <div class="col-md-4 mt-2">
                                             <select class="form-control" name="periode" id="periode">
@@ -26,18 +26,18 @@
                                                     $tahun = date("Y");
                                                 ?>
                                                 <option value="">-Pilih Bulan-</option>
-                                                <option value="01-<?php echo $tahun?>">Januari</option>
-                                                <option value="02-<?php echo $tahun?>">Februari</option>
-                                                <option value="03-<?php echo $tahun?>">Maret</option>
-                                                <option value="04-<?php echo $tahun?>">April</option>
-                                                <option value="05-<?php echo $tahun?>">Mei</option>
-                                                <option value="06-<?php echo $tahun?>">Juni</option>
-                                                <option value="07-<?php echo $tahun?>">Juli</option>
-                                                <option value="08-<?php echo $tahun?>">Agustus</option>
-                                                <option value="09-<?php echo $tahun?>">September</option>
-                                                <option value="10-<?php echo $tahun?>">Oktober</option>
-                                                <option value="11-<?php echo $tahun?>">November</option>
-                                                <option value="12-<?php echo $tahun?>">Desember</option>
+                                                <option value="<?php echo $tahun?>-01">Januari</option>
+                                                <option value="<?php echo $tahun?>-02">Februari</option>
+                                                <option value="<?php echo $tahun?>-03">Maret</option>
+                                                <option value="<?php echo $tahun?>-04">April</option>
+                                                <option value="<?php echo $tahun?>-05">Mei</option>
+                                                <option value="<?php echo $tahun?>-06">Juni</option>
+                                                <option value="<?php echo $tahun?>-07">Juli</option>
+                                                <option value="<?php echo $tahun?>-08">Agustus</option>
+                                                <option value="<?php echo $tahun?>-09">September</option>
+                                                <option value="<?php echo $tahun?>-10">Oktober</option>
+                                                <option value="<?php echo $tahun?>-11">November</option>
+                                                <option value="<?php echo $tahun?>-12">Desember</option>
                                             </select>
                                         </div>
                                         <div class="col-md-2 mt-2">
@@ -48,6 +48,52 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="card-header">
+                            <div class="row row-card-no-pd mt--2">
+                            <div class="col-sm-6 col-md-3">
+                                <div class="card card-stats card-round">
+                                    <div class="card-body ">
+                                        <div class="row">
+                                            <div class="col-7 col-stats">
+                                                <div class="numbers">
+                                                    <p class="card-category">Siswa</p>
+                                                    <h4 class="card-title"><?php echo $this->session->userdata('ses_nama'); ?></h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <div class="card card-stats card-round">
+                                    <div class="card-body ">
+                                        <div class="row">
+                                            <div class="col-7 col-stats">
+                                                <div class="numbers">
+                                                    <p class="card-category">Kelas</p>
+                                                    <h4 class="card-title"><?php echo $this->session->userdata('ses_kelas'); ?></h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <div class="card card-stats card-round">
+                                    <div class="card-body ">
+                                        <div class="row">
+                                            <div class="col-7 col-stats">
+                                                <div class="numbers">
+                                                    <p class="card-category">Tahun - Bulan</p>
+                                                    <h4 class="card-title"><?php echo $this->input->post('periode'); ?></h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div> 
                         <div class="card-body">
                         <div class="table-responsive">
                             <table class="display table table-striped table-hover" id="multi-filter-select">
@@ -57,8 +103,6 @@
                                         <th data-field="hadir">Kehadiran</th>
                                         <th data-field="alpha">Tidak Hadir</th>
                                         <th data-field="pertemuan">Pertemuan</th>
-
-                                        
                                     </tr>
                                 </thead>           
                                 <tbody id="show_data">
@@ -69,7 +113,6 @@
                                     ?>
                                     <tr>
                                         <td><?php echo $nourut++;?></td>
-
                                         <td><?php echo $absen->hadir; ?></td>
                                         <td><?php echo $absen->alpha; ?></td>
                                         <td><?php echo $absen->pertemuan; ?></td>
