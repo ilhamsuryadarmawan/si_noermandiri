@@ -164,6 +164,11 @@
 											<span class="sub-item">Ruang Kelas</span>
 										</a>
                                     </li>
+                                    <li>
+										<a href="<?php echo base_url('C_semester')?>">
+											<span class="sub-item">Semester</span>
+										</a>
+									</li>
 									<li>
 										<a href="<?php echo base_url('C_sesi')?>">
 											<span class="sub-item">Sesi Les</span>

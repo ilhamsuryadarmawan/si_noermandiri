@@ -58,8 +58,6 @@
                                 <thead>
                                     <tr>
                                         <th data-field="no">No</th>
-                                        <th data-field="noinduk">NIS</th>
-                                        <th data-field="nama">Nama Siswa</th>
                                         <th data-field="kelas">Kelas</th>
                                         <th data-field="mapel">Mapel</th>
                                         <th data-field="ujian">Jenis Ujian</th>                                        
@@ -75,8 +73,6 @@
                                     ?>
                                     <tr>
                                         <td><?php echo $nourut++;?></td>
-                                        <td><?php echo $nil->NOINDUK; ?></td>
-                                        <td><?php echo $nil->NAMA_SISWA; ?></td>
                                         <td><?php echo $nil->NAMA_KELAS;?></td>
                                         <td><?php echo $nil->NAMA_MAPEL;?></td>
                                         <td><?php echo $nil->NAMA_JENIS_UJIAN; ?></td>

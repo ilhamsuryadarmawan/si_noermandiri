@@ -72,6 +72,7 @@
                 
             }elseif ($this->session->userdata('akses') == 'Siswa'){
                 $this->load->model('M_penilaian');
+                
                 if ($this->input->post('submit')) {
                     if ($this->input->post('periode') == "") {
                         $d['periode'] = null;

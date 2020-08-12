@@ -20,7 +20,7 @@
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="#">Skala Nilai</a>
+                            <a href="#">Semester</a>
                         </li>
                     </ul>
                 </div>
@@ -28,7 +28,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Tambah Skala Nilai</h4>
+                                <h4 class="card-title">Tambah Semester</h4>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
@@ -39,19 +39,19 @@
                                                 <?php echo validation_errors(); ?>
                                             </div>
                                         <?php endif; ?>
-                                        <form action="<?php echo base_url('tambahskala')?>" method="POST">
+                                        <form action="<?php echo base_url('tambahsemester')?>" method="POST">
                                         <br>
                                             <div class="form-group form-floating-label">
-                                                <input id="inputFloatingLabel" type="text" class="form-control input-border-bottom" id="batas_atas" name="batas_atas" required>
-                                                <label for="inputFloatingLabel" class="placeholder">Batas Atas</label>
+                                                <select class="form-control input-border-bottom" name="semester" id="semester">
+                                                    <option value="">-Pilih Semester-</option>
+                                                    <option value="01">Ganjil</option>
+                                                    <option value="02">Genap</option>
+                                                </select>
+                                                <label for="inputFloatingLabel" class="placeholder">Semester</label>
                                             </div>
                                             <div class="form-group form-floating-label">
-                                                <input id="inputFloatingLabel" type="text" class="form-control input-border-bottom" id="batas_bawah" name="batas_bawah" required>
-                                                <label for="inputFloatingLabel" class="placeholder">Batas Bawah</label>
-                                            </div>
-                                            <div class="form-group form-floating-label">
-                                                <input id="inputFloatingLabel" type="text" class="form-control input-border-bottom" id="grade" name="grade" required>
-                                                <label for="inputFloatingLabel" class="placeholder">Grade</label>
+                                                <input id="inputFloatingLabel" type="text" class="form-control input-border-bottom" id="tahun" name="tahun" required>
+                                                <label for="inputFloatingLabel" class="placeholder">Tahun Pelajaran</label>
                                             </div>
                                         <div class="form-group">
                                             <div class="row">
@@ -71,7 +71,7 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Sesi</h4>
+                                <h4 class="card-title">Semester</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -79,9 +79,7 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>ID Skala</th>
-                                                <th>Nilai</th>
-                                                <th>Grade</th>
+                                                <th>Semester</th>
                                                 <th><center>Status</center></th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -89,14 +87,12 @@
                                         <tbody>
                                             <?php
                                             $nourut = 1;
-                                            foreach ($skala as $sk) {
+                                            foreach ($semester as $sm) {
                                                 $id = $sk->ID_SKALA;
                                             ?>
                                             <tr>
                                                 <td><?php echo $nourut++;?></td>
-                                                <td><?php echo $sk->ID_SKALA; ?></td>
-                                                <td><?php echo ($sk->BATAS_BAWAH);?> - <?php echo ($sk->BATAS_ATAS);?></td>
-                                                <td><?php echo $sk->GRADE; ?></td>
+                                                <td><?php echo ($sm->SEMESTER);?> - <?php echo ($sm->TAHUN_PELAJARAN);?></td>
                                                 <td><?php if($sk->STATUS_SKALA == 1){?>
                                                     <br><center><p style="color: green"><i class="fa fa-check-circle fa-2x"> Aktif</i></p></center>
                                                     <?php } else {?>
@@ -123,11 +119,10 @@
 <!-- MODAL EDIT -->
 
 <?php
-    foreach($skala as $s):
-        $id = $s->ID_SKALA;
-        $bb = $s->BATAS_BAWAH;
-        $ba = $s->BATAS_ATAS;
-        $grade = $s->GRADE;
+    foreach($semester as $s):
+        $id = $s->ID_SEMESTER;
+        $sms = $s->SEMESTER;
+        $tahun = $s->TAHUN_PELAJARAN;
 ?>
 <div class="modal fade" id="modal_edit<?php echo $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -139,7 +134,7 @@
         </button>
         </div>
         <div class="modal-body">
-        <form action="<?php echo base_url('c_skala/update')?>" method="POST">
+        <form action="<?php echo base_url('Tentor/update')?>" method="POST">
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-4">
@@ -153,30 +148,20 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-4">
-                        <label>batas bawah</label>
+                        <label>Semester</label>
                     </div>
                     <div class="col-lg-7">
-                        <input type="text" class="form-control" name="jam_mulai_edit" id="jam_mulai_edit" value="<?php echo $bb?>" required/>
+                        <input type="text" class="form-control" name="semester" id="semester" value="<?php echo $sms?>" required/>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-4">
-                        <label>batas atas</label>
+                        <label>Tahun Pelajaran</label>
                     </div>
                     <div class="col-lg-7">
-                        <input type="text" class="form-control" name="jam_selesai_edit" id="jam_selesai_edit" value="<?php echo $ba?>" required/>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <label>grade</label>
-                    </div>
-                    <div class="col-lg-7">
-                        <input type="text" class="form-control" name="jam_selesai_edit" id="jam_selesai_edit" value="<?php echo $grade?>" required/>
+                        <input type="text" class="form-control" name="tahun" id="tahun" value="<?php echo $tahun?>" required/>
                     </div>
                 </div>
             </div>
