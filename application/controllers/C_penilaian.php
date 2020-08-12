@@ -20,39 +20,14 @@
                 $this->load->model('M_jenis_ujian');
 
                 if ($this->input->post('submit')) {
-                    if ($this->input->post('mapel') == "") {
-                        $d['mapel'] = null;                       
-                        $d['kelas'] = $this->input->post('kelas');
-                        $d['ujian'] = $this->input->post('ujian');
-                    }elseif($this->input->post('kelas') == ""){
-                        $d['mapel'] = $this->input->post('mapel');
-                        $d['kelas'] = null;
-                        $d['ujian'] = $this->input->post('ujian');
-                    }elseif ($this->input->post('ujian') == ""){
-                        $d['mapel'] = $this->input->post('mapel');
-                        $d['kelas'] = $this->input->post('kelas');
-                        $d['ujian'] = null;
-                    }elseif ($this->input->post('mapel') == "" && $this->input->post('kelas') == "") {
-                        $d['mapel'] = null;                       
-                        $d['kelas'] = null;
-                        $d['ujian'] = $this->input->post('ujian');
-                    }elseif ($this->input->post('mapel') == "" && $this->input->post('ujian') == "") {
-                        $d['mapel'] = null;                       
-                        $d['kelas'] = $this->input->post('kelas');
-                        $d['ujian'] = null;
-                    }elseif ($this->input->post('kelas') == "" && $this->input->post('ujian') == "") {
-                        $d['mapel'] = $this->input->post('mapel');                       
-                        $d['kelas'] = null;
-                        $d['ujian'] = null;
-                    }
-                    else{
+                    if ($this->input->post('kelas') && $this->input->post('mapel') && $this->input->post('ujian') ) {
                         $d['mapel'] = $this->input->post('mapel');
                         $d['kelas'] = $this->input->post('kelas');
                         $d['ujian'] = $this->input->post('ujian');
                     }
                 }else{
-                    $d['mapel'] = null;
                     $d['kelas'] = null;
+                    $d['mapel'] = null;
                     $d['ujian'] = null;
                 }
 

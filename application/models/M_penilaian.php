@@ -29,14 +29,6 @@ class M_penilaian extends CI_Model {
             $this->db->where('nil.ID_KELAS',$kelas);
             $this->db->where('nil.ID_MAPEL',$mapel);
             $this->db->where('nil.ID_MAPEL',$ujian);
-        }elseif ($kelas) {
-            $this->db->where('nil.ID_KELAS',$kelas);
-        }
-        elseif ($mapel) {
-            $this->db->where('nil.ID_MAPEL',$mapel);
-        }
-        elseif ($ujian){
-            $this->db->where('nil.ID_JENIS_UJIAN',$ujian);
         }
 
         $this->db->select('*');
