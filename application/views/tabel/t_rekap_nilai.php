@@ -20,10 +20,10 @@
                                     <a href="<?php echo base_url('C_penilaian/tampilKelas')?>"><button type="button" class="btn btn-primary btn-round" >Tambah data</button></a>
                                 </div>
                                 <div class="col-md-8">
-                                    <form action="<?php echo base_url('C_penilaian/index')?>" method="POST">
+                                    <form>
                                     <div class="row">
                                         <div class="col-md-3 mt-2">
-                                            <select class="form-control" name="kelas" id="kelas">
+                                            <select class="form-control" name="kelas" id="kelas" required>
                                                 <option value="">-Pilih Kelas-</option>
                                                 <?php
                                                 foreach ($kelas as $kls) { ?>
@@ -34,18 +34,18 @@
                                             </select>
                                         </div>
                                         <div class="col-md-3 mt-2">
-                                            <select class="form-control" name="mapel" id="mapel">
+                                            <select class="form-control" name="mapel" id="mapel" required>
                                                 <option value="">-Pilih Mapel-</option>
                                                 <?php
                                                 foreach ($matapel as $mapel) { ?>
-                                                    <option value="<?php echo $mapel->ID_MAPEL;?>"><?php echo $mapel->NAMA_MAPEL;?></option>
+                                                    <option value="<?php echo $mapel->ID_MAPEL;?>"><?= $mapel->NAMA_MAPEL?></option>
                                                 <?php
                                                 }
                                                 ?>
                                             </select>
                                         </div>
                                         <div class="col-md-3 mt-2">
-                                            <select class="form-control" name="ujian" id="ujian">
+                                            <select class="form-control" name="ujian" id="ujian" required>
                                                 <option value="">-Pilih Jenis Ujian-</option>
                                                 <?php
                                                 foreach ($ujian as $ju) { ?>
@@ -56,7 +56,7 @@
                                             </select>
                                         </div>
                                         <div class="col-md-2 mt-2">
-                                            <input type="submit" class="btn btn-primary" name="submit"/>
+                                            <button type="button" class="btn btn-primary" id="btn_cari" onclick="get_nilai()">Cari</button>
                                         </div>
                                     </div>
                                     </form>
@@ -117,4 +117,48 @@
                 responsive: true
             });
         });
+
+
+    function get_nilai() {
+        var mapel = document.getElementById('mapel').value;
+        var kelas = document.getElementById('kelas').value;
+        var ujian = document.getElementById('ujian').value;
+        $.ajax({
+            url : "<?php echo base_url('C_penilaian/get_rekap_nilai')?>",
+            method: "POST",
+            dataType :"json",
+            data: {
+            mapel : mapel,
+            kelas : kelas,
+            ujian : ujian
+            },
+            success : function(data){
+                var html = '';
+                    if (data.length > 0) {
+                        console.log(data);
+                        var total = data.length;
+                        $('#total').html(total);
+                        var i;
+                        var nourut = 0;
+                        for(i=0; i<data.length; i++){
+                            nourut += 1;
+                            html += '<tr>'+
+                                    '<td>'+nourut+'</td>'+
+                                    '<td>'+data[i].NOINDUK+'</td>'+
+                                    '<td>'+data[i].NAMA_SISWA+'</td>'+
+                                    '<td>'+data[i].NAMA_KELAS+'</td>'+
+                                    '<td>'+data[i].NAMA_MAPEL+'</td>'+
+                                    '<td>'+data[i].NAMA_JENIS_UJIAN+'</td>'+
+                                    '<td>'+data[i].TOPIK_UJIAN+'</td>'+
+                                    '<td>'+data[i].JUMLAH_NILAI+'</td>'+
+                                    '</tr>';
+                        }
+                    }else{
+                        html += '<tr>'+
+                                    '<td colspan = "8">'+'<center>'+"Data tidak ditemukan"+'</center>'+'</td>'+
+                                '</tr>';                    }
+                    $('#show_data').html(html);
+            }
+        });
+    }
     </script>

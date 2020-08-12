@@ -24,6 +24,10 @@
                         $d['mapel'] = $this->input->post('mapel');
                         $d['kelas'] = $this->input->post('kelas');
                         $d['ujian'] = $this->input->post('ujian');
+                    }else{
+                        $d['kelas'] = null;
+                        $d['mapel'] = null;
+                        $d['ujian'] = null;
                     }
                 }else{
                     $d['kelas'] = null;
@@ -41,7 +45,10 @@
                     'matapel'       => $this->M_mapel->tampilkanSemua()->result(),
                     'ujian'         => $this->M_jenis_ujian->tampilkanSemua()->result(),
                     'nilai'         => $nilai,
-                    'jumlah'        => $jumlah
+                    'jumlah'        => $jumlah,
+                    'kls'           => $d['kelas'],
+                    'mapel'         => $d['mapel'],
+                    'ju'            => $d['ujian']
                 );
                 $this->load->view('layout', $data);
                 
@@ -179,6 +186,26 @@
         public function get_laporan(){
             $this->load->model('M_penilaian');
             $data= $this->M_penilaian->rekap_nilai($this->input->post('kls'))->result();
+            echo json_encode($data);
+        }
+
+        public function get_rekap_nilai(){
+            $this->load->model('M_penilaian');
+
+            $kelas = $this->input->post('kelas');
+            $mapel = $this->input->post('mapel');
+            $ujian = $this->input->post('ujian');
+
+            if ($kelas && $mapel && $ujian) {
+                $k = $kelas;
+                $m = $mapel;
+                $u = $ujian;
+            }else{
+                $k = null;
+                $m = null;
+                $u = null;
+            }
+            $data = $this->M_penilaian->getAll($k,$m,$u)->result();
             echo json_encode($data);
         }
     }
