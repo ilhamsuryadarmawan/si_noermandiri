@@ -12,40 +12,17 @@ class C_absensi extends CI_Controller {
 
     function index(){
         if($this->session->userdata('akses') == 'Tentor' || $this->session->userdata('akses') == 'Administrator'){
-            $this->load->model('M_siswa');
             $this->load->model('M_kelas');
-            $this->load->model('M_jadwal_les');
             $this->load->model('M_absensi');
+            $this->load->model('M_API');
 
-            if ($this->input->post('submit')) {
-                if ($this->input->post('periode') == "") {
-                    $d['periode'] = null;
-                    $d['kelas'] = $this->input->post('kelas');
-                }elseif($this->input->post('kelas') == ""){
-                    $d['periode'] = $this->input->post('periode');
-                    $d['kelas'] = null;
-                }else{
-                    $d['periode'] = $this->input->post('periode');
-                    $d['kelas'] = $this->input->post('kelas');
-                }
-            }else{
-                    $d['periode'] = null;
-                    $d['kelas'] = null;
-            }
-
-            $kelombel   = $this->M_kelas->TampilkanSemua()->result();
-            $jadwal = $this->M_absensi->getAll($d['kelas'],$d['periode'])->result();
-            $jumlah = $this->M_absensi->getAll($d['kelas'],$d['periode'])->num_rows();
-            $absensi = $this->M_absensi->tampilKehadiran()->result();
+            $kelombel = $this->M_API->getAll('kelas')->result();
+            
             $data = array( 
                 'title'    => 'Data Absensi',
-                'content'  => 'tabel/t_absensi',
+                'content'  => 'tabel/t_rekap_absensi',
                 'judul' => 'Absensi Siswa',
-                'absensi' => $absensi,
-                // 'kelas' => $kelas,
-                'kelombel'  => $kelombel,
-                'jadwal'    => $jadwal,
-                'jumlah'    => $jumlah,
+                'kelombel'  => $kelombel
 
                 );
             $this->load->view('layout', $data);
@@ -147,6 +124,23 @@ class C_absensi extends CI_Controller {
         $data= $this->M_absensi->rekap_absen($this->input->post('periode'),$this->input->post('kls'))->result();
         echo json_encode($data);
     }
+
+        public function get_rekap_absen(){
+            $this->load->model('M_absensi');
+
+            $kelas = $this->input->post('kelas');
+            $periode = $this->input->post('periode');
+
+            if ($kelas && $periode) {
+                $k = $kelas;
+                $p = $periode;
+            }else{
+                $k = null;
+                $p = null;
+            }
+            $data = $this->M_absensi->tampil_absen($k,$p)->result();
+            echo json_encode($data);
+        }
     
 }
 ?>

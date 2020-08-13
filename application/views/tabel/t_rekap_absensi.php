@@ -20,10 +20,9 @@
                                     <a href="<?php echo base_url('jadwal')?>"><button type="button" class="btn btn-primary btn-round" >Tambah data</button></a>
                                 </div>
                                 <div class="col-md-8">
-                                    <form action="<?php echo base_url('C_absensi/index')?>" method="POST">
                                     <div class="row">
-                                        <div class="col-md-2"></div>
-                                        <div class="col-md-4 mt-2">
+                                        <div class="col-md-4"></div>
+                                        <div class="col-md-3 mt-2">
                                             <select class="form-control" name="kelas" id="kelas">
                                                 <option value="">-Pilih Kelas-</option>
                                                 <?php
@@ -34,7 +33,7 @@
                                                 ?>
                                             </select>
                                         </div>
-                                        <div class="col-md-4 mt-2">
+                                        <div class="col-md-3 mt-2">
                                             <select class="form-control" name="periode" id="periode">
                                                 <?php
                                                     date_default_timezone_set('Asia/Jakarta');
@@ -56,14 +55,10 @@
                                             </select>
                                         </div>
                                         <div class="col-md-2 mt-2">
-                                            <input type="submit" class="btn btn-primary" name="submit"/> 
+                                            <button type="button" class="btn btn-primary" onclick="get_absensi()">Tampilkan</button> 
                                         </div>
                                     </div>
-                                    </form>
                                 </div>
-<!--                                 <div class="col-md-2 mt-2">
-                                    <a href="<?php echo base_url('laporan_absensi')?>"><button type="button" class="btn btn-info btn-border btn-round fas fa-file-export" > Export PDF</button></a>
-                                </div> -->
                             </div>
                         </div>
                         <div class="card-body">
@@ -81,28 +76,7 @@
                                     </tr>
                                 </thead>           
                                 <tbody id="show_data">
-                                <?php if($jumlah > 0):?>
-                                    <?php
-                                    $nourut = 1;
-                                    foreach ($absensi as $absen) {
-                                    ?>
-                                    <tr>
-                                        <td><?php echo $nourut++;?></td>
-                                        <td><?php echo $absen->NOINDUK; ?></td>
-                                        <td><?php echo $absen->NAMA_SISWA; ?></td>
-                                        <td><?php echo $absen->NAMA_KELAS; ?></td>
-                                        <td><?php echo $absen->kehadiran; ?></td>
-                                        <td><?php echo $absen->alfa; ?></td>
-                                        <td><?php echo $absen->pertemuan; ?></td>
-                                    </tr>
-                                    <?php
-                                    }
-                                    ?>
-                                    <?php else:?>
-                                        <tr>
-                                            <td colspan="8"><center>Absensi Belum Tersedia</center></td>
-                                        </tr>
-                                    <?php endif;?>
+
                                 </tbody>
                             </table>
                         </div>
@@ -112,48 +86,52 @@
         </div>
     </div>
 
-    <script>
+    <script type="text/javascript">
         $(document).ready(function() {
             $('#tabel_absensi').DataTable({
                 responsive: true
             });
         });
-    </script>
 
-<!--     <script >
-    function getAbsen(){
-        var kls = document.getElementById('kelas').value;
+    function get_absensi() {
         var periode = document.getElementById('periode').value;
+        var kelas = document.getElementById('kelas').value;
         $.ajax({
-            url : "<?php echo base_url('Jadwal/getJadwalByFilter')?>",
+            url : "<?php echo base_url('C_absensi/get_rekap_absen')?>",
             method: "POST",
             dataType :"json",
             data: {
-            kls : kls,
-            periode : periode
+            periode : periode,
+            kelas : kelas
             },
             success : function(data){
                 var html = '';
                     if (data.length > 0) {
+                        console.log(data);
+                        var total = data.length;
+                        $('#total').html(total);
                         var i;
+                        var nourut = 0;
                         for(i=0; i<data.length; i++){
+                            nourut += 1;
                             html += '<tr>'+
-                                    '<td>'+data[i].tanggal+'</td>'+
-                                    '<td>'+data[i].jam+'</td>'+
+                                    '<td>'+nourut+'</td>'+
+                                    '<td>'+data[i].NOINDUK+'</td>'+
+                                    '<td>'+data[i].NAMA_SISWA+'</td>'+
                                     '<td>'+data[i].NAMA_KELAS+'</td>'+
-                                    '<td>'+data[i].NAMA_MAPEL+'</td>'+
-                                    '<td>'+data[i].NAMA_RUANGAN+'</td>'+
-                                    '<td>'+data[i].NAMA_TENTOR+'</td>'+
-                                    // '<td><a href=""><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-alt"></i></button></a></td>'+
+                                    '<td>'+data[i].kehadiran+'</td>'+
+                                    '<td>'+data[i].alpha+'</td>'+
+                                    '<td>'+data[i].pertemuan+'</td>'+
                                     '</tr>';
                         }
                     }else{
                         html += '<tr>'+
-                                    '<td colspan = "6">'+'<center>'+"Jadwal belum tersedia"+'</center>'+'</td>'+
-                                '</tr>';
-                    }
+                                    '<td colspan = "8">'+'<center>'+"Data absensi tidak ditemukan"+'</center>'+'</td>'+
+                                '</tr>';                    }
                     $('#show_data').html(html);
             }
         });
-    }   
-    </script> -->
+    }
+    </script>
+
+

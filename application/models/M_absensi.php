@@ -12,16 +12,14 @@ class M_absensi extends CI_Model {
         return $q;
     }
 
-    public function getAll($kelas=null,$periode=null) {
+    public function getAll() {
 
-        if ($kelas && $periode) {
-            $this->db->where('j.ID_KELAS',$kelas);
-            $this->db->where('date_format(j.TANGGAL,"%m-%Y")',$periode);
-        }elseif (strlen($kelas)>0) {
-            $this->db->where('j.ID_KELAS',$kelas);
-        }elseif (strlen($periode)>0) {
-            $this->db->where('date_format(j.TANGGAL,"%m-%Y")',$periode);
-        }
+
+        // if ($kelas && $mapel && $ujian) {
+        //     $this->db->where('nil.ID_KELAS',$kelas);
+        //     $this->db->where('nil.ID_MAPEL',$mapel);
+        //     $this->db->where('nil.ID_JENIS_UJIAN',$ujian);
+        // }
 
         $this->db->select('*');
         $this->db->from('absensi_siswa abs');
@@ -60,13 +58,18 @@ class M_absensi extends CI_Model {
         $this->db->insert($this->table, $this); 
     }
 
-    function tampilKehadiran(){
+    function tampil_absen($kelas,$periode){
+        // if ($kelas && $periode) {
+        //     $this->db->where('j.ID_KELAS',$kelas);
+        //     $this->db->where('date_format(j.TANGGAL,"%m-%Y")',$periode);
+        // }
         $query=$this->db->query("
-                            SELECT a.NOINDUK, s.NAMA_SISWA, k.NAMA_KELAS, SUM(case when STATUS_ABSEN = 'H' then 1 ELSE 0 end) as kehadiran, SUM(CASE WHEN STATUS_ABSEN = 'A' then 1 else 0 end) as alfa, SUM(CASE WHEN STATUS_ABSEN = 'H' then 1 when STATUS_ABSEN = 'A' THEN 1 else 0 END) as pertemuan 
+                            SELECT a.NOINDUK, s.NAMA_SISWA, k.NAMA_KELAS, SUM(case when STATUS_ABSEN = 'H' then 1 ELSE 0 end) as kehadiran, SUM(CASE WHEN STATUS_ABSEN = 'A' then 1 else 0 end) as alpha, SUM(CASE WHEN STATUS_ABSEN = 'H' then 1 when STATUS_ABSEN = 'A' THEN 1 else 0 END) as pertemuan 
                             FROM absensi_siswa a
                             LEFT JOIN siswa s ON s.NOINDUK = a.NOINDUK
                             LEFT join jadwal_les j ON j.ID_JADWAL = a.ID_JADWAL
                             LEFT JOIN kelas k ON k.ID_KELAS = j.ID_KELAS
+                            WHERE j.ID_KELAS = '$kelas' AND date_format(j.TANGGAL,'%m-%Y') = '$periode'
                             GROUP BY NOINDUK
                             ");
         return $query;

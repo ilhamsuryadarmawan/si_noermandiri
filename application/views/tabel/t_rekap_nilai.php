@@ -22,6 +22,7 @@
                                 <div class="col-md-8">
                                     <form>
                                     <div class="row">
+                                        <div class="col-md-1"></div>
                                         <div class="col-md-3 mt-2">
                                             <select class="form-control" name="kelas" id="kelas" required>
                                                 <option value="">-Pilih Kelas-</option>
@@ -35,7 +36,7 @@
                                         </div>
                                         <div class="col-md-3 mt-2">
                                             <select class="form-control" name="mapel" id="mapel" required>
-                                                <option value="">-Pilih Mapel-</option>
+                                                <option value="">-Pilih Mata Pelajaran-</option>
                                                 <?php
                                                 foreach ($matapel as $mapel) { ?>
                                                     <option value="<?php echo $mapel->ID_MAPEL;?>"><?= $mapel->NAMA_MAPEL?></option>
@@ -56,7 +57,7 @@
                                             </select>
                                         </div>
                                         <div class="col-md-2 mt-2">
-                                            <button type="button" class="btn btn-primary" id="btn_cari" onclick="get_nilai()">Cari</button>
+                                            <button type="button" class="btn btn-primary" id="btn_cari" onclick="get_nilai()">Tampilkan</button>
                                         </div>
                                     </div>
                                     </form>
@@ -79,7 +80,7 @@
                                     </tr>
                                 </thead>           
                                 <tbody id="show_data">
-                                <?php if($jumlah > 0):?>
+<!--                                 <?php if($jumlah > 0):?>
                                     <?php
                                     $nourut = 1;
                                     foreach ($nilai as $nil) {
@@ -101,7 +102,7 @@
                                         <tr>
                                             <td colspan="8"><center>Nilai Belum Tersedia</center></td>
                                         </tr>
-                                    <?php endif;?>
+                                    <?php endif;?> -->
                                 </tbody>
                             </table>
                         </div>
@@ -155,7 +156,7 @@
                         }
                     }else{
                         html += '<tr>'+
-                                    '<td colspan = "8">'+'<center>'+"Data tidak ditemukan"+'</center>'+'</td>'+
+                                    '<td colspan = "8">'+'<center>'+"Data nilai tidak ditemukan"+'</center>'+'</td>'+
                                 '</tr>';                    }
                     $('#show_data').html(html);
             }

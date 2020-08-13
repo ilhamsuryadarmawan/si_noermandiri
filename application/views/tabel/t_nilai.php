@@ -26,17 +26,6 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <form action="<?php echo base_url('C_penilaian/tambahNilai')?>" enctype="multipart/form-data" method="POST">
-<!--                                         <input type="hidden" class="form-control" id="id_kelas" name="id_kelas" value="<?php echo $nilai->ID_KELAS?>" readonly> -->
-<!--                                         <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-lg-2 mt-4">
-                                                    <label>Tgl Absen dibuat</label>
-                                                </div>
-                                                <div class="col-lg-6 mt-3">
-                                                    <input type="date" class="form-control" id="TGL_ABSEN_DIBUAT" name="TGL_ABSEN_DIBUAT" value="<?php echo $jadwal->TANGGAL?>" readonly>
-                                                </div>
-                                            </div>
-                                        </div> -->
                                         <div class="col-sm-6 col-md-3">
                                         <div class="card card-stats card-round">
                                             <div class="card-body ">
@@ -59,7 +48,7 @@
                                                     <div class="col-7 col-stats">
                                                         <div class="numbers">
                                                             <p class="card-category">Kelas</p>
-                                                            <h4 class="card-title"><input type="text" class="form-control" id="kelas" name="kelas" value="<?php echo str_replace("%20"," ",$id) ?>"></h4>
+                                                            <h4 class="card-title"><input type="text" class="form-control" id="kelas" name="kelas" value="<?php echo str_replace("%20"," ",$id) ?>" readonly></h4>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -121,7 +110,7 @@
                                                     <div class="col-7 col-stats">
                                                         <div class="numbers">
                                                             <p class="card-category">Topik Pembahasan</p>
-                                                            <h4 class="card-title"><input type="text" class="form-control" id="topik" name="topik"></h4>
+                                                            <h4 class="card-title"><input type="text" class="form-control" id="topik" name="topik" placeholder="Topik/Materi"></h4>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -131,16 +120,6 @@
 
                                 </div>
 
-<!--                                         <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-lg-2 mt-4">
-                                                    <label>Mata Pelajaran</label>
-                                                </div>
-                                                <div class="col-lg-6 mt-3">
-                                                    <input type="text" class="form-control" id="mapel" name="mapel" value="<?php echo $jadwal->NAMA_MAPEL?>" readonly>
-                                                </div>
-                                            </div>
-                                        </div> -->
                                         <br>
                                         <table class="table sparkle-table" id="table" data-toggle="table" data-pagination="false" data-search="false" data-cookie-id-table="saveId" data-click-to-select="false" data-toolbar="#toolbar">
                                             <thead>

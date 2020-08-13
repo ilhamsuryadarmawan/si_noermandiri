@@ -19,36 +19,14 @@
                 $this->load->model('M_mapel');
                 $this->load->model('M_jenis_ujian');
 
-                if ($this->input->post('submit')) {
-                    if ($this->input->post('kelas') && $this->input->post('mapel') && $this->input->post('ujian') ) {
-                        $d['mapel'] = $this->input->post('mapel');
-                        $d['kelas'] = $this->input->post('kelas');
-                        $d['ujian'] = $this->input->post('ujian');
-                    }else{
-                        $d['kelas'] = null;
-                        $d['mapel'] = null;
-                        $d['ujian'] = null;
-                    }
-                }else{
-                    $d['kelas'] = null;
-                    $d['mapel'] = null;
-                    $d['ujian'] = null;
-                }
-
-                $nilai = $this->M_penilaian->getAll($d['kelas'],$d['mapel'],$d['ujian'])->result();
-                $jumlah = $this->M_penilaian->getAll($d['kelas'],$d['mapel'],$d['ujian'])->num_rows();
                 $data = array(
-                    'kelas'         => $this->M_kelas->tampilkanSemua()->result(),
                     'judul'         => 'Nilai Siswa' ,
                     'title'         => 'Nilai Siswa',
                     'content'       => 'tabel/t_rekap_nilai',
                     'matapel'       => $this->M_mapel->tampilkanSemua()->result(),
                     'ujian'         => $this->M_jenis_ujian->tampilkanSemua()->result(),
-                    'nilai'         => $nilai,
-                    'jumlah'        => $jumlah,
-                    'kls'           => $d['kelas'],
-                    'mapel'         => $d['mapel'],
-                    'ju'            => $d['ujian']
+                    'kelas'         => $this->M_kelas->tampilkanSemua()->result()
+
                 );
                 $this->load->view('layout', $data);
                 

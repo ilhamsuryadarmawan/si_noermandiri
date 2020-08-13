@@ -75,6 +75,7 @@
                                         <th>Mata Pelajaran</th>
                                         <th>Ruangan</th>
                                         <th>Tentor</th>
+                                        <th><center>Status</center></th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
