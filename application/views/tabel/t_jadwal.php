@@ -36,6 +36,17 @@
                                         </div>
                                         <div class="col-md-4 mt-2">
                                             <select class="form-control" name="periode" id="periode">
+                                                <option value="">-Pilih Semester-</option>
+                                                <?php
+                                                foreach ($semester as $sms) { ?>
+                                                    <option value="<?php echo $sms->ID_SEMESTER;?>"><?php echo $sms->SEMESTER;?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+<!--                                         <div class="col-md-4 mt-2">
+                                            <select class="form-control" name="periode" id="periode">
                                                 <?php
                                                     date_default_timezone_set('Asia/Jakarta');
                                                     $tahun = date("Y");
@@ -54,7 +65,7 @@
                                                 <option value="11-<?php echo $tahun?>">November</option>
                                                 <option value="12-<?php echo $tahun?>">Desember</option>
                                             </select>
-                                        </div>
+                                        </div> -->
                                         <div class="col-md-2 mt-2">
                                             <input type="submit" class="btn btn-primary" name="submit"/>
                                         </div>
@@ -69,13 +80,13 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Tanggal</th>
-                                        <th>Jam</th>
+                                        <th>Semester</th>
                                         <th>Kelas </th>
                                         <th>Mata Pelajaran</th>
                                         <th>Ruangan</th>
                                         <th>Tentor</th>
-                                        <th><center>Status</center></th>
+                                        <th>Jadwal</th>
+                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -88,29 +99,30 @@
                                         ?>
                                         <tr>
                                             <td><?php echo $nourut++;?></td>
-                                            <td><?php echo date("d-m-Y",strtotime($j->TANGGAL))?></td>
-                                            <td><?php echo date("H:i",strtotime($j->JAM_MULAI))?> - <?php echo date("H:i",strtotime($j->JAM_SELESAI))?></td>
+                                            <td><?php echo $j->SEMESTER?></td>
                                             <td><?php echo $j->NAMA_KELAS?></td>
                                             <td><?php echo $j->NAMA_MAPEL?></td>
                                             <td><?php echo $j->NAMA_RUANGAN?></td>
                                             <td><?php echo $j->NAMA_PEGAWAI?></td>
-<!--                                             <td>
-                                                <button class="btn btn-primary btn-sm" id="btnEdit" data-toggle="modal" data-target="#modal_edit<?php echo $j->ID_JADWAL?>"><i class="fa fa-edit"></i></button>
-                                                <a href="<?php echo base_url('Jadwal/hapus/'.$j->ID_JADWAL)?>" class="tombol_hapus">&nbsp<button class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></button></a>
-                                            </td> -->
+                                            <!-- <td><?php echo date("d-m-Y",strtotime($j->TANGGAL))?></td> -->
+                                            <td><?php echo $j->HARI?> - <?php echo date("H:i",strtotime($j->JAM_MULAI))?>-<?php echo date("H:i",strtotime($j->JAM_SELESAI))?></td>
+                                            
                                             <td>
                                                 <?php if($j->STATUS_JADWAL == 1){?>
-                                                    <center><p style="color: orange"><i class="fa fa-check-circle fa-2x mt-3"></i></p><p class="mt--2">Sudah input</p></center>
+                                                    <center><p style="color: orange"><i class="fa fa-check-circle fa-2x mt-3"></i></p><p class="mt--2">Aktif</p></center>
                                                 <?php } else {?>
-                                                    <center><p style="color: red"><i class="fa fa-times-circle fa-2x mt-3"></i></p><pclass="mt--2">Belum input</p></center>
+                                                    <center><p style="color: red"><i class="fa fa-times-circle fa-2x mt-3"></i></p><pclass="mt--2">Nonaktif</p></center>
                                                 <?php }?>
                                             </td>
-                                            <td>
+<!--                                             <td>
                                                 <?php if($j->STATUS_JADWAL == 1){?>
                                                     <button type="button" class="btn btn-primary btn-sm" disabled>Input Absen</button>
                                                 <?php } else {?>
                                                     <a href="<?php echo base_url('C_absensi/inputAbsen/'.$j->ID_JADWAL)?>"><button class="btn btn-primary btn-sm">Input Absen</button></a>
                                                 <?php }?>
+                                            </td> -->
+                                            <td>
+                                            <a href="<?php echo base_url('C_absensi/inputAbsen/'.$j->ID_JADWAL)?>"><button class="btn btn-primary btn-sm">Input Absen</button></a>
                                             </td>
                                         </tr>
                                         <?php
@@ -118,7 +130,7 @@
                                         ?>
                                     <?php else:?>
                                         <tr>
-                                            <td colspan="8"><center>Jadwal Belum Tersedia</center></td>
+                                            <td colspan="8"><center>Data Jadwal Belum Tersedia</center></td>
                                         </tr>
                                     <?php endif;?>
                                 </tbody>
@@ -346,7 +358,7 @@
                         var i;
                         for(i=0; i<data.length; i++){
                             html += '<tr>'+
-                                    '<td>'+data[i].tanggal+'</td>'+
+                                    '<td>'+data[i].SEMESTER+'</td>'+
                                     '<td>'+data[i].jam+'</td>'+
                                     '<td>'+data[i].NAMA_KELAS+'</td>'+
                                     '<td>'+data[i].NAMA_MAPEL+'</td>'+

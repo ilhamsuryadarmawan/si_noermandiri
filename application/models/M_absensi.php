@@ -14,13 +14,6 @@ class M_absensi extends CI_Model {
 
     public function getAll() {
 
-
-        // if ($kelas && $mapel && $ujian) {
-        //     $this->db->where('nil.ID_KELAS',$kelas);
-        //     $this->db->where('nil.ID_MAPEL',$mapel);
-        //     $this->db->where('nil.ID_JENIS_UJIAN',$ujian);
-        // }
-
         $this->db->select('*');
         $this->db->from('absensi_siswa abs');
         $this->db->join('jadwal_les j','abs.ID_JADWAL = j.ID_JADWAL');
@@ -30,6 +23,7 @@ class M_absensi extends CI_Model {
         $this->db->join('pegawai t','j.ID_PEGAWAI = t.ID_PEGAWAI');
         $this->db->join('siswa sis','abs.NOINDUK = sis.NOINDUK');
         $this->db->join('sesi s','j.ID_SESI = s.ID_SESI');
+        $this->db->join('semester se','j.ID_SEMESTER = se.ID_SEMESTER');
         return $this->db->get();
     }
 
@@ -58,43 +52,52 @@ class M_absensi extends CI_Model {
         $this->db->insert($this->table, $this); 
     }
 
-    function tampil_absen($kelas,$periode){
-        // if ($kelas && $periode) {
-        //     $this->db->where('j.ID_KELAS',$kelas);
-        //     $this->db->where('date_format(j.TANGGAL,"%m-%Y")',$periode);
-        // }
-        $query=$this->db->query("
-                            SELECT a.NOINDUK, s.NAMA_SISWA, k.NAMA_KELAS, SUM(case when STATUS_ABSEN = 'H' then 1 ELSE 0 end) as kehadiran, SUM(CASE WHEN STATUS_ABSEN = 'A' then 1 else 0 end) as alpha, SUM(CASE WHEN STATUS_ABSEN = 'H' then 1 when STATUS_ABSEN = 'A' THEN 1 else 0 END) as pertemuan 
-                            FROM absensi_siswa a
-                            LEFT JOIN siswa s ON s.NOINDUK = a.NOINDUK
-                            LEFT join jadwal_les j ON j.ID_JADWAL = a.ID_JADWAL
-                            LEFT JOIN kelas k ON k.ID_KELAS = j.ID_KELAS
-                            WHERE j.ID_KELAS = '$kelas' AND date_format(j.TANGGAL,'%m-%Y') = '$periode'
-                            GROUP BY NOINDUK
-                            ");
-        return $query;
-    } 
-
-    function tampilAlfa(){
-        $query=$this->db->query("SELECT COUNT(ID_ABSENSI) as jmlAlfa, a.NOINDUK, s.NAMA_SISWA
-                                FROM absensi_siswa a
-                                JOIN siswa s ON s.NOINDUK = a.NOINDUK
-                                WHERE STATUS_ABSEN = 'A' GROUP BY NOINDUK");
-        return $query;
-    }
 
     public function rekap_absen($periode,$kls)
     {
-        return $this->db->query("select NOINDUK as nis,NAMA_SISWA,ID_KELAS as kls ,(SELECT COUNT(NOINDUK) FROM absensi_siswa JOIN jadwal_les ON absensi_siswa.ID_JADWAL=jadwal_les.ID_JADWAL WHERE absensi_siswa.NOINDUK = nis AND date_format(jadwal_les.TANGGAL,'%Y-%m')='$periode' AND absensi_siswa.STATUS_ABSEN='H') hadir, (SELECT COUNT(NOINDUK) FROM absensi_siswa JOIN jadwal_les ON absensi_siswa.ID_JADWAL=jadwal_les.ID_JADWAL WHERE absensi_siswa.NOINDUK = nis AND date_format(jadwal_les.TANGGAL,'%Y-%m')='$periode' AND absensi_siswa.STATUS_ABSEN='A') alpha, (SELECT COUNT(ID_JADWAL) FROM jadwal_les WHERE ID_KELAS=kls AND date_format(TANGGAL,'%Y-%m')='$periode') pertemuan
+        return $this->db->query("
+            SELECT NOINDUK as nis,NAMA_SISWA, ID_KELAS as kls ,
+                (SELECT COUNT(NOINDUK) 
+                FROM absensi_siswa 
+                JOIN jadwal_les ON absensi_siswa.ID_JADWAL=jadwal_les.ID_JADWAL 
+                WHERE absensi_siswa.NOINDUK = nis AND jadwal_les.ID_SEMESTER ='$periode' AND absensi_siswa.STATUS_ABSEN='H') hadir, 
+                (SELECT COUNT(NOINDUK) 
+                FROM absensi_siswa 
+                JOIN jadwal_les ON absensi_siswa.ID_JADWAL=jadwal_les.ID_JADWAL 
+                WHERE absensi_siswa.NOINDUK = nis AND jadwal_les.ID_SEMESTER ='$periode' AND absensi_siswa.STATUS_ABSEN='A') alpha, 
+                (SELECT COUNT(ID_JADWAL) 
+                FROM jadwal_les 
+                WHERE ID_KELAS=kls AND jadwal_les.ID_SEMESTER ='$periode') pertemuan
             FROM siswa
-            where ID_KELAS = '$kls'");
+            WHERE ID_KELAS = '$kls'");
     }
 
-    public function histori_absen($periode,$noinduk)
+    public function laporan_absen($periode,$kls)
     {
-        return $this->db->query("select NOINDUK as nis,NAMA_SISWA,ID_KELAS as kls ,(SELECT COUNT(NOINDUK) FROM absensi_siswa JOIN jadwal_les ON absensi_siswa.ID_JADWAL=jadwal_les.ID_JADWAL WHERE absensi_siswa.NOINDUK = nis AND date_format(jadwal_les.TANGGAL,'%Y-%m')='$periode' AND absensi_siswa.STATUS_ABSEN='H') hadir, (SELECT COUNT(NOINDUK) FROM absensi_siswa JOIN jadwal_les ON absensi_siswa.ID_JADWAL=jadwal_les.ID_JADWAL WHERE absensi_siswa.NOINDUK = nis AND date_format(jadwal_les.TANGGAL,'%Y-%m')='$periode' AND absensi_siswa.STATUS_ABSEN='A') alpha, (SELECT COUNT(ID_JADWAL) FROM jadwal_les WHERE ID_KELAS=kls AND date_format(TANGGAL,'%Y-%m')='$periode') pertemuan
+        return $this->db->query("
+            SELECT NOINDUK as nis,NAMA_SISWA,ID_KELAS as kls ,(SELECT COUNT(NOINDUK) FROM absensi_siswa JOIN jadwal_les ON absensi_siswa.ID_JADWAL=jadwal_les.ID_JADWAL WHERE absensi_siswa.NOINDUK = nis AND date_format(jadwal_les.TANGGAL,'%Y-%m')='$periode' AND absensi_siswa.STATUS_ABSEN='H') hadir, (SELECT COUNT(NOINDUK) FROM absensi_siswa JOIN jadwal_les ON absensi_siswa.ID_JADWAL=jadwal_les.ID_JADWAL WHERE absensi_siswa.NOINDUK = nis AND date_format(jadwal_les.TANGGAL,'%Y-%m')='$periode' AND absensi_siswa.STATUS_ABSEN='A') alpha, (SELECT COUNT(ID_JADWAL) FROM jadwal_les WHERE ID_KELAS=kls AND date_format(TANGGAL,'%Y-%m')='$periode') pertemuan
             FROM siswa
-            where NOINDUK = '$noinduk'");
+            WHERE ID_KELAS = '$kls'");
+    }
+
+    public function histori_absen($noinduk,$periode)
+    {
+        return $this->db->query("
+            SELECT NOINDUK, NAMA_SISWA, ID_KELAS as kelas,
+                (SELECT COUNT(NOINDUK) 
+                FROM absensi_siswa 
+                JOIN jadwal_les ON absensi_siswa.ID_JADWAL=jadwal_les.ID_JADWAL 
+                WHERE absensi_siswa.NOINDUK = $noinduk AND jadwal_les.ID_SEMESTER='$periode' AND absensi_siswa.STATUS_ABSEN='H') hadir, 
+                (SELECT COUNT(NOINDUK) 
+                FROM absensi_siswa 
+                JOIN jadwal_les ON absensi_siswa.ID_JADWAL=jadwal_les.ID_JADWAL 
+                WHERE absensi_siswa.NOINDUK = $noinduk AND jadwal_les.ID_SEMESTER='$periode' AND absensi_siswa.STATUS_ABSEN='A') alpha, 
+                (SELECT COUNT(ID_JADWAL)                     
+                FROM jadwal_les 
+                WHERE ID_KELAS=kelas AND ID_SEMESTER='$periode') pertemuan
+            FROM siswa
+            WHERE NOINDUK = '$noinduk'
+        ");
     }
 
         public function get_by_id_jadwal($id)

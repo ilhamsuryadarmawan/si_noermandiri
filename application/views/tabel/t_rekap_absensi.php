@@ -35,23 +35,13 @@
                                         </div>
                                         <div class="col-md-3 mt-2">
                                             <select class="form-control" name="periode" id="periode">
+                                                <option value="">-Pilih Semester-</option>
                                                 <?php
-                                                    date_default_timezone_set('Asia/Jakarta');
-                                                    $tahun = date("Y");
+                                                foreach ($semester as $sms) { ?>
+                                                    <option value="<?php echo $sms->ID_SEMESTER;?>"><?php echo $sms->SEMESTER;?></option>
+                                                <?php
+                                                }
                                                 ?>
-                                                <option value="">-Pilih Bulan-</option>
-                                                <option value="01-<?php echo $tahun?>">Januari</option>
-                                                <option value="02-<?php echo $tahun?>">Februari</option>
-                                                <option value="03-<?php echo $tahun?>">Maret</option>
-                                                <option value="04-<?php echo $tahun?>">April</option>
-                                                <option value="05-<?php echo $tahun?>">Mei</option>
-                                                <option value="06-<?php echo $tahun?>">Juni</option>
-                                                <option value="07-<?php echo $tahun?>">Juli</option>
-                                                <option value="08-<?php echo $tahun?>">Agustus</option>
-                                                <option value="09-<?php echo $tahun?>">September</option>
-                                                <option value="10-<?php echo $tahun?>">Oktober</option>
-                                                <option value="11-<?php echo $tahun?>">November</option>
-                                                <option value="12-<?php echo $tahun?>">Desember</option>
                                             </select>
                                         </div>
                                         <div class="col-md-2 mt-2">
@@ -116,10 +106,10 @@
                             nourut += 1;
                             html += '<tr>'+
                                     '<td>'+nourut+'</td>'+
-                                    '<td>'+data[i].NOINDUK+'</td>'+
+                                    '<td>'+data[i].nis+'</td>'+
                                     '<td>'+data[i].NAMA_SISWA+'</td>'+
-                                    '<td>'+data[i].NAMA_KELAS+'</td>'+
-                                    '<td>'+data[i].kehadiran+'</td>'+
+                                    '<td>'+data[i].kls+'</td>'+
+                                    '<td>'+data[i].hadir+'</td>'+
                                     '<td>'+data[i].alpha+'</td>'+
                                     '<td>'+data[i].pertemuan+'</td>'+
                                     '</tr>';

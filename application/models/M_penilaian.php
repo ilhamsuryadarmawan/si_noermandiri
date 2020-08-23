@@ -77,19 +77,51 @@ class M_penilaian extends CI_Model {
 
     public function rekap_nilai($kelas)
     {
-        $query = $this->db->query("SELECT NOINDUK as nis, NAMA_SISWA, kelas.NAMA_KELAS, (select nilai_siswa.JUMLAH_NILAI from nilai_siswa JOIN jenis_ujian on nilai_siswa.ID_JENIS_UJIAN = jenis_ujian.ID_JENIS_UJIAN WHERE nilai_siswa.NOINDUK = nis AND jenis_ujian.ID_JENIS_UJIAN ='UJI001') tryout, (select nilai_siswa.JUMLAH_NILAI from nilai_siswa JOIN jenis_ujian on nilai_siswa.ID_JENIS_UJIAN = jenis_ujian.ID_JENIS_UJIAN WHERE nilai_siswa.NOINDUK = nis AND jenis_ujian.ID_JENIS_UJIAN ='UJI002') tugas1
-            from siswa
+        $query = $this->db->query("
+            SELECT NOINDUK as nis, NAMA_SISWA, kelas.NAMA_KELAS, 
+                (SELECT nilai_siswa.JUMLAH_NILAI 
+                FROM nilai_siswa 
+                JOIN jenis_ujian on nilai_siswa.ID_JENIS_UJIAN = jenis_ujian.ID_JENIS_UJIAN 
+                WHERE nilai_siswa.NOINDUK = nis AND jenis_ujian.ID_JENIS_UJIAN ='UJI001') tryout, 
+                (SELECT nilai_siswa.JUMLAH_NILAI FROM nilai_siswa 
+                JOIN jenis_ujian on nilai_siswa.ID_JENIS_UJIAN = jenis_ujian.ID_JENIS_UJIAN 
+                WHERE nilai_siswa.NOINDUK = nis AND jenis_ujian.ID_JENIS_UJIAN ='UJI002') tugas
+            FROM siswa
             JOIN kelas ON siswa.ID_KELAS = kelas.ID_KELAS
-            WHERE siswa.ID_KELAS = '$kelas'");   
+            WHERE siswa.ID_KELAS = '$kelas'
+            ");   
         return $query; 
     }
 
-    public function histori_nilai($noinduk)
+    public function laporan_nilai($kelas,$ujian,$periode)
     {
-        $query = $this->db->query("SELECT NOINDUK as nis, NAMA_SISWA, kelas.NAMA_KELAS, (select nilai_siswa.JUMLAH_NILAI from nilai_siswa JOIN jenis_ujian on nilai_siswa.ID_JENIS_UJIAN = jenis_ujian.ID_JENIS_UJIAN WHERE nilai_siswa.NOINDUK = nis AND jenis_ujian.ID_JENIS_UJIAN ='UJI001') tryout, (select nilai_siswa.JUMLAH_NILAI from nilai_siswa JOIN jenis_ujian on nilai_siswa.ID_JENIS_UJIAN = jenis_ujian.ID_JENIS_UJIAN WHERE nilai_siswa.NOINDUK = nis AND jenis_ujian.ID_JENIS_UJIAN ='UJI002') tugas1
-            from siswa
-            JOIN kelas ON siswa.ID_KELAS = kelas.ID_KELAS
-            WHERE siswa.NOINDUK = '$noinduk'");   
+        $query = $this->db->query("
+            SELECT SEMESTER, NOINDUK, NAMA_SISWA, NAMA_MAPEL, NAMA_KELAS, ROUND(AVG(JUMLAH_NILAI)) AS RATA_RATA 
+            FROM mata_pelajaran
+            JOIN nilai_siswa ON nilai_siswa.ID_MAPEL = mata_pelajaran.ID_MAPEL 
+            JOIN jenis_ujian on nilai_siswa.ID_JENIS_UJIAN = jenis_ujian.ID_JENIS_UJIAN
+            JOIN semester on nilai_siswa.ID_SEMESTER = semester.ID_SEMESTER
+            JOIN kelas ON nilai_siswa.ID_KELAS = kelas.ID_KELAS
+            JOIN siswa ON kelas.NOINDUK = siswa.NOINDUK
+            WHERE nilai_siswa.NOINDUK = NOINDUK AND kelas.ID_KELAS ='$kelas' AND jenis_ujian.ID_JENIS_UJIAN ='$ujian' AND semester.ID_SEMESTER='$periode'
+            GROUP BY NAMA_MAPEL 
+            ORDER BY mata_pelajaran.ID_MAPEL ASC
+            ");   
+        return $query; 
+    }
+
+    public function histori_nilai($noinduk,$ujian,$periode)
+    {
+        $query = $this->db->query("
+            SELECT SEMESTER, NOINDUK, NAMA_MAPEL, ROUND(AVG(JUMLAH_NILAI)) AS RATA_RATA 
+            FROM mata_pelajaran
+            JOIN nilai_siswa ON nilai_siswa.ID_MAPEL = mata_pelajaran.ID_MAPEL 
+            JOIN jenis_ujian on nilai_siswa.ID_JENIS_UJIAN = jenis_ujian.ID_JENIS_UJIAN
+            JOIN semester on nilai_siswa.ID_SEMESTER = semester.ID_SEMESTER 
+            WHERE nilai_siswa.NOINDUK = '$noinduk' AND jenis_ujian.ID_JENIS_UJIAN ='$ujian' AND semester.ID_SEMESTER='$periode'
+            GROUP BY NAMA_MAPEL 
+            ORDER BY mata_pelajaran.ID_MAPEL ASC
+            ");   
         return $query; 
     }
 }

@@ -51,12 +51,13 @@
     </div><hr>
     <div class="row">
         <div class="col-md-12">
-            <center><h3 style="text-decoration: underline">Laporan Absensi</h3></center>
+            <center><h3 style="text-decoration: underline">Laporan Data Absensi Siswa</h3></center>
         </div>
     </div>
     <table>
       <thead>
-          <th>Periode</th><th>: 
+          <th style="text-align: left">Bulan   :
+
             <?php if(substr($periode, 5,2)=='01'):?>
               <?php echo "Januari ". substr($periode,0,4)?>
             <?php elseif(substr($periode, 5,2)=='02'):?>
@@ -82,12 +83,13 @@
             <?php else:?>
               <?php echo "Desember ". substr($periode,0,4)?>
             <?php endif;?>
-          </th>
+          </th> 
       </thead>
     </table>
     <table>
       <thead>
-          <th>Kelas </th><th>: <?php echo $kelas?></th>
+          <th style="text-align: right;">Kelas     :  
+            <?php echo $kelas?></th>
       </thead>
     </table>
     <div id="outtable">
@@ -98,8 +100,8 @@
                     <th width="70px">No. Induk</th>
                     <th width="120px">Nama Siswa</th>
                     <th width="80px">Kelas</th>
-                    <th width="50px">Hadir</th>
-                    <th width="50px">Alpha</th>
+                    <th width="50px">Jumlah Kehadiran</th>
+                    <th width="50px">Jumlah Ketidakhadiran</th>
                     <th width="50px">Jumlah Pertemuan</th>
                 </tr>
             </thead>

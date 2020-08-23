@@ -11,11 +11,11 @@ class M_jadwal_les extends CI_Model {
 
         if ($kelas && $periode) {
             $this->db->where('j.ID_KELAS',$kelas);
-            $this->db->where('date_format(j.TANGGAL,"%m-%Y")',$periode);
+            $this->db->where('j.ID_SEMESTER',$periode);
         }elseif (strlen($kelas)>0) {
             $this->db->where('j.ID_KELAS',$kelas);
         }elseif (strlen($periode)>0) {
-            $this->db->where('date_format(j.TANGGAL,"%m-%Y")',$periode);
+            $this->db->where('j.ID_SEMESTER',$periode);
         }
         $this->db->select('*');
         $this->db->from('jadwal_les j');
@@ -24,6 +24,7 @@ class M_jadwal_les extends CI_Model {
         $this->db->join('ruangan r','j.ID_RUANGAN = r.ID_RUANGAN');
         $this->db->join('pegawai t','j.ID_PEGAWAI = t.ID_PEGAWAI');
         $this->db->join('sesi s','j.ID_SESI = s.ID_SESI');
+        $this->db->join('semester se','j.ID_SEMESTER = se.ID_SEMESTER');
         return $this->db->get();
     }
 
@@ -159,6 +160,7 @@ class M_jadwal_les extends CI_Model {
         $this->db->join('ruangan r','j.ID_RUANGAN = r.ID_RUANGAN');
         $this->db->join('pegawai t','j.ID_PEGAWAI = t.ID_PEGAWAI');
         $this->db->join('sesi s','j.ID_SESI = s.ID_SESI');
+        $this->db->join('semester se','j.ID_SEMESTER = se.ID_SEMESTER');
         $this->db->where('j.ID_JADWAL',$id);
         return $this->db->get();
     }

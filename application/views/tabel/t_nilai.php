@@ -26,7 +26,8 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <form action="<?php echo base_url('C_penilaian/tambahNilai')?>" enctype="multipart/form-data" method="POST">
-                                        <div class="col-sm-6 col-md-3">
+                                <div class="row row-card-no-pd mt--2">
+                                    <div class="col-sm-6 col-md-3">
                                         <div class="card card-stats card-round">
                                             <div class="card-body ">
                                                 <div class="row">
@@ -40,7 +41,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                <div class="row row-card-no-pd mt--2">
                                     <div class="col-sm-6 col-md-3">
                                         <div class="card card-stats card-round">
                                             <div class="card-body">
@@ -55,6 +55,8 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row row-card-no-pd mt--2">
                                     <div class="col-sm-6 col-md-3">
                                         <div class="card card-stats card-round">
                                             <div class="card-body">
@@ -92,6 +94,30 @@
                                                                     <?php
                                                                     foreach ($jenis as $ujian) { ?>
                                                                         <option value="<?php echo $ujian->ID_JENIS_UJIAN;?>"><?php echo $ujian->NAMA_JENIS_UJIAN;?></option>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="card card-stats card-round">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-7 col-stats">
+                                                        <div class="numbers">
+                                                            <p class="card-category">Semester</p>
+                                                            <h4 class="card-title">                                            
+                                                                <select class="form-control input-border-bottom" name="semester" id="semester" required>
+                                                                    <option value="">- Pilih Semester -</option>
+                                                                    <?php
+                                                                    foreach ($semester as $sms) { ?>
+                                                                        <option value="<?php echo $sms->ID_SEMESTER;?>"><?php echo $sms->SEMESTER;?></option>
                                                                     <?php
                                                                     }
                                                                     ?>
@@ -159,7 +185,12 @@
                                                 <div class="col-lg-6">
                                                     <div class="login-horizental cancel-wp pull-left">
                                                         <button type="reset" class="btn btn-danger btn-sm" name="Batal">Batal</button>&nbsp;
-                                                        <button type="submit" class="btn btn-primary btn-sm" name="submit">Simpan Absensi</button> 
+                                                        <button type="submit" class="btn btn-primary btn-sm" name="submit">Simpan Absensi</button>
+<!--                                                         <?php if($j->STATUS_JADWAL == 1){?>
+                                                            <button type="submit" class="btn btn-primary btn-sm" name="submit" disabled>Simpan Absensi</button>
+                                                        <?php } else {?>
+                                                            <a href="<?php echo base_url('C_absensi/inputAbsen/'.$j->ID_JADWAL)?>"><button type="submit" class="btn btn-primary btn-sm" name="submit">Simpan Absensi</button></a>
+                                                        <?php }?>    -->                                                      
                                                     </div>
                                                 </div>
                                             </div>

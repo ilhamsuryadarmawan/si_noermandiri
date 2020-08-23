@@ -12,9 +12,7 @@
         function index(){
             //jika sebagai Administrator
             if($this->session->userdata('akses') == 'Administrator' || $this->session->userdata('akses') == "Tentor"){
-                $this->load->model('M_kelas');
                 $this->load->model('M_jadwal_les');
-                $this->load->model('M_sesi');
                 $this->load->model('M_API');
 
                 if ($this->input->post('submit')) {
@@ -33,31 +31,20 @@
                     $d['kelas'] = null;
                 }
 
-
-                $kelombel   = $this->M_kelas->TampilkanSemua()->result();
                 $jadwal = $this->M_jadwal_les->getAll($d['kelas'],$d['periode'])->result();
                 $jumlah = $this->M_jadwal_les->getAll($d['kelas'],$d['periode'])->num_rows();
-                $mapel = $this->M_API->getAll('mata_pelajaran')->result();
-                $sesi = $this->M_sesi->tampilkanSemua()->result();
                 $data = array(
                         'title'     => 'Jadwal Les',
                         'content'   => 'tabel/t_jadwal',
                         'judul'     => 'Jadwal Les',
-                        'kelombel'  => $kelombel,
                         'jadwal'    => $jadwal,
                         'jumlah'    => $jumlah,
-                        'mapel'     => $mapel,
-                        'sesi'      => $sesi
+                        'kelombel'  => $this->M_API->getAll('kelas')->result(),
+                        'mapel'     => $this->M_API->getAll('mata_pelajaran')->result(),
+                        'sesi'      => $this->M_API->getAll('sesi')->result(),
+                        'semester'  => $this->M_API->getAll('semester')->result()
                     );
                     $this->load->view('layout', $data);
-            //jika sebagai tentor
-            // }elseif ($this->session->userdata('akses') == 'Tentor') {
-            //     $data = array(
-            //             'title' => 'Jadwal Mengajar',
-            //             'content' => 'tabel/t_jadwal_tentor',
-            //             'judul' => 'Jadwal Mengajar',
-            //         );
-            //         $this->load->view('layout', $data);
             //jika sebagai siswa
             }elseif ($this->session->userdata('akses') == 'Siswa'){
                 $this->load->model('M_jadwal_les');
@@ -74,6 +61,7 @@
                 echo"<script>history.go(-1);</script>";
             }
         }
+
         public function tambah() {
             //jika sebagai Administrator
             if($this->session->userdata('akses') == 'Administrator'){
@@ -82,18 +70,20 @@
             $this->load->model('M_API');
             $mata_ajar  = $this->M_API->getAll('mata_pelajaran')->result();
             $sesi       = $this->M_API->getAll('sesi')->result();
-            $kelas       = $this->M_API->getAll('kelas')->result();
-            $pengajar       = $this->M_API->getAll('pegawai')->result();
-            $ruangan       = $this->M_API->getAll('ruangan')->result();
+            $kelas      = $this->M_API->getAll('kelas')->result();
+            $pengajar   = $this->M_API->getAll('pegawai')->result();
+            $ruangan    = $this->M_API->getAll('ruangan')->result();
+            $semester   = $this->M_API->getAll('semester')->result();
             $data = array(
-                'sesi'     => $sesi,
+                'sesi'      => $sesi,
                 'mata_ajar' => $mata_ajar,
-                'kelas' => $kelas,
-                'pengajar' => $pengajar,
-                'ruangan' => $ruangan,
+                'kelas'     => $kelas,
+                'pengajar'  => $pengajar,
+                'ruangan'   => $ruangan,
+                'semester'  => $semester,
                 'judul'     => 'Form Tambah Jadwal Les',
                 'title'     => 'Input Jadwal Les',
-                'content'   => 'form/f_jadwal',
+                'content'   => 'form/f_jadwal'
             );
             $this->load->view('layout', $data);
             }else{//jika selain Administrator dan jika mengakses langsung ke controller ini maka akan diarahkan ke halaman sekarang
@@ -126,14 +116,14 @@
                         // $tgl = date("d",strtotime($tanggal));
                         // $id = $tgl.$bulan.$tahun;
                         $data = array(
-                            'ID_JADWAL'   => '',
-                            'ID_PEGAWAI'   => $this->input->post('tentor', TRUE),
-                            'ID_MAPEL'    => $this->input->post('mapel', TRUE),
-                            'ID_KELAS'    => $this->input->post('kelas', TRUE),
-                            'ID_RUANGAN'  => $this->input->post('ruangan', TRUE),
-                            'ID_SESI'     => $this->input->post('sesi', TRUE),
-                            'TANGGAL'     => $this->input->post('tanggal', TRUE),
-                            'STATUS_JADWAL'     => '0'
+                            'ID_JADWAL'     => '',
+                            'ID_PEGAWAI'    => $this->input->post('tentor', TRUE),
+                            'ID_MAPEL'      => $this->input->post('mapel', TRUE),
+                            'ID_KELAS'      => $this->input->post('kelas', TRUE),
+                            'ID_RUANGAN'    => $this->input->post('ruangan', TRUE),
+                            'ID_SESI'       => $this->input->post('sesi', TRUE),
+                            'TANGGAL'       => $this->input->post('tanggal', TRUE),
+                            'STATUS_JADWAL' => '0'
 
                         );
 

@@ -229,7 +229,7 @@
 								</ul>
 							</div>
 						</li>
-						<li <?=$this->uri->segment(1) == 'C_penilaian' ? 'class="nav-item active"' : 'class="nav-item"'?>>
+<!-- 						<li <?=$this->uri->segment(1) == 'C_penilaian' ? 'class="nav-item active"' : 'class="nav-item"'?>>
 							<a data-toggle="collapse" href="#nilai">
 								<i class="fas fa-pencil-alt"></i>
 								<p>Data Penilaian Siswa</p>
@@ -237,16 +237,16 @@
 							</a>
 							<div class="collapse" id="nilai">
 								<ul class="nav nav-collapse">
-<!-- 									<li>
+									<li>
 										<a href="<?php echo base_url('C_penilaian/tampilKelas')?>">
 											<span class="sub-item">Tambah Data Nilai</span>
 										</a>
-									</li> -->
-<!-- 									<li>
+									</li>
+									<li>
 										<a href="#">
 											<span class="sub-item">Ubah Data Nilai</span>
 										</a>
-									</li> -->
+									</li>
 									<li>
 										<a href="<?php echo base_url('C_penilaian')?>">
 											<span class="sub-item">Laporan Kumulatif Nilai</span>
@@ -263,24 +263,24 @@
 							</a>
 							<div class="collapse" id="absensi">
 								<ul class="nav nav-collapse">
-<!-- 									<li>
+									<li>
 										<a href="<?php echo base_url('Jadwal')?>">
 											<span class="sub-item">Tambah Data Absensi</span>
 										</a>
-									</li> -->
+									</li>
 									<li>
 										<a href="<?php echo base_url('C_Absensi')?>">
 											<span class="sub-item">Laporan Kumulatif Absensi</span> 
 										</a>
 									</li>
-<!-- 									<li>
+									<li>
 										<a href="<?php echo base_url('Laporan/siswa')?>">
 											<span class="sub-item">Laporan Absensi</span> 
 										</a>
-									</li> -->
+									</li>
 								</ul>
 							</div>
-						</li>
+						</li> -->
 						<li <?=$this->uri->segment(1) == 'Jadwal' ? 'class="nav-item active"' : 'class="nav-item"'?>>
 							<a href="<?php echo base_url('Jadwal')?>">
 								<i class="fas fa-calendar-alt"></i>

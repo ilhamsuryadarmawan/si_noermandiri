@@ -15,12 +15,20 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-md-8"></div>
+                                <div class="col-md-7"></div>
                                 <div class="col-md-2">
                                     <select class="form-control" id="kelas" name="kelas">
                                         <option value="">- Kelas -</option>
                                         <?php foreach($kelas as $k):?>
                                             <option value="<?php echo $k->ID_KELAS?>"><?php echo $k->NAMA_KELAS?></option>
+                                        <?php endforeach;?>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <select class="form-control" id="mapel" name="mapel">
+                                        <option value="">- Mata Pelajaran -</option>
+                                        <?php foreach($mapel as $mp):?>
+                                            <option value="<?php echo $mp->ID_MAPEL?>"><?php echo $mp->NAMA_MAPEL?></option>
                                         <?php endforeach;?>
                                     </select>
                                 </div>
@@ -91,7 +99,7 @@
                             if (data[i].tugas1 == null) {
                                 nilai_tugas = '-';
                             }else{
-                                nilai_tugas = data[i].tugas1
+                                nilai_tugas = data[i].tugas
                             }
 
                             nourut += 1;

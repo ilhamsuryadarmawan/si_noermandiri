@@ -11,7 +11,7 @@ class C_absensi extends CI_Controller {
     }
 
     function index(){
-        if($this->session->userdata('akses') == 'Tentor' || $this->session->userdata('akses') == 'Administrator'){
+        if($this->session->userdata('akses') == 'Tentor'){
             $this->load->model('M_kelas');
             $this->load->model('M_absensi');
             $this->load->model('M_API');
@@ -22,20 +22,24 @@ class C_absensi extends CI_Controller {
                 'title'    => 'Data Absensi',
                 'content'  => 'tabel/t_rekap_absensi',
                 'judul' => 'Absensi Siswa',
-                'kelombel'  => $kelombel
+                'kelombel'  => $kelombel,
+                'semester' => $this->M_API->getAll('semester')->result()
 
                 );
             $this->load->view('layout', $data);
             
         }elseif ($this->session->userdata('akses') == 'Siswa'){
             $this->load->model('M_absensi');
+            $this->load->model('M_semester');
 
-            $riwayat = $this->M_absensi->histori_absen($this->input->post('periode'),$this->session->userdata('ses_id'))->result();
+            $absensi = $this->M_absensi->histori_absen($this->session->userdata('ses_id'),$this->input->post('periode'))->result();
             $data = array(
                 'judul'     => 'Histori Absensi',
                 'title'     => 'Histori Absensi',
                 'content'   => 'tabel/t_histori_absen',
-                'riwayat'   => $riwayat,
+                'semester'  => $this->M_semester->getAll()->result(),
+                'absensi'   => $absensi
+
             );
             
             $this->load->view('layout', $data);
@@ -47,10 +51,8 @@ class C_absensi extends CI_Controller {
 
     function inputAbsen($id){
         if($this->session->userdata('akses') == 'Administrator' || $this->session->userdata('akses') == 'Tentor'){
-            $this->load->model('M_kelas');
-            $this->load->model('M_mapel');
+
             $this->load->model('M_jadwal_les');
-            $this->load->model('M_absensi');
             $this->load->model('M_siswa');
 
             $jadwal = $this->M_jadwal_les->getById($id)->row();
@@ -58,7 +60,7 @@ class C_absensi extends CI_Controller {
 
             $data = array(
                     'title' => 'Input Absensi',
-                    'content' => 'tabel/f_absensi',
+                    'content' => 'form/f_absensi',
                     'judul' => 'Input Absensi',
                     'jadwal'  => $jadwal,
                     'siswa'   => $siswa
@@ -100,13 +102,11 @@ class C_absensi extends CI_Controller {
                         $a=1;
                     }
                 }
-                    if($a!=1){
-                        $status='A';
-                        $this->M_absensi->simpan($id_jadwal, $nosiswaa[$i],$status);  
-                    }
-
+                if($a!=1){
+                    $status='A';
+                    $this->M_absensi->simpan($id_jadwal, $nosiswaa[$i],$status);  
+                }
             }
-
 
             $absen = $this->M_absensi->get_by_id_jadwal($id_jadwal)->num_rows();
             $data2  = array('STATUS_JADWAL' => '1');                
@@ -114,6 +114,7 @@ class C_absensi extends CI_Controller {
                 $this->M_jadwal_les->update_status($data2,$id_jadwal);
             } 
         }
+
         redirect('jadwal');
     }
     
@@ -121,7 +122,7 @@ class C_absensi extends CI_Controller {
     public function get_laporan()
     {
         $this->load->model('M_absensi');
-        $data= $this->M_absensi->rekap_absen($this->input->post('periode'),$this->input->post('kls'))->result();
+        $data= $this->M_absensi->laporan_absen($this->input->post('periode'),$this->input->post('kls'))->result();
         echo json_encode($data);
     }
 
@@ -138,7 +139,8 @@ class C_absensi extends CI_Controller {
                 $k = null;
                 $p = null;
             }
-            $data = $this->M_absensi->tampil_absen($k,$p)->result();
+
+            $data = $this->M_absensi->rekap_absen($p,$k)->result();
             echo json_encode($data);
         }
     

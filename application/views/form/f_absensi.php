@@ -33,8 +33,8 @@
                                                 <div class="row">
                                                     <div class="col-7 col-stats">
                                                         <div class="numbers">
-                                                            <p class="card-category">Tanggal Absen</p>
-                                                            <h4 class="card-title"><?php echo $jadwal->TANGGAL?></h4>
+                                                            <p class="card-category">Semester</p>
+                                                            <h4 class="card-title"><?php echo $jadwal->SEMESTER?></h4>
                                                         </div>
                                                     </div>
                                                 </div>

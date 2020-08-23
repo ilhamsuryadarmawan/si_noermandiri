@@ -45,7 +45,7 @@
 </head><body>
     <div class="row">
         <div class="col-md-12">
-            <center><img src="<?php echo $_SERVER['DOCUMENT_ROOT']."./LBBNoermandiri/assets/img/header_invoice1.png";?>" width="650" height="125"></center>
+            <center><img src="<?php echo $_SERVER['DOCUMENT_ROOT']."./si_noermandiri/assets/img/header_invoice1.png";?>" width="650" height="125"></center>
         </div>
     </div><hr>
     <div class="row">
@@ -72,7 +72,7 @@
 
                     <tr>
                         <td><?php echo $nourut++?></td>
-                        <td><?php echo $siswa->NO_INDUK?></td>
+                        <td><?php echo $siswa->NOINDUK?></td>
                         <td><?php echo $siswa->NAMA_SISWA?></td>
                         <td><?php echo $siswa->ALAMAT_SISWA?></td>
                         <td><?php echo date("d-m-Y",strtotime($siswa->TGL_LAHIR_SISWA))?></td>

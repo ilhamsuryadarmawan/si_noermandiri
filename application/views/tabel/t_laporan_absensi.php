@@ -24,6 +24,17 @@
                                         <?php endforeach;?>
                                     </select>
                                 </div>
+<!--                                 <div class="col-md-2">
+                                    <select class="form-control" name="periode" id="periode">
+                                        <option value="">-Pilih Semester-</option>
+                                        <?php
+                                        foreach ($semester as $sms) { ?>                                                    
+                                            <option value="<?php echo $sms->ID_SEMESTER;?>"><?php echo $sms->SEMESTER;?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div> -->
                                 <div class="col-md-2">
                                     <select class="form-control" id="bulan" name="bulan">
                                         <option value="">- Bulan -</option>
@@ -50,7 +61,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-1">
-                                    <button type="button" class="btn btn-primary" onclick="get_laporan_absensi()">Cari</button>
+                                    <button type="button" class="btn btn-primary" onclick="get_laporan_absensi()">Tampilkan</button>
                                 </div>
                             </div>
                         </div>

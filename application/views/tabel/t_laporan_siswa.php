@@ -30,7 +30,7 @@
                                             <button class="btn btn-primary" id="btn_pilih" onclick="get_siswa();">Pilih</button>
                                         </div>
                                         <div class="col-lg-6">
-                                            <form action="<?php echo base_url('Laporan/cetak')?>" method="POST" target="_blank">
+                                            <form action="<?php echo base_url('Laporan/cetak_laporan_siswa')?>" method="POST" target="_blank">
                                                 <input type="hidden" name="kelas1" id="kelas1">
                                                 <input type="hidden" name="tabel" id="tabel" value="siswa">
                                                 <button type="submit" class="btn btn-primary btn-round" id="btncetak" disabled style="float: right"><i class="fa fa-print"> Cetak</i></button>
